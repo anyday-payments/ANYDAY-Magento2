@@ -1,6 +1,6 @@
 {
-    "name": "anyday/paymentandtrack",
-    "description": "N/A",
+    "name": "anyday/split-and-pricetag",
+    "description": "A fair and transparent online payment solution for you and your customers.",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
