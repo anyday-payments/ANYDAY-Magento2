@@ -9,15 +9,17 @@
     "config": {
         "sort-packages": true
     },
-    "version": "2.0.0",
+    "version": "1.0.0",
     "require": {
-        "php": "~7.3.0||~7.4.0",
-        "magento/module-sales": "101.0.*||102.0.*||^102.1.0||^103",
-        "magento/module-payment": "100.2.*||100.3.*||^100.4.0",
-        "magento/module-checkout": "100.2.*||100.3.*||^100.4.0",
-        "magento/module-backend": "100.2.*||101.0.*||^102.0.0",
-        "magento/module-quote": "101.0.*||101.1.*||^101.2.0",
-        "magento/module-ui": "101.0.*||101.1.*||^101.2.0"
+        "php": "~7.1.3|~7.2.0|~7.3.0",
+        "magento/framework": "^102.0",
+        "magento/module-backend": "^101.0",
+        "magento/module-config": "^101.0",
+        "magento/module-checkout": "^100.1",
+        "magento/module-payment": "^100.1",
+        "magento/module-quote": "^101.0",
+        "magento/module-sales": "^102.0",
+        "magento/module-store": "^101.0"
     },
     "suggest": {
     },

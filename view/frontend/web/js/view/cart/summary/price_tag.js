@@ -53,7 +53,9 @@ define([
         },
 
         moveElement: function () {
-            eval(window.anydaytag.inline_css);
+            if (window.anydaytag.inline_css) {
+                eval(window.anydaytag.inline_css);
+            }
             if (anyDayTag.length && window.anydaytag.select_tag && window.anydaytag.name_select_tag) {
                 let selectElement = '';
                 switch (window.anydaytag.select_tag) {
