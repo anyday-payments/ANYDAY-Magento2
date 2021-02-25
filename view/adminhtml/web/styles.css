@@ -1,0 +1,4 @@
+.adpayment-section .config-heading {background: url(images/ANYDAY_Split_Logo.svg)  no-repeat 0 50% / 18rem auto;
+    height: 100px; width: auto; padding-left: 20rem; display: flex;align-items: center;}
+.adpayment-section .button-container {order: 2; width: 25%; text-align: right}
+.adpayment-section .heading {display: inline-block; vertical-align: middle; width: 75%}

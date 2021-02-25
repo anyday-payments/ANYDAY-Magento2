@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/validate/credentials" method="POST">
+        <service class="Anyday\PaymentAndTrack\Api\Validate\CredentialsInterface" method="validate"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+
+    <!-- Guest place order with payment information saving -->
+    <route url="/V1/anyday-url/:cartId/" method="GET">
+        <service class="Anyday\PaymentAndTrack\Api\Payment\AnydayUrlInterface" method="getAnydayPaymentUrl"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+</routes>
