@@ -93,12 +93,12 @@ class InitializeStrategyCommand implements CommandInterface
             if ($this->isNotVerifed($payment)) {
                 try {
                     $sendParam = [
-                        'Amount' => $payment->getOrder()->getGrandTotal(),
-                        'Currency' => $payment->getQuote()->getCurrency()->getBaseCurrencyCode(),
-                        'OrderId' => (string)$payment->getOrder()->getIncrementId(),
-                        'SuccessRedirectUrl' => $this->config->getSuccesRedirect($payment->getOrder()->getQuoteId()),
+                        'Amount' => $order->getGrandTotal(),
+                        'Currency' => $order->getBaseCurrencyCode(),
+                        'OrderId' => (string)$order->getIncrementId(),
+                        'SuccessRedirectUrl' => $this->config->getSuccesRedirect($order->getQuoteId()),
                         'CancelPaymentRedirectUrl' => $this->config->getCancelRedirect(
-                            $payment->getOrder()->getQuoteId()
+                            $order->getQuoteId()
                         )
                     ];
                     $this->curlAnyday->setBody($this->json->serialize($sendParam));
@@ -108,12 +108,12 @@ class InitializeStrategyCommand implements CommandInterface
 
                     if ($result['errorCode'] == 0 && isset($result['transactionId'])) {
                         $payment->setAdditionalInformation(
-                            'quote_' . $payment->getOrder()->getQuoteId(),
+                            'quote_' . $order->getQuoteId(),
                             [
                                 self::NAME_URL => 'https://my.anyday.io' . $result['authorizeUrl'],
                                 self::NAME_TRANSACTION => $result['transactionId'],
-                                self::NAME_QUOTE => (int)$payment->getOrder()->getQuoteId(),
-                                self::NAME_AMOUNT => (double)$payment->getOrder()->getGrandTotal()
+                                self::NAME_QUOTE => (int)$order->getQuoteId(),
+                                self::NAME_AMOUNT => (double)$order->getGrandTotal()
                             ]
                         );
                     } else {
