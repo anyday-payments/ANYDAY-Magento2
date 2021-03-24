@@ -39,7 +39,7 @@ define([
             var totals = quote.getTotals()();
 
             if (totals) {
-                return totals['grand_total'];
+                return totals['base_grand_total'];
             }
 
             return quote['grand_total'];
