@@ -115,8 +115,9 @@ class Pricetag extends View implements PricetagInterface
      */
     public function getPrice()
     {
-        if ($this->getProduct()) {
-            return $this->getProduct()->getFinalPrice();
+        $product = $this->getProduct();
+        if (null !== $product) {
+            return $product->getPriceInfo()->getPrice('final_price')->getAmount()->getValue();
         }
 
         return (float)0.0;
