@@ -4,3 +4,4 @@ A fair and transparent online payment solution for you and your customers
 Version 2.0 - Initial plugin creation.
 Version 2.0.1 - Changed system xml config path reference according pattern. Added csp whitelist file. Fixed checkout layout instructions.
 Version 2.0.2 - Updated initialize command due to the checkout errors.
+Version 2.0.3 - Added tax rates for price tag.
