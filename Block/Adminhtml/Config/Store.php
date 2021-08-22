@@ -30,18 +30,14 @@ class Store extends Template
      * @param StoreManagerInterface $storeManager
      * @param Json $json
      * @param array $data
-     * @param JsonHelper|null $jsonHelper
-     * @param DirectoryHelper|null $directoryHelper
      */
     public function __construct(
         Template\Context $context,
         StoreManagerInterface $storeManager,
         Json $json,
-        array $data = [],
-        JsonHelper $jsonHelper = null,
-        DirectoryHelper $directoryHelper = null
+        array $data = []
     ) {
-        parent::__construct($context, $data, $jsonHelper, $directoryHelper);
+        parent::__construct($context, $data);
 
         $this->storeManager = $storeManager;
         $this->json         = $json;

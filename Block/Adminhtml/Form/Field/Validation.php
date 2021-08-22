@@ -8,7 +8,7 @@ use Magento\Backend\Block\Template\Context;
 use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Framework\Data\Form\Element\AbstractElement;
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\View\Helper\SecureHtmlRenderer;
+use Magento\Store\Model\Store;
 
 class Validation extends Field
 {
@@ -23,15 +23,13 @@ class Validation extends Field
      * @param Context $context
      * @param AnydayendpointInterface $anydayendpointInterface
      * @param array $data
-     * @param SecureHtmlRenderer|null $secureRenderer
      */
     public function __construct(
         Context $context,
         AnydayendpointInterface $anydayendpointInterface,
-        array $data = [],
-        SecureHtmlRenderer $secureRenderer = null
+        array $data = []
     ) {
-        parent::__construct($context, $data, $secureRenderer);
+        parent::__construct($context, $data);
 
         $this->anydayendpointInterface   = $anydayendpointInterface;
     }
