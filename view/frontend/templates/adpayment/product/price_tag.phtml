@@ -13,13 +13,10 @@
                           environment="production" type="module">
         </anyday-price-tag>
     </div>
-    <?php $serializedTagConfig = /* @noEscape */ $block->getSerializedTagConfig();
 
-    $scriptTagString = <<<script
-        window.anydaytag = {$serializedTagConfig};
-script;
-    ?>
-    <?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptTagString, false) ?>
+    <script>
+        window.anydaytag = <?php echo $block->getSerializedTagConfig(); ?>;
+    </script>
     <script type="text/x-magento-init">
        {
            "*": {

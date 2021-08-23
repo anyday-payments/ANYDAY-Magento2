@@ -1,13 +1,8 @@
 <?php
 /**
- * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
  * @var $block \Anyday\PaymentAndTrack\Block\Checkout\Cart\Pricetag
  */
 ?>
-<?php $serializedTagConfig = /* @noEscape */ $block->getSerializedCartTagConfig();
-
-$scriptTagString = <<<script
-    window.anydaytag = {$serializedTagConfig};
-script;
-?>
-<?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptTagString, false) ?>
+<script>
+    window.anydaytag = <?php echo $block->getSerializedCartTagConfig(); ?>;
+</script>
