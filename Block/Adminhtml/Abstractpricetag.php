@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Anyday\PaymentAndTrack\Block\Adminhtml;
 
 use Anyday\PaymentAndTrack\Service\Settings\Config;
-use Magento\Framework\Serialize\Serializer\JsonHexTag;
+use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Framework\View\Element\Template;
 
 class Abstractpricetag extends Template
@@ -12,7 +12,7 @@ class Abstractpricetag extends Template
     const SELECT_TAG_STYLE  = '.adtag-item';
 
     /**
-     * @var JsonHexTag
+     * @var Json
      */
     protected $jsonHexTagSerializer;
 
@@ -23,13 +23,13 @@ class Abstractpricetag extends Template
 
     /**
      * @param Template\Context $context
-     * @param JsonHexTag $jsonHexTagSerializer
+     * @param Json $jsonHexTagSerializer
      * @param Config $config
      * @param array $data
      */
     public function __construct(
         Template\Context $context,
-        JsonHexTag $jsonHexTagSerializer,
+        Json $jsonHexTagSerializer,
         Config $config,
         array $data = []
     ) {

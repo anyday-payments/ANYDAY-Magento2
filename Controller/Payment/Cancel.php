@@ -6,8 +6,6 @@ namespace Anyday\PaymentAndTrack\Controller\Payment;
 use Magento\Checkout\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
-use Magento\Framework\App\Action\HttpGetActionInterface;
-use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Controller\ResultFactory;
@@ -16,7 +14,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\Order;
 
-class Cancel extends Action implements HttpGetActionInterface, HttpPostActionInterface
+class Cancel extends Action
 {
     /**
      * @var Session

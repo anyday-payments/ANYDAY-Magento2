@@ -14,7 +14,7 @@ use Magento\Catalog\Model\ProductTypes\ConfigInterface;
 use Magento\Customer\Model\Session;
 use Magento\Framework\Locale\FormatInterface;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
-use Magento\Framework\Serialize\Serializer\JsonHexTag;
+use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Framework\Stdlib\StringUtils;
 use Magento\Framework\Url\EncoderInterface;
 
@@ -42,7 +42,7 @@ class Pricetag extends View implements PricetagInterface
      * @param ProductRepositoryInterface $productRepository
      * @param PriceCurrencyInterface $priceCurrency
      * @param Config $config
-     * @param JsonHexTag $jsonHexTagSerializer
+     * @param Json $jsonHexTagSerializer
      * @param array $data
      */
     public function __construct(
@@ -57,7 +57,7 @@ class Pricetag extends View implements PricetagInterface
         ProductRepositoryInterface $productRepository,
         PriceCurrencyInterface $priceCurrency,
         Config $config,
-        JsonHexTag $jsonHexTagSerializer,
+        Json $jsonHexTagSerializer,
         array $data = []
     ) {
         parent::__construct(
