@@ -13,7 +13,6 @@ define(
                 console.log(response);
                 console.log(JSON.stringify(response));
                 let dataJson = JSON.parse(response);
-                console.log(dataJson.url);
                 //window.location.replace(dataJson.url);
                 window.location.href = dataJson.url;
             });

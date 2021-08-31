@@ -1,10 +1,9 @@
 <?php
-declare(strict_types=1);
 
 namespace Anyday\PaymentAndTrack\Gateway\Http\Client;
 
 use Anyday\PaymentAndTrack\Gateway\Exception\NoData;
-use Magento\Framework\HTTP\ClientInterface;
+use Anyday\PaymentAndTrack\Gateway\Http\Client\LibCurl;
 use Magento\Framework\Serialize\Serializer\Json;
 
 class Curl
@@ -30,7 +29,7 @@ class Curl
     private $url;
 
     /**
-     * @var ClientInterface
+     * @var LibCurl
      */
     private $clientHttp;
 
@@ -38,11 +37,11 @@ class Curl
      * Curl constructor.
      *
      * @param Json $json
-     * @param ClientInterface $clientHttp
+     * @param LibCurl $clientHttp
      */
     public function __construct(
         Json $json,
-        ClientInterface $clientHttp
+        LibCurl $clientHttp
     ) {
         $this->json         = $json;
         $this->clientHttp   = $clientHttp;
