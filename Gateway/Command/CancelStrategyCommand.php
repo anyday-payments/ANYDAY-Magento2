@@ -50,8 +50,6 @@ class CancelStrategyCommand extends AbstractStrategyCommand
                 $result = $this->curlAnyday->request();
                 if ($result['errorCode'] == 0) {
                     break;
-                } else {
-                    throw new PaymentException(__($result['errorMessage']));
                 }
             }
         }
