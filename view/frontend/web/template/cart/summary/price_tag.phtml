@@ -1,0 +1,33 @@
+<?php
+/**
+ * @var $block \Anyday\PaymentAndTrack\Block\Catalog\Product\Pricetag
+ * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ */
+?>
+<?php if ($block->isEnabled()): ?>
+    <div class="adtag-info" style="<?= /* @noEscape */ $block->getInlineCss(); ?>" data-bind="scope: 'adtag-component'">
+        <anyday-price-tag style="display: block;" data-bind="visible: visibleTagElement"
+                          total-price="<?= /* @noEscape */ $block->getPrice(); ?>"
+                          price-tag-token="<?= /* @noEscape */ $block->getTagCode(); ?>"
+                          currency="<?= /* @noEscape */ $block->getCurrency(); ?>"
+                          environment="production" type="module">
+        </anyday-price-tag>
+    </div>
+
+    <script>
+        window.anydaytag = <?php echo $block->getSerializedTagConfig(); ?>;
+    </script>
+    <script type="text/x-magento-init">
+       {
+           "*": {
+               "Magento_Ui/js/core/app": {
+                   "components": {
+                       "adtag-component": {
+                           "component": "Anyday_PaymentAndTrack/js/view/product/price_tag"
+                       }
+                   }
+               }
+           }
+       }
+    </script>
+<?php endif; ?>
