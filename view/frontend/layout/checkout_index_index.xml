@@ -13,7 +13,7 @@
         <referenceContainer name="content">
             <block class="Anyday\PaymentAndTrack\Block\Checkout\Onestep\Pricetag"
                    name="anyday_pricetag_json" after="checkout.cart.summary.title"
-                   template="Anyday_PaymentAndTrack::adpayment/cart/pricetag_json.phtml" before="+" />
+                   template="Anyday_PaymentAndTrack::adpayment/cart/pricetag_json.phtml" before="-" />
             <referenceBlock name="checkout.root">
                 <arguments>
                     <argument name="jsLayout" xsi:type="array">

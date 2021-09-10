@@ -1,6 +1,4 @@
 <?php
-declare(strict_types=1);
-
 namespace Anyday\PaymentAndTrack\Gateway\Command;
 
 use Anyday\PaymentAndTrack\Api\Data\Payment\UrlDataInterface;
@@ -14,8 +12,10 @@ use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Payment\Gateway\CommandInterface;
 use Magento\Payment\Gateway\Validator\ResultInterface;
 use Magento\Payment\Gateway\Validator\ResultInterfaceFactory;
-use Magento\Sales\Model\Order;
 use Magento\Sales\Model\Order\Payment;
+use Magento\Store\Model\StoreManagerInterface;
+use Magento\Directory\Model\Currency;
+use \Anyday\PaymentAndTrack\Service\Anyday\Order;
 
 class InitializeStrategyCommand implements CommandInterface
 {
@@ -50,26 +50,42 @@ class InitializeStrategyCommand implements CommandInterface
     private $serviceAnydayOrder;
 
     /**
+     * @var Magento\Store\Model\StoreManagerInterface
+     */
+    protected $storeManager;
+
+    /**
+     * @var Magento\Directory\Model\Currency
+     */
+    protected $currencySymbol;
+
+    /**
      * InitializeStrategyCommand constructor.
      *
      * @param ResultInterfaceFactory $resultInterfaceFactory
      * @param Config $config
      * @param Json $json
      * @param Curl $curlAnyday
-     * @param \Anyday\PaymentAndTrack\Service\Anyday\Order $serviceAnydayOrder
+     * @param Order $serviceAnydayOrder
+     * @param StoreManagerInterface $storeManager
+     * @param Currency $currencySymbol
      */
     public function __construct(
         ResultInterfaceFactory $resultInterfaceFactory,
         Config $config,
         Json $json,
         Curl $curlAnyday,
-        \Anyday\PaymentAndTrack\Service\Anyday\Order $serviceAnydayOrder
+        Order $serviceAnydayOrder,
+        StoreManagerInterface $storeManager,
+        Currency $currencySymbol
     ) {
         $this->config                   = $config;
         $this->json                     = $json;
         $this->curlAnyday               = $curlAnyday;
         $this->resultInterfaceFactory   = $resultInterfaceFactory;
         $this->serviceAnydayOrder       = $serviceAnydayOrder;
+        $this->_storeManager            = $storeManager;
+        $this->currencySymbol           = $currencySymbol;
     }
 
     /**
@@ -94,7 +110,7 @@ class InitializeStrategyCommand implements CommandInterface
                 try {
                     $sendParam = [
                         'Amount' => $payment->getOrder()->getGrandTotal(),
-                        'Currency' => $payment->getQuote()->getCurrency()->getBaseCurrencyCode(),
+                        'Currency' => $this->_storeManager->getStore()->getCurrentCurrencyCode(),
                         'OrderId' => (string)$payment->getOrder()->getIncrementId(),
                         'SuccessRedirectUrl' => $this->config->getSuccesRedirect($payment->getOrder()->getQuoteId()),
                         'CancelPaymentRedirectUrl' => $this->config->getCancelRedirect(
