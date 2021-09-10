@@ -8,7 +8,6 @@ use Anyday\PaymentAndTrack\Gateway\Exception\NoData;
 use Anyday\PaymentAndTrack\Gateway\Exception\PaymentException;
 use Magento\Payment\Gateway\Command;
 use Magento\Sales\Api\Data\TransactionInterface;
-use Magento\Sales\Model\Order\Payment;
 use Magento\Sales\Model\Order\Payment\Transaction;
 
 class CancelStrategyCommand extends AbstractStrategyCommand
@@ -50,8 +49,6 @@ class CancelStrategyCommand extends AbstractStrategyCommand
                 $result = $this->curlAnyday->request();
                 if ($result['errorCode'] == 0) {
                     break;
-                } else {
-                    throw new PaymentException(__($result['errorMessage']));
                 }
             }
         }
