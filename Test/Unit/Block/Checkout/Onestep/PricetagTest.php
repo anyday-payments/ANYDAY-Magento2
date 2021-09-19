@@ -230,7 +230,7 @@ class PricetagTest extends TestCase
     public function testGetLogoUrl()
     {
         $this->assertEquals(
-            $this->model->getViewFileUrl('Anyday_PaymentAndTrack/images/ANYDAY_Split_Logo.svg'),
+            $this->model->getViewFileUrl('Anyday_PaymentAndTrack/images/ANYDAY_Logo.svg'),
             $this->model->getNameSelectElement()
         );
     }
