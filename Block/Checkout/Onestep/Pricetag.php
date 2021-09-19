@@ -135,6 +135,6 @@ class Pricetag extends Abstractpricetag implements PricetagInterface, PaymentLog
      */
     public function getLogoUrl(): string
     {
-        return $this->getViewFileUrl('Anyday_PaymentAndTrack/images/ANYDAY_Split_Logo.svg');
+        return $this->getViewFileUrl('Anyday_PaymentAndTrack/images/ANYDAY_Logo.svg');
     }
 }
