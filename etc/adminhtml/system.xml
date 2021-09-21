@@ -305,7 +305,7 @@
 <!--                </field>-->
 <!--            </group>-->
 <!--            <group id="anyday" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">-->
-<!--                <label>ANYDAY Split</label>-->
+<!--                <label>Anyday</label>-->
 <!--                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">-->
 <!--                    <label>Enabled</label>-->
 <!--                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
