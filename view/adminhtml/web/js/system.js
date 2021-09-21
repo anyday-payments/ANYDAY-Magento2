@@ -29,7 +29,7 @@ require([
 
         if (errors.length > 0) {
             alert({
-                title: $t('ANYDAY Credential Validation Failed'),
+                title: $t('Anyday Credential Validation Failed'),
                 content:  errors.join('<br />')
             });
             return false;
@@ -57,7 +57,7 @@ require([
                 result = JSON.parse(data);
                 if (result['code'] == 'error') {
                     alert({
-                        title: $t('ANYDAY Credential Validation Failed'),
+                        title: $t('Anyday Credential Validation Failed'),
                         content: $t(result['result'])
                     });
                 } else {
@@ -69,8 +69,8 @@ require([
 
             }).fail(function () {
                 alert({
-                    title: $t('ANYDAY Credential Validation Failed'),
-                    content: $t('Your ANYDAY Credentials could not be validated.')
+                    title: $t('Anyday Credential Validation Failed'),
+                    content: $t('Your Anyday Credentials could not be validated.')
                 });
             }).always(function () {
                 $(self).text($t("Validate Credentials")).attr('disabled', false);
