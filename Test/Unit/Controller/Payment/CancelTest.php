@@ -132,7 +132,7 @@ class CancelTest extends TestCase
 
         $this->messageManagerMock->expects($this->any())
             ->method('addSuccessMessage')
-            ->with('ANYDAY Order have been canceled.')
+            ->with('Anyday Order have been canceled.')
             ->willReturnSelf();
 
         $this->resulRedirect->expects($this->any())
