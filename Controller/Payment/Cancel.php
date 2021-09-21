@@ -58,7 +58,7 @@ class Cancel extends Action implements HttpGetActionInterface, HttpPostActionInt
             $this->orderRepository->save($order->cancel());
             $this->checkoutSession->restoreQuote();
             $this->messageManager->addSuccessMessage(
-                __('ANYDAY Order have been canceled.')
+                __('Anyday Order have been canceled.')
             );
         } else {
             $this->messageManager->addErrorMessage(

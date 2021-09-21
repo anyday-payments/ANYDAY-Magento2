@@ -76,7 +76,7 @@ class Availability extends AbstractValidator
 
         return $this->createResult(
             false,
-            [__('Currency with code %s not use for ANYDAY', $currencyCode)]
+            [__('Currency with code %s not use for Anyday', $currencyCode)]
         );
     }
 }
