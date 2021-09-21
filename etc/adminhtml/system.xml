@@ -30,7 +30,7 @@
                     </field>
                 </group>
                 <group id="anydaypayment_method" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>ANYDAY Split</label>
+                    <label>Anyday</label>
                     <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">
                         <label>Enabled</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -95,7 +95,7 @@
                     <field id="model"></field>
                 </group>
                 <group id="anydaypayment_token" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>ANYDAY Pricetag</label>
+                    <label>Anyday Pricetag</label>
                     <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>General Configuration</label>
                         <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -305,7 +305,7 @@
 <!--                </field>-->
 <!--            </group>-->
 <!--            <group id="anyday" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">-->
-<!--                <label>ANYDAY Split</label>-->
+<!--                <label>Anyday</label>-->
 <!--                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">-->
 <!--                    <label>Enabled</label>-->
 <!--                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
