@@ -133,7 +133,7 @@ class InitializeStrategyCommand implements CommandInterface
                             ]
                         );
                     } else {
-                        $errorText = __('ANYDAY payment Error.');
+                        $errorText = __('Anyday payment Error.');
                         if (isset($result['errorMessage'])) {
                             $errorText = __($result['errorMessage']);
                         }
