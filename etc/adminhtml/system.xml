@@ -3,7 +3,7 @@
     <system>
         <section id="payment">
             <group id="adpayment_section" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                <comment>A fair and transparent partial payment solution. Split your payment into 4 installments with no interest or fees.</comment>
+                <comment>A fair and transparent partial payment solution. Split your payment into monthly installments with no interest or fees.</comment>
                 <fieldset_css>complex adpayment-section</fieldset_css>
                 <frontend_model>Magento\Paypal\Block\Adminhtml\System\Config\Fieldset\Payment</frontend_model>
                 <group id="anydaypayment_general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
