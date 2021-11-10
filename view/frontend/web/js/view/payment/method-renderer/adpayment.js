@@ -7,8 +7,6 @@ define(
     function (Component, redirectUrlAny, quote) {
         'use strict';
 
-        let selfThis = this;
-
         let getUrlAnyday = function () {
             redirectUrlAny().done(function (response) {
                 console.log(response);
@@ -69,6 +67,16 @@ define(
             },
 
             /**
+             * @return {*}
+             */
+             isPaymentMethodTagDisplayed: function () {
+                if (window.anydaytag.is_payment_method_tag_enabled) {
+                    return true;
+                }
+                return false;
+            },
+
+            /**
              * Get pure value.
              */
             getPureValue: function () {
@@ -90,6 +98,10 @@ define(
 
             moveElement: function () {
                 eval(window.anydaytag.inline_css);
+            },
+
+            movePaymentMethodElement: function () {
+                eval(window.anydaytag.paymentmethod_inline_css);
             },
 
             getLogoUrl: function () {
