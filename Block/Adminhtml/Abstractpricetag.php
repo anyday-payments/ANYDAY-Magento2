@@ -11,6 +11,8 @@ class Abstractpricetag extends Template
 {
     const SELECT_TAG_STYLE  = '.adtag-item';
 
+    const SELECT_PAYMENT_METHOD_TAG_STYLE  = '.adtag-paymentmethod-item';
+
     /**
      * @var Json
      */
@@ -52,7 +54,7 @@ class Abstractpricetag extends Template
         if (!$stylePairs || !$selector) {
             throw new \InvalidArgumentException('Invalid style data given');
         }
-        $elementVariable = "jQuery('.adtag-item')";
+        $elementVariable = "jQuery('".$selector."')";
 
         /** @var string[] $styles */
         $stylesAssignments = '';
