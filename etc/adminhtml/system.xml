@@ -208,6 +208,9 @@
                         <field id="checkout_payment_inline_css" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                             <label>Add inline css</label>
                             <config_path>anyday/tagmodule/checkout_payment_method_inline_css</config_path>
+                            <depends>
+                                <field id="enable">1</field>
+                            </depends>
                         </field>
                     </group>
                 </group>
