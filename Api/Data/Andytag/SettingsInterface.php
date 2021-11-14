@@ -16,13 +16,11 @@ interface SettingsInterface
     const PATH_TO_SELECT_TAG_ELEMENT_PRODUCT      = 'anyday/tagmodule/product_tag_element';
     const PATH_ENABLE_TAG_CART                    = 'anyday/tagmodule/cart_enable';
     const PATH_TO_INLINECSS_CART                  = 'anyday/tagmodule/cart_inline_css';
-    const PATH_TO_SELECT_TYPE_ELEMENT_CART        = 'anyday/tagmodule/cart_select_type_element';
     const PATH_TO_SELECT_TAG_ELEMENT_CART         = 'anyday/tagmodule/cart_tag_element';
     const PATH_ENABLE_TAG_CHECKOUT                = 'anyday/tagmodule/checkout_enable';
     const PATH_ENABLE_PAYMENT_METHOD_TAG_CHECKOUT = 'anyday/tagmodule/checkout_payment_method_enable';
     const PATH_TO_INLINECSS_CHECKOUT              = 'anyday/tagmodule/checkout_inline_css';
     const PATH_TO_INLINECSS_CHECKOUT_PAYMENT      = 'anyday/tagmodule/checkout_payment_method_inline_css';
-    const PATH_TO_SELECT_TYPE_ELEMENT_CHECKOUT    = 'anyday/tagmodule/checkout_select_type_element';
     const PATH_TO_SELECT_TAG_ELEMENT_CHECKOUT     = 'anyday/tagmodule/checkout_tag_element';
     const PATH_TO_TOKEN_SANDBOX                   = 'payment/adpaymentmethod/tokensandbox';
     const PATH_TO_TOKEN_LIVE                      = 'payment/adpaymentmethod/tokenlive';

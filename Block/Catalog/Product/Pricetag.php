@@ -150,14 +150,6 @@ class Pricetag extends View implements PricetagInterface
     /**
      * @inheritdoc
      */
-    public function getSelectElement()
-    {
-        return $this->config->getConfigValue(SettingsInterface::PATH_TO_SELECT_TYPE_ELEMENT_PRODUCT);
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function getNameSelectElement()
     {
         return $this->config->getConfigValue(SettingsInterface::PATH_TO_SELECT_TAG_ELEMENT_PRODUCT);
@@ -175,7 +167,6 @@ class Pricetag extends View implements PricetagInterface
         $tagConfig[self::NAME_TAG_CODE]         = $this->getTagCode();
         $tagConfig[self::NAME_CURRENCY_CODE]    = $this->getCurrency();
         $tagConfig[self::NAME_NAME_SELECT_TAG]  = $this->getNameSelectElement();
-        $tagConfig[self::NAME_SELECT_TAG]       = $this->getSelectElement();
 
         return $this->jsonHexTagSerializer->serialize($tagConfig);
     }

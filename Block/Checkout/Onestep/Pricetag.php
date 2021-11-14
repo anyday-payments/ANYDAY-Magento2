@@ -147,14 +147,6 @@ class Pricetag extends Abstractpricetag implements PricetagInterface, PaymentLog
     /**
      * @inheritdoc
      */
-    public function getSelectElement()
-    {
-        return '';
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function getNameSelectElement()
     {
         return '';
