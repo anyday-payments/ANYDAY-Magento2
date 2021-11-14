@@ -21,7 +21,6 @@ class Pricetag extends Abstractpricetag implements PricetagInterface
         $tagConfig[PricetagInterface::NAME_TAG_CODE]        = $this->getTagCode();
         $tagConfig[PricetagInterface::NAME_CURRENCY_CODE]   = $this->getCurrency();
         $tagConfig[PricetagInterface::NAME_NAME_SELECT_TAG] = $this->getNameSelectElement();
-        $tagConfig[PricetagInterface::NAME_SELECT_TAG]      = $this->getSelectElement();
 
         return $this->jsonHexTagSerializer->serialize($tagConfig);
     }
@@ -104,14 +103,6 @@ class Pricetag extends Abstractpricetag implements PricetagInterface
     public function isViewFullPrice()
     {
         return false;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getSelectElement()
-    {
-        return $this->config->getConfigValue(SettingsInterface::PATH_TO_SELECT_TYPE_ELEMENT_CART);
     }
 
     /**

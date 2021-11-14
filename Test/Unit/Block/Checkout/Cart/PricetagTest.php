@@ -211,19 +211,6 @@ class PricetagTest extends TestCase
         );
     }
 
-    public function testGetSelectElement()
-    {
-        $this->configMock->expects($this->any())
-            ->method('getConfigValue')
-            ->with(SettingsInterface::PATH_TO_SELECT_TYPE_ELEMENT_CART)
-            ->willReturn('1');
-
-        $this->assertEquals(
-            '1',
-            $this->model->getSelectElement()
-        );
-    }
-
     public function testGetNameSelectElement()
     {
         $this->configMock->expects($this->any())
