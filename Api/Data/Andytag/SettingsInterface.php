@@ -12,7 +12,6 @@ interface SettingsInterface
     const PATH_TO_INLINECSS_CATEGORY              = 'anyday/tagmodule/category_inline_css';
     const PATH_ENABLE_TAG_PRODUCT                 = 'anyday/tagmodule/product_enable';
     const PATH_TO_INLINECSS_PRODUCT               = 'anyday/tagmodule/product_inline_css';
-    const PATH_TO_SELECT_TYPE_ELEMENT_PRODUCT     = 'anyday/tagmodule/product_select_type_element';
     const PATH_TO_SELECT_TAG_ELEMENT_PRODUCT      = 'anyday/tagmodule/product_tag_element';
     const PATH_ENABLE_TAG_CART                    = 'anyday/tagmodule/cart_enable';
     const PATH_TO_INLINECSS_CART                  = 'anyday/tagmodule/cart_inline_css';
