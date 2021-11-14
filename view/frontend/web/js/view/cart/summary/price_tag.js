@@ -53,7 +53,7 @@ define([
         moveElement: function () {
             let anyDayTag = jQuery('.adtag-item');
             eval(window.anydaytag.inline_css);
-            if (anyDayTag.length && window.anydaytag.select_tag && window.anydaytag.name_select_tag) {
+            if (anyDayTag.length && window.anydaytag.name_select_tag) {
                 let selectElement = jQuery(window.anydaytag.name_select_tag);
                 if (selectElement.length) {
                     anyDayTag.insertAfter(selectElement);
