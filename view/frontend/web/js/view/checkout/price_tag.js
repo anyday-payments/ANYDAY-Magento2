@@ -4,8 +4,6 @@ define([
 ], function (Component, quote) {
     'use strict';
 
-    let anyDayTag = jQuery('.adtag-info');
-
     return Component.extend({
         defaults: {
             template: 'Anyday_PaymentAndTrack/cart/summary/price_tag'

@@ -211,14 +211,6 @@ class PricetagTest extends TestCase
         );
     }
 
-    public function testGetSelectElement()
-    {
-        $this->assertEquals(
-            '',
-            $this->model->getSelectElement()
-        );
-    }
-
     public function testGetNameSelectElement()
     {
         $this->assertEquals(
