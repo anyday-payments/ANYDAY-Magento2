@@ -1,6 +1,4 @@
 <?php
-declare(strict_types=1);
-
 namespace Anyday\PaymentAndTrack\Gateway\Command;
 
 use Anyday\PaymentAndTrack\Api\Data\Payment\UrlDataInterface;

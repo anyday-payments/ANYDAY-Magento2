@@ -8,7 +8,6 @@ use Magento\Backend\Block\Template\Context;
 use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Framework\Data\Form\Element\AbstractElement;
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Store\Model\Store;
 
 class Validation extends Field
 {

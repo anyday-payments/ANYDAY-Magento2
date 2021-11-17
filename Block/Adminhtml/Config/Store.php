@@ -4,8 +4,6 @@ declare(strict_types=1);
 namespace Anyday\PaymentAndTrack\Block\Adminhtml\Config;
 
 use Magento\Backend\Block\Template;
-use Magento\Directory\Helper\Data as DirectoryHelper;
-use Magento\Framework\Json\Helper\Data as JsonHelper;
 use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Store\Model\StoreManagerInterface;
 
