@@ -7,7 +7,7 @@ use Anyday\PaymentAndTrack\Api\Data\Andytag\SettingsInterface;
 use Anyday\PaymentAndTrack\Block\Checkout\Onestep\Pricetag;
 use Anyday\PaymentAndTrack\Service\Settings\Config;
 use Magento\Framework\Registry;
-use Magento\Framework\Serialize\Serializer\Json;
+use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager as ObjectManagerHelper;
 use Magento\Framework\View\Element\Template\Context;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -36,7 +36,7 @@ class PricetagTest extends TestCase
     private $registryMock;
 
     /**
-     * @var Json
+     * @var JsonHexTag
      */
     private $json;
 

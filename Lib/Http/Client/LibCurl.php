@@ -3,7 +3,7 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace Anyday\PaymentAndTrack\Gateway\Http\Client;
+namespace Anyday\PaymentAndTrack\Lib\Http\Client;
 
 /**
  * Class to work with HTTP protocol using curl library

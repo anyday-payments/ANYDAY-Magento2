@@ -8,11 +8,10 @@ use Anyday\PaymentAndTrack\Service\Settings\Config;
 use Magento\Framework\Exception\AlreadyExistsException;
 use Magento\Framework\Exception\InputException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\Serialize\Serializer\Json;
+use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Payment\Gateway\CommandInterface;
 use Magento\Payment\Gateway\Validator\ResultInterface;
 use Magento\Payment\Gateway\Validator\ResultInterfaceFactory;
-use Magento\Sales\Model\Order;
 use Magento\Sales\Model\Order\Payment;
 
 class InitializeStrategyCommand implements CommandInterface
@@ -33,7 +32,7 @@ class InitializeStrategyCommand implements CommandInterface
     private $config;
 
     /**
-     * @var Json
+     * @var JsonHexTag
      */
     private $json;
 
@@ -52,14 +51,14 @@ class InitializeStrategyCommand implements CommandInterface
      *
      * @param ResultInterfaceFactory $resultInterfaceFactory
      * @param Config $config
-     * @param Json $json
+     * @param JsonHexTag $json
      * @param Curl $curlAnyday
      * @param \Anyday\PaymentAndTrack\Service\Anyday\Order $serviceAnydayOrder
      */
     public function __construct(
         ResultInterfaceFactory $resultInterfaceFactory,
         Config $config,
-        Json $json,
+        JsonHexTag $json,
         Curl $curlAnyday,
         \Anyday\PaymentAndTrack\Service\Anyday\Order $serviceAnydayOrder
     ) {

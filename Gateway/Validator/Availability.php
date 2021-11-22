@@ -5,7 +5,7 @@ namespace Anyday\PaymentAndTrack\Gateway\Validator;
 
 use Anyday\PaymentAndTrack\Service\Settings\Config;
 use Exception;
-use Magento\Framework\Serialize\Serializer\Json;
+use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Payment\Gateway\Validator\AbstractValidator;
 use Magento\Payment\Gateway\Validator\ResultInterface;
 use Magento\Payment\Gateway\Validator\ResultInterfaceFactory;
@@ -25,7 +25,7 @@ class Availability extends AbstractValidator
     private $config;
 
     /**
-     * @var Json
+     * @var JsonHexTag
      */
     private $json;
 
@@ -39,13 +39,13 @@ class Availability extends AbstractValidator
      *
      * @param ResultInterfaceFactory $resultFactory
      * @param Config $config
-     * @param Json $json
+     * @param JsonHexTag $json
      * @param QuoteManagement $management
      */
     public function __construct(
         ResultInterfaceFactory $resultFactory,
         Config $config,
-        Json $json,
+        JsonHexTag $json,
         QuoteManagement $management
     ) {
         parent::__construct($resultFactory);

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Anyday\PaymentAndTrack\Block\Adminhtml\Config;
 
 use Magento\Backend\Block\Template;
-use Magento\Framework\Serialize\Serializer\Json;
+use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Store\Model\StoreManagerInterface;
 
 class Store extends Template
@@ -17,7 +17,7 @@ class Store extends Template
     private $storeManager;
 
     /**
-     * @var Json
+     * @var JsonHexTag
      */
     private $json;
 
@@ -26,13 +26,13 @@ class Store extends Template
      *
      * @param Template\Context $context
      * @param StoreManagerInterface $storeManager
-     * @param Json $json
+     * @param JsonHexTag $json
      * @param array $data
      */
     public function __construct(
         Template\Context $context,
         StoreManagerInterface $storeManager,
-        Json $json,
+        JsonHexTag $json,
         array $data = []
     ) {
         parent::__construct($context, $data);

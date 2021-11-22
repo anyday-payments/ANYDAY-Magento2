@@ -8,7 +8,7 @@ use Magento\Backend\Block\Template\Context;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager as ObjectManagerHelper;
 use PHPUnit\Framework\TestCase;
 use Magento\Framework\App\RequestInterface;
-use Magento\Framework\Serialize\Serializer\Json;
+use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
 
 class StoreTest extends TestCase
 {
@@ -32,7 +32,7 @@ class StoreTest extends TestCase
     private $model;
 
     /**
-     * @var Json
+     * @var JsonHexTag
      */
     private $json;
 
