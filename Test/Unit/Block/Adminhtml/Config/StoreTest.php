@@ -1,5 +1,4 @@
 <?php
-//declare(strict_types=1);
 
 namespace Anyday\PaymentAndTrack\Test\Unit\Block\Adminhtml\Config;
 

@@ -118,8 +118,8 @@ class Curl
     public function setAuthorization(string $keyAuthorize): Curl
     {
         $this->keyAuthorize = $keyAuthorize;
-        $this->setOption(CURLOPT_SSL_VERIFYHOST,false);
-        $this->setOption(CURLOPT_SSL_VERIFYPEER,false);
+        $this->setOption(CURLOPT_SSL_VERIFYHOST, false);
+        $this->setOption(CURLOPT_SSL_VERIFYPEER, false);
         return $this;
     }
 
@@ -135,7 +135,8 @@ class Curl
         return $this;
     }
 
-    public function setOption($key, $value) {
+    public function setOption($key, $value)
+    {
         $this->clientHttp->setOption($key, $value);
     }
 }

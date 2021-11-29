@@ -5,6 +5,8 @@
  */
 namespace Anyday\PaymentAndTrack\Lib\Http\Client;
 
+use Magento\Framework\Exception\LocalizedException;
+
 /**
  * Class to work with HTTP protocol using curl library
  *
@@ -418,11 +420,11 @@ class LibCurl
      *
      * @param string $string
      * @return void
-     * @throws \Exception
+     * @throws LocalizedException
      */
     public function doError($string)
     {
-        throw new \Exception($string);
+        throw new LocalizedException(__($string));
     }
 
     /**

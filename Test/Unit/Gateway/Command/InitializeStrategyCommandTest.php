@@ -52,7 +52,7 @@ class InitializeStrategyCommandTest extends TestCase
             PaymentDataObject::class
         )->disableOriginalConstructor()
             ->getMock();
-        $this->paymentMock = $this->getMockBuilder( Payment::class)
+        $this->paymentMock = $this->getMockBuilder(Payment::class)
             ->disableOriginalConstructor()
             ->getMock();
         $this->orderMock = $this->getMockBuilder(Order::class)
