@@ -38,11 +38,6 @@ class PricetagTest extends TestCase
     private $productMock;
 
     /**
-     * @var ProductRepositoryInterface|MockObject
-     */
-    private $productRepositoryMock;
-
-    /**
      * @var Registry|MockObject
      */
     private $registryMock;

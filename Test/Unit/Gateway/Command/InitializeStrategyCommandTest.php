@@ -75,7 +75,6 @@ class InitializeStrategyCommandTest extends TestCase
     public function testExecute()
     {
         $quoteId = 2;
-        $orderId = 2;
         $this->paymentDataObjectMock->expects($this->any())
             ->method('getPayment')
             ->willReturn($this->paymentMock);

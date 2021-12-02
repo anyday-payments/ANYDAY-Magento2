@@ -22,10 +22,6 @@ class StoreTest extends TestCase
     private $requestMock;
 
     /**
-     * @var Context
-     */
-    private $context;
-    /**
      * @var Store
      */
     private $model;
