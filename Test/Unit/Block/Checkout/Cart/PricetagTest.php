@@ -44,7 +44,7 @@ class PricetagTest extends TestCase
     {
         $this->objectManagerHelper = new ObjectManagerHelper($this);
 
-        $this->json = $this->objectManagerHelper->getObject(Json::class);
+        $this->json = $this->objectManagerHelper->getObject(JsonHexTag::class);
 
         $this->configMock = $this->getMockBuilder(Config::class)
             ->disableOriginalConstructor()
