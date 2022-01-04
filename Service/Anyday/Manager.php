@@ -8,13 +8,13 @@ use Anyday\PaymentAndTrack\Api\Data\Andytag\SettingsInterface;
 use Anyday\PaymentAndTrack\Block\Adminhtml\Config\Store;
 use Anyday\PaymentAndTrack\Gateway\Http\Client\Curl;
 use Magento\Framework\App\Config\Storage\WriterInterface;
-use Magento\Framework\Serialize\Serializer\Json;
+use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Store\Model\ScopeInterface;
 
 class Manager implements ManagerInterface
 {
     /**
-     * @var Json
+     * @var JsonHexTag
      */
     private $json;
 
@@ -29,12 +29,12 @@ class Manager implements ManagerInterface
     private $curlAnyday;
 
     /**
-     * @param Json $json
+     * @param JsonHexTag $json
      * @param WriterInterface $writer
      * @param Curl $curlAnyday
      */
     public function __construct(
-        Json $json,
+        JsonHexTag $json,
         WriterInterface $writer,
         Curl $curlAnyday
     ) {

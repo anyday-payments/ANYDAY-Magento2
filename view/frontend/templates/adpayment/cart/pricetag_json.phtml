@@ -4,5 +4,5 @@
  */
 ?>
 <script>
-    window.anydaytag = <?php echo $block->getSerializedCartTagConfig(); ?>;
+    window.anydaytag = <?= /* @noEscape */ $block->getSerializedCartTagConfig(); ?>;
 </script>

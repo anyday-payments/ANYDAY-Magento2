@@ -1,5 +1,4 @@
 <?php
-//declare(strict_types=1);
 
 namespace Anyday\PaymentAndTrack\Test\Unit\Block\Adminhtml\Config;
 
@@ -8,7 +7,7 @@ use Magento\Backend\Block\Template\Context;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager as ObjectManagerHelper;
 use PHPUnit\Framework\TestCase;
 use Magento\Framework\App\RequestInterface;
-use Magento\Framework\Serialize\Serializer\Json;
+use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
 
 class StoreTest extends TestCase
 {
@@ -23,16 +22,12 @@ class StoreTest extends TestCase
     private $requestMock;
 
     /**
-     * @var Context
-     */
-    private $context;
-    /**
      * @var Store
      */
     private $model;
 
     /**
-     * @var Json
+     * @var JsonHexTag
      */
     private $json;
 
@@ -40,7 +35,7 @@ class StoreTest extends TestCase
     {
         $this->objectManagerHelper = new ObjectManagerHelper($this);
 
-        $this->json = $this->objectManagerHelper->getObject(Json::class);
+        $this->json = $this->objectManagerHelper->getObject(JsonHexTag::class);
 
         $this->requestMock = $this->getMockBuilder(RequestInterface::class)
             ->getMock();

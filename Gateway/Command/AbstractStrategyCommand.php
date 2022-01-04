@@ -8,7 +8,7 @@ use Anyday\PaymentAndTrack\Service\Settings\Config;
 use Magento\Checkout\Model\Session;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Registry;
-use Magento\Framework\Serialize\Serializer\Json;
+use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Payment\Gateway\CommandInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Api\TransactionRepositoryInterface;
@@ -26,7 +26,7 @@ abstract class AbstractStrategyCommand implements CommandInterface
     protected $orderRepository;
 
     /**
-     * @var Json
+     * @var JsonHexTag
      */
     protected $json;
 
@@ -59,7 +59,7 @@ abstract class AbstractStrategyCommand implements CommandInterface
      * AbstractStrategyCommand constructor.
      *
      * @param OrderRepositoryInterface $orderRepository
-     * @param Json $json
+     * @param JsonHexTag $json
      * @param Config $config
      * @param TransactionRepositoryInterface $repository
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
@@ -68,7 +68,7 @@ abstract class AbstractStrategyCommand implements CommandInterface
      */
     public function __construct(
         OrderRepositoryInterface $orderRepository,
-        Json $json,
+        JsonHexTag $json,
         Config $config,
         TransactionRepositoryInterface $repository,
         SearchCriteriaBuilder $searchCriteriaBuilder,

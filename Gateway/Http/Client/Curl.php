@@ -1,11 +1,10 @@
 <?php
-declare(strict_types=1);
 
 namespace Anyday\PaymentAndTrack\Gateway\Http\Client;
 
 use Anyday\PaymentAndTrack\Gateway\Exception\NoData;
-use Magento\Framework\HTTP\ClientInterface;
-use Magento\Framework\Serialize\Serializer\Json;
+use Anyday\PaymentAndTrack\Lib\Http\Client\LibCurl;
+use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
 
 class Curl
 {
@@ -20,7 +19,7 @@ class Curl
     private $keyAuthorize;
 
     /**
-     * @var Json
+     * @var JsonHexTag
      */
     private $json;
 
@@ -30,19 +29,19 @@ class Curl
     private $url;
 
     /**
-     * @var ClientInterface
+     * @var LibCurl
      */
     private $clientHttp;
 
     /**
      * Curl constructor.
      *
-     * @param Json $json
-     * @param ClientInterface $clientHttp
+     * @param JsonHexTag $json
+     * @param LibCurl $clientHttp
      */
     public function __construct(
-        Json $json,
-        ClientInterface $clientHttp
+        JsonHexTag $json,
+        LibCurl $clientHttp
     ) {
         $this->json         = $json;
         $this->clientHttp   = $clientHttp;
@@ -119,6 +118,8 @@ class Curl
     public function setAuthorization(string $keyAuthorize): Curl
     {
         $this->keyAuthorize = $keyAuthorize;
+        $this->setOption(CURLOPT_SSL_VERIFYHOST, false);
+        $this->setOption(CURLOPT_SSL_VERIFYPEER, false);
         return $this;
     }
 
@@ -132,5 +133,10 @@ class Curl
     {
         $this->url = $url;
         return $this;
+    }
+
+    public function setOption($key, $value)
+    {
+        $this->clientHttp->setOption($key, $value);
     }
 }

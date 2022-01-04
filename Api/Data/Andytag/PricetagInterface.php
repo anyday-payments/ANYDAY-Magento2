@@ -12,7 +12,6 @@ interface PricetagInterface
     const NAME_CURRENCY_CODE                = 'currency_code';
     const NAME_IS_ENABLE                    = 'is_enable';
     const NAME_IS_PAYMENT_METHOD_TAG_ENABLE = 'is_payment_method_tag_enabled';
-    const NAME_SELECT_TAG                   = 'select_tag';
     const NAME_NAME_SELECT_TAG              = 'name_select_tag';
 
     /**
@@ -56,13 +55,6 @@ interface PricetagInterface
      * @return bool
      */
     public function isViewFullPrice();
-
-    /**
-     * Get select element
-     *
-     * @return string
-     */
-    public function getSelectElement();
 
     /**
      * Get Name Select Element
