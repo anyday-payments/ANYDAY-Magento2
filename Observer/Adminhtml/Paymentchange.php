@@ -46,7 +46,7 @@ class Paymentchange implements ObserverInterface
     {
         $findTag = false;
         $listChanged = $observer->getData(self::NAME_FIND_VALUE);
-        if(is_array($listChanged)) {
+        if (is_array($listChanged)) {
             $findTag = array_search(SettingsInterface::PATH_TO_TAG_TOKEN, $listChanged);
         }
         if ($findTag !== false) {

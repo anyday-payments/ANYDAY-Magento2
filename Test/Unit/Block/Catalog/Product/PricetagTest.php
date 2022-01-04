@@ -6,7 +6,6 @@ namespace Anyday\PaymentAndTrack\Test\Unit\Block\Catalog\Product;
 use Anyday\PaymentAndTrack\Api\Data\Andytag\SettingsInterface;
 use Anyday\PaymentAndTrack\Block\Catalog\Product\Pricetag;
 use Anyday\PaymentAndTrack\Service\Settings\Config;
-use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Catalog\Model\Product;
 use Magento\Framework\Registry;
@@ -38,11 +37,6 @@ class PricetagTest extends TestCase
     private $productMock;
 
     /**
-     * @var ProductRepositoryInterface|MockObject
-     */
-    private $productRepositoryMock;
-
-    /**
      * @var Registry|MockObject
      */
     private $registryMock;
@@ -56,7 +50,7 @@ class PricetagTest extends TestCase
     {
         $this->objectManagerHelper = new ObjectManagerHelper($this);
 
-        $this->json = $this->objectManagerHelper->getObject(Json::class);
+        $this->json = $this->objectManagerHelper->getObject(JsonHexTag::class);
 
         $this->configMock = $this->getMockBuilder(Config::class)
             ->disableOriginalConstructor()
@@ -160,6 +154,7 @@ class PricetagTest extends TestCase
 
     public function testGetPrice()
     {
+        $price = $this->model->getPrice();
         $this->registryMock->expects($this->any())
             ->method('registry')
             ->with('product')
@@ -171,7 +166,7 @@ class PricetagTest extends TestCase
 
         $this->assertEquals(
             (float)20.22,
-            $this->model->getPrice()
+            $price
         );
     }
 

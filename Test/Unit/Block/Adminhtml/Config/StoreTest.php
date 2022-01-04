@@ -1,5 +1,4 @@
 <?php
-//declare(strict_types=1);
 
 namespace Anyday\PaymentAndTrack\Test\Unit\Block\Adminhtml\Config;
 
@@ -23,10 +22,6 @@ class StoreTest extends TestCase
     private $requestMock;
 
     /**
-     * @var Context
-     */
-    private $context;
-    /**
      * @var Store
      */
     private $model;
@@ -40,7 +35,7 @@ class StoreTest extends TestCase
     {
         $this->objectManagerHelper = new ObjectManagerHelper($this);
 
-        $this->json = $this->objectManagerHelper->getObject(Json::class);
+        $this->json = $this->objectManagerHelper->getObject(JsonHexTag::class);
 
         $this->requestMock = $this->getMockBuilder(RequestInterface::class)
             ->getMock();

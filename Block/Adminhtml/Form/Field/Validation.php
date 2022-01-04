@@ -38,7 +38,6 @@ class Validation extends Field
      *
      * @param AbstractElement $element
      * @return string
-     * @throws LocalizedException
      */
     protected function _getElementHtml(AbstractElement $element)
     {
@@ -63,7 +62,6 @@ TEXT;
 
             return $html;
         }
-
         return '';
     }
 }

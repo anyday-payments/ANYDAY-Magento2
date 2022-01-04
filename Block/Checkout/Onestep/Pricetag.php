@@ -16,14 +16,14 @@ class Pricetag extends Abstractpricetag implements PricetagInterface, PaymentLog
     public function getSerializedCartTagConfig()
     {
         $tagConfig = [];
-        $tagConfig[PricetagInterface::NAME_IS_ENABLE]                               = $this->isEnabled();
-        $tagConfig[PricetagInterface::NAME_IS_PAYMENT_METHOD_TAG_ENABLE]            = $this->isPaymentMethodTagEnabled();
-        $tagConfig[PricetagInterface::NAME_INLINE_CSS]                              = $this->getInlineCss();
-        $tagConfig[PricetagInterface::NAME_PAYMENT_INLINE_CSS]                      = $this->getPaymentInlineCss();
-        $tagConfig[PricetagInterface::NAME_PRICE]                                   = $this->getPrice();
-        $tagConfig[PricetagInterface::NAME_TAG_CODE]                                = $this->getTagCode();
-        $tagConfig[PricetagInterface::NAME_CURRENCY_CODE]                           = $this->getCurrency();
-        $tagConfig[PaymentLogoInterface::NAME_LOGO_URL]                             = $this->getLogoUrl();
+        $tagConfig[PricetagInterface::NAME_IS_ENABLE]                    = $this->isEnabled();
+        $tagConfig[PricetagInterface::NAME_IS_PAYMENT_METHOD_TAG_ENABLE] = $this->isPaymentMethodTagEnabled();
+        $tagConfig[PricetagInterface::NAME_INLINE_CSS]                   = $this->getInlineCss();
+        $tagConfig[PricetagInterface::NAME_PAYMENT_INLINE_CSS]           = $this->getPaymentInlineCss();
+        $tagConfig[PricetagInterface::NAME_PRICE]                        = $this->getPrice();
+        $tagConfig[PricetagInterface::NAME_TAG_CODE]                     = $this->getTagCode();
+        $tagConfig[PricetagInterface::NAME_CURRENCY_CODE]                = $this->getCurrency();
+        $tagConfig[PaymentLogoInterface::NAME_LOGO_URL]                  = $this->getLogoUrl();
 
         return $this->jsonHexTagSerializer->serialize($tagConfig);
     }
@@ -45,7 +45,8 @@ class Pricetag extends Abstractpricetag implements PricetagInterface, PaymentLog
      */
     public function isPaymentMethodTagEnabled()
     {
-        if ($this->config->isTagModuleEnable() && $this->config->getConfigValue(SettingsInterface::PATH_ENABLE_PAYMENT_METHOD_TAG_CHECKOUT) == '1') {
+        if ($this->config->isTagModuleEnable() &&
+            $this->config->getConfigValue(SettingsInterface::PATH_ENABLE_PAYMENT_METHOD_TAG_CHECKOUT) == '1') {
             return true;
         }
 

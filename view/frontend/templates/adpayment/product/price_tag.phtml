@@ -14,7 +14,7 @@
     </div>
 
     <script>
-        window.anydaytag = <?php echo $block->getSerializedTagConfig(); ?>;
+        window.anydaytag = <?= /* @noEscape */ $block->getSerializedTagConfig(); ?>;
     </script>
     <script type="text/x-magento-init">
        {
