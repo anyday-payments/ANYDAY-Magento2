@@ -44,8 +44,11 @@ class Paymentchange implements ObserverInterface
      */
     public function execute(Observer $observer)
     {
+        $findTag = false;
         $listChanged = $observer->getData(self::NAME_FIND_VALUE);
-        $findTag = array_search(SettingsInterface::PATH_TO_TAG_TOKEN, $listChanged);
+        if (is_array($listChanged)) {
+            $findTag = array_search(SettingsInterface::PATH_TO_TAG_TOKEN, $listChanged);
+        }
         if ($findTag !== false) {
             unset($listChanged[$findTag]);
             $observer->setData(self::NAME_FIND_VALUE, $listChanged);

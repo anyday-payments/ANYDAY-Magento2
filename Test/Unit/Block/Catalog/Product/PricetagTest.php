@@ -6,11 +6,10 @@ namespace Anyday\PaymentAndTrack\Test\Unit\Block\Catalog\Product;
 use Anyday\PaymentAndTrack\Api\Data\Andytag\SettingsInterface;
 use Anyday\PaymentAndTrack\Block\Catalog\Product\Pricetag;
 use Anyday\PaymentAndTrack\Service\Settings\Config;
-use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Catalog\Model\Product;
 use Magento\Framework\Registry;
-use Magento\Framework\Serialize\Serializer\Json;
+use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager as ObjectManagerHelper;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -38,17 +37,12 @@ class PricetagTest extends TestCase
     private $productMock;
 
     /**
-     * @var ProductRepositoryInterface|MockObject
-     */
-    private $productRepositoryMock;
-
-    /**
      * @var Registry|MockObject
      */
     private $registryMock;
 
     /**
-     * @var Json
+     * @var JsonHexTag
      */
     private $json;
 
@@ -56,7 +50,7 @@ class PricetagTest extends TestCase
     {
         $this->objectManagerHelper = new ObjectManagerHelper($this);
 
-        $this->json = $this->objectManagerHelper->getObject(Json::class);
+        $this->json = $this->objectManagerHelper->getObject(JsonHexTag::class);
 
         $this->configMock = $this->getMockBuilder(Config::class)
             ->disableOriginalConstructor()
@@ -160,6 +154,7 @@ class PricetagTest extends TestCase
 
     public function testGetPrice()
     {
+        $price = $this->model->getPrice();
         $this->registryMock->expects($this->any())
             ->method('registry')
             ->with('product')
@@ -171,7 +166,7 @@ class PricetagTest extends TestCase
 
         $this->assertEquals(
             (float)20.22,
-            $this->model->getPrice()
+            $price
         );
     }
 
@@ -198,19 +193,6 @@ class PricetagTest extends TestCase
         $this->assertEquals(
             'DKK',
             $this->model->getCurrency()
-        );
-    }
-
-    public function testGetSelectElement()
-    {
-        $this->configMock->expects($this->any())
-            ->method('getConfigValue')
-            ->with(SettingsInterface::PATH_TO_SELECT_TYPE_ELEMENT_PRODUCT)
-            ->willReturn('1');
-
-        $this->assertEquals(
-            '1',
-            $this->model->getSelectElement()
         );
     }
 

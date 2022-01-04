@@ -10,7 +10,7 @@
         <payment>
             <anyday>
                 <model>AnydayFacade</model>
-                <title>Anyday Payment</title>
+                <title>Anyday</title>
                 <payment_action>authorize</payment_action>
                 <active>1</active>
                 <is_gateway>1</is_gateway>

@@ -1,12 +1,11 @@
 define(
     [
         'Magento_Checkout/js/view/payment/default',
-        'Anyday_PaymentAndTrack/js/model/redirect-afterorder'
+        'Anyday_PaymentAndTrack/js/model/redirect-afterorder',
+        'Magento_Checkout/js/model/quote'
     ],
-    function (Component, redirectUrlAny) {
+    function (Component, redirectUrlAny, quote) {
         'use strict';
-
-        let selfThis = this;
 
         let getUrlAnyday = function () {
             redirectUrlAny().done(function (response) {
@@ -31,6 +30,78 @@ define(
                 this.redirectAfterPlaceOrder = false;
                 getUrlAnyday();
                 // Override this function and put after place order logic here
+            },
+
+            /**
+             * @return {*}
+             */
+             isDisplayed: function () {
+                if (window.anydaytag.is_enable) {
+                    return true;
+                }
+                return false;
+            },
+
+            /**
+             * @return {*|String}
+             */
+            tagToken: function () {
+                return window.anydaytag.tag_code;
+            },
+
+            /**
+             * @return {*|String}
+             */
+            getCurrencyCode:function () {
+                return window.anydaytag.currency_code;
+            },
+
+            /**
+             * @return {*}
+             */
+            isDisplayed: function () {
+                if (window.anydaytag.is_enable) {
+                    return true;
+                }
+                return false;
+            },
+
+            /**
+             * @return {*}
+             */
+             isPaymentMethodTagDisplayed: function () {
+                if (window.anydaytag.is_payment_method_tag_enabled) {
+                    return true;
+                }
+                return false;
+            },
+
+            /**
+             * Get pure value.
+             */
+            getPureValue: function () {
+                var totals = quote.getTotals()();
+
+                if (totals) {
+                    return totals['base_grand_total'];
+                }
+
+                return quote['grand_total'];
+            },
+
+            /**
+             * @return {*|String}
+             */
+            getValue: function () {
+                return this.getPureValue();
+            },
+
+            moveElement: function () {
+                eval(window.anydaytag.inline_css);
+            },
+
+            movePaymentMethodElement: function () {
+                eval(window.anydaytag.paymentmethod_inline_css);
             },
 
             getLogoUrl: function () {

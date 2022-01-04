@@ -4,13 +4,13 @@ declare(strict_types=1);
 namespace Anyday\PaymentAndTrack\Block\Adminhtml;
 
 use Anyday\PaymentAndTrack\Service\Settings\Config;
-use Magento\Framework\Serialize\Serializer\JsonHexTag;
+use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Framework\View\Element\Template;
 
 class Abstractpricetag extends Template
 {
     const SELECT_TAG_STYLE  = '.adtag-item';
-
+    const SELECT_PAYMENT_METHOD_TAG_STYLE  = '.adtag-paymentmethod-item';
     /**
      * @var JsonHexTag
      */
@@ -52,7 +52,7 @@ class Abstractpricetag extends Template
         if (!$stylePairs || !$selector) {
             throw new \InvalidArgumentException('Invalid style data given');
         }
-        $elementVariable = "jQuery('.adtag-item')";
+        $elementVariable = "jQuery('".$selector."')";
 
         /** @var string[] $styles */
         $stylesAssignments = '';
