@@ -18,6 +18,9 @@
     <preference for="Anyday\PaymentAndTrack\Api\Data\Payment\UrlDataInterface"
                 type="Anyday\PaymentAndTrack\Service\Settings\UrlData" />
 
+    <preference for="Magento\Framework\HTTP\ClientInterface"
+                type="Magento\Framework\HTTP\Client\Curl" />
+
     <virtualType name="AnydayFacade" type="Magento\Payment\Model\Method\Adapter">
         <arguments>
             <argument name="code" xsi:type="const">Anyday\PaymentAndTrack\Model\Ui\ConfigProvider::CODE</argument>

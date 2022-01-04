@@ -8,7 +8,7 @@ use Anyday\PaymentAndTrack\Block\Checkout\Cart\Pricetag;
 use Anyday\PaymentAndTrack\Service\Settings\Config;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\Registry;
-use Magento\Framework\Serialize\Serializer\Json;
+use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager as ObjectManagerHelper;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -36,7 +36,7 @@ class PricetagTest extends TestCase
     private $registryMock;
 
     /**
-     * @var Json
+     * @var JsonHexTag
      */
     private $json;
 
@@ -44,7 +44,7 @@ class PricetagTest extends TestCase
     {
         $this->objectManagerHelper = new ObjectManagerHelper($this);
 
-        $this->json = $this->objectManagerHelper->getObject(Json::class);
+        $this->json = $this->objectManagerHelper->getObject(JsonHexTag::class);
 
         $this->configMock = $this->getMockBuilder(Config::class)
             ->disableOriginalConstructor()

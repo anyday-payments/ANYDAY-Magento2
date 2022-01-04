@@ -121,7 +121,7 @@ class SuccesTest extends TestCase
             ->method('getMessageManager')
             ->willReturn($this->messageManagerMock);
 
-        $this->paymentMock = $this->getMockBuilder( Payment::class)
+        $this->paymentMock = $this->getMockBuilder(Payment::class)
             ->disableOriginalConstructor()
             ->getMock();
 

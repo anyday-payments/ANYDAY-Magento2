@@ -14,7 +14,7 @@ use Magento\Catalog\Model\ProductTypes\ConfigInterface;
 use Magento\Customer\Model\Session;
 use Magento\Framework\Locale\FormatInterface;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
-use Magento\Framework\Serialize\Serializer\JsonHexTag;
+use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Framework\Stdlib\StringUtils;
 use Magento\Framework\Url\EncoderInterface;
 

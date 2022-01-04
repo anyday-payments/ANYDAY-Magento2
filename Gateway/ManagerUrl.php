@@ -6,7 +6,7 @@ namespace Anyday\PaymentAndTrack\Gateway;
 use Anyday\PaymentAndTrack\Api\Payment\AnydayUrlInterface;
 use Anyday\PaymentAndTrack\Gateway\Validator\Availability;
 use Magento\Framework\Api\SearchCriteriaBuilder;
-use Magento\Framework\Serialize\Serializer\Json;
+use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Quote\Model\QuoteIdMaskFactory;
 use Magento\Sales\Model\OrderRepository;
 
@@ -18,7 +18,7 @@ class ManagerUrl implements AnydayUrlInterface
     private $quoteIdMaskFactory;
 
     /**
-     * @var Json
+     * @var JsonHexTag
      */
     private $json;
 
@@ -36,13 +36,13 @@ class ManagerUrl implements AnydayUrlInterface
      * ManagerUrl constructor.
      *
      * @param QuoteIdMaskFactory $quoteIdMaskFactory
-     * @param Json $json
+     * @param JsonHexTag $json
      * @param OrderRepository $orderRepository
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      */
     public function __construct(
         QuoteIdMaskFactory $quoteIdMaskFactory,
-        Json $json,
+        JsonHexTag $json,
         OrderRepository $orderRepository,
         SearchCriteriaBuilder $searchCriteriaBuilder
     ) {
