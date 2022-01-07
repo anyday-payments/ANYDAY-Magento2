@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Service\Settings;
+namespace Anyday\Payment\Service\Settings;
 
-use Anyday\PaymentAndTrack\Api\Data\Payment\UrlDataInterface;
+use Anyday\Payment\Api\Data\Payment\UrlDataInterface;
 
 class UrlData implements UrlDataInterface
 {

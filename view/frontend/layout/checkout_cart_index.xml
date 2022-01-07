@@ -12,9 +12,9 @@
     </head>
     <body>
         <referenceContainer name="cart.summary">
-            <block class="Anyday\PaymentAndTrack\Block\Checkout\Cart\Pricetag"
+            <block class="Anyday\Payment\Block\Checkout\Cart\Pricetag"
                    name="anyday_pricetag_json" after="checkout.cart.summary.title"
-                   template="Anyday_PaymentAndTrack::adpayment/cart/pricetag_json.phtml" />
+                   template="Anyday_Payment::adpayment/cart/pricetag_json.phtml" />
         </referenceContainer>
         <referenceBlock name="checkout.cart.totals">
             <arguments>
@@ -23,7 +23,7 @@
                         <item name="block-totals" xsi:type="array">
                             <item name="children" xsi:type="array">
                                 <item name="price-tag" xsi:type="array">
-                                    <item name="component" xsi:type="string">Anyday_PaymentAndTrack/js/view/cart/summary/price_tag</item>
+                                    <item name="component" xsi:type="string">Anyday_Payment/js/view/cart/summary/price_tag</item>
                                 </item>
                             </item>
                         </item>

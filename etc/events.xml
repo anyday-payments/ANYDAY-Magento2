@@ -3,6 +3,6 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="checkout_submit_all_after">
         <observer name="adpayment_checkout_submit_all_after"
-                  instance="Anyday\PaymentAndTrack\Observer\Model\QuoteManagement"/>
+                  instance="Anyday\Payment\Observer\Model\QuoteManagement"/>
     </event>
 </config>

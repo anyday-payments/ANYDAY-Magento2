@@ -11,8 +11,8 @@
     </head>
     <body>
         <referenceContainer name="product.info.price">
-            <block class="Anyday\PaymentAndTrack\Block\Catalog\Product\Pricetag" name="ad_pricetag"
-                   template="Anyday_PaymentAndTrack::adpayment/product/price_tag.phtml" after="-">
+            <block class="Anyday\Payment\Block\Catalog\Product\Pricetag" name="ad_pricetag"
+                   template="Anyday_Payment::adpayment/product/price_tag.phtml" after="-">
             </block>
         </referenceContainer>
     </body>

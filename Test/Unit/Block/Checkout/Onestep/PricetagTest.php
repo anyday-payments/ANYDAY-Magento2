@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Test\Unit\Block\Checkout\Onestep;
+namespace Anyday\Payment\Test\Unit\Block\Checkout\Onestep;
 
-use Anyday\PaymentAndTrack\Api\Data\Andytag\SettingsInterface;
-use Anyday\PaymentAndTrack\Block\Checkout\Onestep\Pricetag;
-use Anyday\PaymentAndTrack\Service\Settings\Config;
+use Anyday\Payment\Api\Data\Andytag\SettingsInterface;
+use Anyday\Payment\Block\Checkout\Onestep\Pricetag;
+use Anyday\Payment\Service\Settings\Config;
 use Magento\Framework\Registry;
-use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
+use Anyday\Payment\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager as ObjectManagerHelper;
 use Magento\Framework\View\Element\Template\Context;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -222,7 +222,7 @@ class PricetagTest extends TestCase
     public function testGetLogoUrl()
     {
         $this->assertEquals(
-            $this->model->getViewFileUrl('Anyday_PaymentAndTrack/images/ANYDAY_Logo.svg'),
+            $this->model->getViewFileUrl('Anyday_Payment/images/ANYDAY_Logo.svg'),
             $this->model->getNameSelectElement()
         );
     }

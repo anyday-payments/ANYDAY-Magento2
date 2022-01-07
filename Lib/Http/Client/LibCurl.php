@@ -3,7 +3,7 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace Anyday\PaymentAndTrack\Lib\Http\Client;
+namespace Anyday\Payment\Lib\Http\Client;
 
 use Magento\Framework\Exception\LocalizedException;
 

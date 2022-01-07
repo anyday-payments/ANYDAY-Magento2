@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Model\Ui;
+namespace Anyday\Payment\Model\Ui;
 
-use Anyday\PaymentAndTrack\Service\Settings\Config;
+use Anyday\Payment\Service\Settings\Config;
 use Magento\Checkout\Model\ConfigProviderInterface;
 
 class ConfigProvider implements ConfigProviderInterface

@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Observer\Model;
+namespace Anyday\Payment\Observer\Model;
 
-use Anyday\PaymentAndTrack\Gateway\Validator\Availability;
-use Anyday\PaymentAndTrack\Service\Anyday\Transaction;
+use Anyday\Payment\Gateway\Validator\Availability;
+use Anyday\Payment\Service\Anyday\Transaction;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Sales\Api\Data\TransactionInterface;

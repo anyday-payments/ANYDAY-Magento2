@@ -1,13 +1,13 @@
 <?php
 
-namespace Anyday\PaymentAndTrack\Test\Unit\Block\Adminhtml\Config;
+namespace Anyday\Payment\Test\Unit\Block\Adminhtml\Config;
 
-use Anyday\PaymentAndTrack\Block\Adminhtml\Config\Store;
+use Anyday\Payment\Block\Adminhtml\Config\Store;
 use Magento\Backend\Block\Template\Context;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager as ObjectManagerHelper;
 use PHPUnit\Framework\TestCase;
 use Magento\Framework\App\RequestInterface;
-use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
+use Anyday\Payment\Lib\Serialize\Serializer\JsonHexTag;
 
 class StoreTest extends TestCase
 {

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Controller\Payment;
+namespace Anyday\Payment\Controller\Payment;
 
 use Magento\Checkout\Model\Session;
 use Magento\Framework\App\Action\Action;

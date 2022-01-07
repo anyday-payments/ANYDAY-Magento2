@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Model\Validate;
+namespace Anyday\Payment\Model\Validate;
 
-use Anyday\PaymentAndTrack\Api\Anyday\ManagerInterface;
-use Anyday\PaymentAndTrack\Api\Validate\CredentialsInterface;
+use Anyday\Payment\Api\Anyday\ManagerInterface;
+use Anyday\Payment\Api\Validate\CredentialsInterface;
 
 class Credentials implements CredentialsInterface
 {

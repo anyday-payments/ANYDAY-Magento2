@@ -1,10 +1,10 @@
 <?php
 
-namespace Anyday\PaymentAndTrack\Gateway\Http\Client;
+namespace Anyday\Payment\Gateway\Http\Client;
 
-use Anyday\PaymentAndTrack\Gateway\Exception\NoData;
-use Anyday\PaymentAndTrack\Lib\Http\Client\LibCurl;
-use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
+use Anyday\Payment\Gateway\Exception\NoData;
+use Anyday\Payment\Lib\Http\Client\LibCurl;
+use Anyday\Payment\Lib\Serialize\Serializer\JsonHexTag;
 
 class Curl
 {

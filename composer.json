@@ -1,5 +1,5 @@
 {
-    "name": "anyday/split-and-pricetag",
+    "name": "anyday/anyday",
     "description": "A fair and transparent online payment solution for you and your customers.",
     "type": "magento2-module",
     "license": [
@@ -28,7 +28,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "Anyday\\PaymentAndTrack\\": ""
+            "Anyday\\Payment\\": ""
         }
     }
 }

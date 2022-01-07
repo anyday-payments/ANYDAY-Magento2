@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Test\Unit\Gateway\Command;
+namespace Anyday\Payment\Test\Unit\Gateway\Command;
 
-use Anyday\PaymentAndTrack\Gateway\Command\InitializeStrategyCommand;
-use Anyday\PaymentAndTrack\Gateway\Http\Client\Curl;
+use Anyday\Payment\Gateway\Command\InitializeStrategyCommand;
+use Anyday\Payment\Gateway\Http\Client\Curl;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager as ObjectManagerHelper;
 use Magento\Sales\Model\Order;
 use Magento\Sales\Model\Order\Payment;

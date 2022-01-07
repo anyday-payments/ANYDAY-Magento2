@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Test\Unit\Block\Catalog\Product;
+namespace Anyday\Payment\Test\Unit\Block\Catalog\Product;
 
-use Anyday\PaymentAndTrack\Api\Data\Andytag\SettingsInterface;
-use Anyday\PaymentAndTrack\Block\Catalog\Product\Pricetag;
-use Anyday\PaymentAndTrack\Service\Settings\Config;
+use Anyday\Payment\Api\Data\Andytag\SettingsInterface;
+use Anyday\Payment\Block\Catalog\Product\Pricetag;
+use Anyday\Payment\Service\Settings\Config;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Catalog\Model\Product;
 use Magento\Framework\Registry;
-use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
+use Anyday\Payment\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager as ObjectManagerHelper;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

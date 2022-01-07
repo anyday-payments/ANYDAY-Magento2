@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Observer\Model\Order;
+namespace Anyday\Payment\Observer\Model\Order;
 
-use Anyday\PaymentAndTrack\Service\Anyday\Order;
-use Anyday\PaymentAndTrack\Service\Settings\Config;
+use Anyday\Payment\Service\Anyday\Order;
+use Anyday\Payment\Service\Settings\Config;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 

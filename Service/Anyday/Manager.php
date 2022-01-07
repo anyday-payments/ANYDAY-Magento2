@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Service\Anyday;
+namespace Anyday\Payment\Service\Anyday;
 
-use Anyday\PaymentAndTrack\Api\Anyday\ManagerInterface;
-use Anyday\PaymentAndTrack\Api\Data\Andytag\SettingsInterface;
-use Anyday\PaymentAndTrack\Block\Adminhtml\Config\Store;
-use Anyday\PaymentAndTrack\Gateway\Http\Client\Curl;
+use Anyday\Payment\Api\Anyday\ManagerInterface;
+use Anyday\Payment\Api\Data\Andytag\SettingsInterface;
+use Anyday\Payment\Block\Adminhtml\Config\Store;
+use Anyday\Payment\Gateway\Http\Client\Curl;
 use Magento\Framework\App\Config\Storage\WriterInterface;
-use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
+use Anyday\Payment\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Store\Model\ScopeInterface;
 
 class Manager implements ManagerInterface

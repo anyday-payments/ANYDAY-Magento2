@@ -1,6 +1,6 @@
 <?php
 
-namespace Anyday\PaymentAndTrack\Lib\Serialize\Serializer;
+namespace Anyday\Payment\Lib\Serialize\Serializer;
 
 use Magento\Framework\Serialize\SerializerInterface;
 use Magento\Framework\Serialize\Serializer\Json;

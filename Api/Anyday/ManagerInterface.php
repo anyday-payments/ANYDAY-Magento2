@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Api\Anyday;
+namespace Anyday\Payment\Api\Anyday;
 
 interface ManagerInterface
 {

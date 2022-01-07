@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Service\Settings;
+namespace Anyday\Payment\Service\Settings;
 
-use Anyday\PaymentAndTrack\Api\Data\Andytag\SettingsInterface;
+use Anyday\Payment\Api\Data\Andytag\SettingsInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\UrlInterface;

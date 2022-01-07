@@ -1,7 +1,7 @@
 define(
     [
         'Magento_Checkout/js/view/payment/default',
-        'Anyday_PaymentAndTrack/js/model/redirect-afterorder',
+        'Anyday_Payment/js/model/redirect-afterorder',
         'Magento_Checkout/js/model/quote'
     ],
     function (Component, redirectUrlAny, quote) {
@@ -20,7 +20,7 @@ define(
 
         return Component.extend({
             defaults: {
-                template: 'Anyday_PaymentAndTrack/payment/anydaytemplate'
+                template: 'Anyday_Payment/payment/anydaytemplate'
             },
 
             /**

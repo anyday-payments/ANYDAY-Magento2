@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Controller\Payment;
+namespace Anyday\Payment\Controller\Payment;
 
-use Anyday\PaymentAndTrack\Gateway\Validator\Availability;
-use Anyday\PaymentAndTrack\Service\Settings\Config;
+use Anyday\Payment\Gateway\Validator\Availability;
+use Anyday\Payment\Service\Settings\Config;
 use Magento\Checkout\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
@@ -30,7 +30,7 @@ class Succes extends Action
     private $orderRepository;
 
     /**
-     * @var \Anyday\PaymentAndTrack\Service\Anyday\Order
+     * @var \Anyday\Payment\Service\Anyday\Order
      */
     private $serviceAnydayOrder;
 
@@ -40,7 +40,7 @@ class Succes extends Action
     private $configService;
 
     /**
-     * @var \Anyday\PaymentAndTrack\Service\Anyday\Transaction
+     * @var \Anyday\Payment\Service\Anyday\Transaction
      */
     private $serviceTransaction;
 
@@ -50,17 +50,17 @@ class Succes extends Action
      * @param Context $context
      * @param Session $checkoutSession
      * @param OrderRepositoryInterface $orderRepository
-     * @param \Anyday\PaymentAndTrack\Service\Anyday\Order $serviceAnydayOrder
+     * @param \Anyday\Payment\Service\Anyday\Order $serviceAnydayOrder
      * @param Config $configService
-     * @param \Anyday\PaymentAndTrack\Service\Anyday\Transaction $serviceTransaction
+     * @param \Anyday\Payment\Service\Anyday\Transaction $serviceTransaction
      */
     public function __construct(
         Context $context,
         Session $checkoutSession,
         OrderRepositoryInterface $orderRepository,
-        \Anyday\PaymentAndTrack\Service\Anyday\Order $serviceAnydayOrder,
+        \Anyday\Payment\Service\Anyday\Order $serviceAnydayOrder,
         Config $configService,
-        \Anyday\PaymentAndTrack\Service\Anyday\Transaction $serviceTransaction
+        \Anyday\Payment\Service\Anyday\Transaction $serviceTransaction
     ) {
         parent::__construct($context);
         $this->checkoutSession          = $checkoutSession;

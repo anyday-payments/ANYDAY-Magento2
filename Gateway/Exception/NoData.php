@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Gateway\Exception;
+namespace Anyday\Payment\Gateway\Exception;
 
 use Exception;
 use Magento\Framework\Exception\LocalizedException;

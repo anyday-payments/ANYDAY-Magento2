@@ -1,14 +1,14 @@
 <?php
-namespace Anyday\PaymentAndTrack\Gateway\Command;
+namespace Anyday\Payment\Gateway\Command;
 
-use Anyday\PaymentAndTrack\Api\Data\Payment\UrlDataInterface;
-use Anyday\PaymentAndTrack\Gateway\Exception\NoData;
-use Anyday\PaymentAndTrack\Gateway\Http\Client\Curl;
-use Anyday\PaymentAndTrack\Service\Settings\Config;
+use Anyday\Payment\Api\Data\Payment\UrlDataInterface;
+use Anyday\Payment\Gateway\Exception\NoData;
+use Anyday\Payment\Gateway\Http\Client\Curl;
+use Anyday\Payment\Service\Settings\Config;
 use Magento\Framework\Exception\AlreadyExistsException;
 use Magento\Framework\Exception\InputException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
+use Anyday\Payment\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Payment\Gateway\CommandInterface;
 use Magento\Payment\Gateway\Validator\ResultInterface;
 use Magento\Payment\Gateway\Validator\ResultInterfaceFactory;
@@ -42,7 +42,7 @@ class InitializeStrategyCommand implements CommandInterface
     private $curlAnyday;
 
     /**
-     * @var \Anyday\PaymentAndTrack\Service\Anyday\Order
+     * @var \Anyday\Payment\Service\Anyday\Order
      */
     private $serviceAnydayOrder;
 
@@ -53,14 +53,14 @@ class InitializeStrategyCommand implements CommandInterface
      * @param Config $config
      * @param JsonHexTag $json
      * @param Curl $curlAnyday
-     * @param \Anyday\PaymentAndTrack\Service\Anyday\Order $serviceAnydayOrder
+     * @param \Anyday\Payment\Service\Anyday\Order $serviceAnydayOrder
      */
     public function __construct(
         ResultInterfaceFactory $resultInterfaceFactory,
         Config $config,
         JsonHexTag $json,
         Curl $curlAnyday,
-        \Anyday\PaymentAndTrack\Service\Anyday\Order $serviceAnydayOrder
+        \Anyday\Payment\Service\Anyday\Order $serviceAnydayOrder
     ) {
         $this->config                   = $config;
         $this->json                     = $json;

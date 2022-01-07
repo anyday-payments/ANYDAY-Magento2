@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Service\Anyday;
+namespace Anyday\Payment\Service\Anyday;
 
-use Anyday\PaymentAndTrack\Gateway\Validator\Availability;
+use Anyday\Payment\Gateway\Validator\Availability;
 use Magento\Sales\Api\Data\TransactionInterface;
 use Magento\Sales\Api\TransactionRepositoryInterface;
 use Magento\Sales\Model\Order;

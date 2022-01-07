@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Block\Adminhtml\Form\Field;
+namespace Anyday\Payment\Block\Adminhtml\Form\Field;
 
-use Anyday\PaymentAndTrack\Api\Settings\AnydayendpointInterface;
+use Anyday\Payment\Api\Settings\AnydayendpointInterface;
 use Magento\Backend\Block\Template\Context;
 use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Framework\Data\Form\Element\AbstractElement;

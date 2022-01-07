@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Model\Config\Source;
+namespace Anyday\Payment\Model\Config\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
 
