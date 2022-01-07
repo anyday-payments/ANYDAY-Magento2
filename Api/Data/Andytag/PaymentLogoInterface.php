@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\Payment\Api\Data\Andytag;
+namespace Anyday\Payment\Api\Data\Anydaytag;
 
 interface PaymentLogoInterface
 {

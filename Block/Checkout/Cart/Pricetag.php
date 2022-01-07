@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Anyday\Payment\Block\Checkout\Cart;
 
-use Anyday\Payment\Api\Data\Andytag\PricetagInterface;
-use Anyday\Payment\Api\Data\Andytag\SettingsInterface;
+use Anyday\Payment\Api\Data\Anydaytag\PricetagInterface;
+use Anyday\Payment\Api\Data\Anydaytag\SettingsInterface;
 use Anyday\Payment\Block\Adminhtml\Abstractpricetag;
 
 class Pricetag extends Abstractpricetag implements PricetagInterface

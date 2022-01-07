@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Anyday\Payment\Service\Anyday;
 
 use Anyday\Payment\Api\Anyday\ManagerInterface;
-use Anyday\Payment\Api\Data\Andytag\SettingsInterface;
+use Anyday\Payment\Api\Data\Anydaytag\SettingsInterface;
 use Anyday\Payment\Block\Adminhtml\Config\Store;
 use Anyday\Payment\Gateway\Http\Client\Curl;
 use Magento\Framework\App\Config\Storage\WriterInterface;

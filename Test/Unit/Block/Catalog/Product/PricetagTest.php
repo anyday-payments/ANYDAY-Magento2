@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Anyday\Payment\Test\Unit\Block\Catalog\Product;
 
-use Anyday\Payment\Api\Data\Andytag\SettingsInterface;
+use Anyday\Payment\Api\Data\Anydaytag\SettingsInterface;
 use Anyday\Payment\Block\Catalog\Product\Pricetag;
 use Anyday\Payment\Service\Settings\Config;
 use Magento\Catalog\Block\Product\Context;

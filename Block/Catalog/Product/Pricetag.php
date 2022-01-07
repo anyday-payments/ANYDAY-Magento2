@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Anyday\Payment\Block\Catalog\Product;
 
-use Anyday\Payment\Api\Data\Andytag\PricetagInterface;
-use Anyday\Payment\Api\Data\Andytag\SettingsInterface;
+use Anyday\Payment\Api\Data\Anydaytag\PricetagInterface;
+use Anyday\Payment\Api\Data\Anydaytag\SettingsInterface;
 use Anyday\Payment\Service\Settings\Config;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Block\Product\Context;

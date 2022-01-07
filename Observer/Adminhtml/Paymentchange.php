@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Anyday\Payment\Observer\Adminhtml;
 
-use Anyday\Payment\Api\Data\Andytag\SettingsInterface;
+use Anyday\Payment\Api\Data\Anydaytag\SettingsInterface;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Event\Observer;

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Anyday\Payment\Service\Anyday\Category;
 
-use Anyday\Payment\Api\Data\Andytag\SettingsInterface;
+use Anyday\Payment\Api\Data\Anydaytag\SettingsInterface;
 use Anyday\Payment\Service\Settings\Config;
 use Magento\Framework\Exception\NoSuchEntityException;
 

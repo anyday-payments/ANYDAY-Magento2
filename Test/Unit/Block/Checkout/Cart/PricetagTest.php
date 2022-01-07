@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Anyday\Payment\Test\Unit\Block\Checkout\Cart;
 
-use Anyday\Payment\Api\Data\Andytag\SettingsInterface;
+use Anyday\Payment\Api\Data\Anydaytag\SettingsInterface;
 use Anyday\Payment\Block\Checkout\Cart\Pricetag;
 use Anyday\Payment\Service\Settings\Config;
 use Magento\Framework\View\Element\Template\Context;
