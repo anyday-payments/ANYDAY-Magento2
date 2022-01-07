@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Block\Checkout\Onestep;
+namespace Anyday\Payment\Block\Checkout\Onestep;
 
-use Anyday\PaymentAndTrack\Api\Data\Andytag\PaymentLogoInterface;
-use Anyday\PaymentAndTrack\Api\Data\Andytag\PricetagInterface;
-use Anyday\PaymentAndTrack\Api\Data\Andytag\SettingsInterface;
-use Anyday\PaymentAndTrack\Block\Adminhtml\Abstractpricetag;
+use Anyday\Payment\Api\Data\Anydaytag\PaymentLogoInterface;
+use Anyday\Payment\Api\Data\Anydaytag\PricetagInterface;
+use Anyday\Payment\Api\Data\Anydaytag\SettingsInterface;
+use Anyday\Payment\Block\Adminhtml\Abstractpricetag;
 
 class Pricetag extends Abstractpricetag implements PricetagInterface, PaymentLogoInterface
 {
@@ -158,6 +158,6 @@ class Pricetag extends Abstractpricetag implements PricetagInterface, PaymentLog
      */
     public function getLogoUrl(): string
     {
-        return $this->getViewFileUrl('Anyday_PaymentAndTrack/images/ANYDAY_Logo.svg');
+        return $this->getViewFileUrl('Anyday_Payment/images/ANYDAY_Logo.svg');
     }
 }

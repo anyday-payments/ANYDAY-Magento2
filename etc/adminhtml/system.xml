@@ -26,7 +26,7 @@
                     </field>
                     <field id="key_validation" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label></label>
-                        <frontend_model>Anyday\PaymentAndTrack\Block\Adminhtml\Form\Field\Validation</frontend_model>
+                        <frontend_model>Anyday\Payment\Block\Adminhtml\Form\Field\Validation</frontend_model>
                     </field>
                 </group>
                 <group id="anydaypayment_method" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -42,7 +42,7 @@
                     </field>
                     <field id="mode_type" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">
                         <label>Select Mode</label>
-                        <source_model>Anyday\PaymentAndTrack\Model\Config\Source\Modetype</source_model>
+                        <source_model>Anyday\Payment\Model\Config\Source\Modetype</source_model>
                         <config_path>payment/anyday/mode_type</config_path>
                     </field>
                     <field id="sandbox" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">

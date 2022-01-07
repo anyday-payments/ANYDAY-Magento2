@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Gateway\Response;
+namespace Anyday\Payment\Gateway\Response;
 
 use Magento\Payment\Gateway\Data\PaymentDataObjectInterface;
 use Magento\Payment\Gateway\Response\HandlerInterface;

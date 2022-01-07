@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Observer\Adminhtml;
+namespace Anyday\Payment\Observer\Adminhtml;
 
-use Anyday\PaymentAndTrack\Model\Ui\ConfigProvider;
-use Anyday\PaymentAndTrack\Service\Anyday\Transaction;
-use Anyday\PaymentAndTrack\Service\Settings\Config;
+use Anyday\Payment\Model\Ui\ConfigProvider;
+use Anyday\Payment\Service\Anyday\Transaction;
+use Anyday\Payment\Service\Settings\Config;
 use Exception;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;

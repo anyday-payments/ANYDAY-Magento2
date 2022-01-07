@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Plugins\Block\Product;
+namespace Anyday\Payment\Plugins\Block\Product;
 
-use Anyday\PaymentAndTrack\Service\Anyday\Category\Settings;
+use Anyday\Payment\Service\Anyday\Category\Settings;
 use Magento\Catalog\Model\Product;
 use Magento\CatalogWidget\Block\Product\ProductsList;
 use Magento\Framework\Exception\NoSuchEntityException;

@@ -6,7 +6,7 @@ define([
         rendererList.push(
             {
                 type: 'anyday',
-                component: 'Anyday_PaymentAndTrack/js/view/payment/method-renderer/adpayment'
+                component: 'Anyday_Payment/js/view/payment/method-renderer/adpayment'
             }
         );
 

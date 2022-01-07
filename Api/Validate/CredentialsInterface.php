@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Api\Validate;
+namespace Anyday\Payment\Api\Validate;
 
 interface CredentialsInterface
 {

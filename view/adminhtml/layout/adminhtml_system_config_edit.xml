@@ -7,12 +7,12 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <css src="Anyday_PaymentAndTrack::styles.css"/>
-        <script src="Anyday_PaymentAndTrack::js/system.js" />
+        <css src="Anyday_Payment::styles.css"/>
+        <script src="Anyday_Payment::js/system.js" />
     </head>
     <body>
         <referenceContainer name="js">
-            <block class="Anyday\PaymentAndTrack\Block\Adminhtml\Config\Store" name="store_id_window" template="Anyday_PaymentAndTrack::config/store.phtml"/>
+            <block class="Anyday\Payment\Block\Adminhtml\Config\Store" name="store_id_window" template="Anyday_Payment::config/store.phtml"/>
         </referenceContainer>
     </body>
 </page>

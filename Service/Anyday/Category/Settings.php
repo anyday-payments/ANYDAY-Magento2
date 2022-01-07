@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Service\Anyday\Category;
+namespace Anyday\Payment\Service\Anyday\Category;
 
-use Anyday\PaymentAndTrack\Api\Data\Andytag\SettingsInterface;
-use Anyday\PaymentAndTrack\Service\Settings\Config;
+use Anyday\Payment\Api\Data\Anydaytag\SettingsInterface;
+use Anyday\Payment\Service\Settings\Config;
 use Magento\Framework\Exception\NoSuchEntityException;
 
 class Settings implements SettingsInterface

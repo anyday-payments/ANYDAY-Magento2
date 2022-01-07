@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Plugins\Block\Adminhtml\Order;
+namespace Anyday\Payment\Plugins\Block\Adminhtml\Order;
 
-use Anyday\PaymentAndTrack\Model\Ui\ConfigProvider;
+use Anyday\Payment\Model\Ui\ConfigProvider;
 use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Message\ManagerInterface;

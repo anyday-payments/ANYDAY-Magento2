@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Gateway\Validator;
+namespace Anyday\Payment\Gateway\Validator;
 
-use Anyday\PaymentAndTrack\Service\Settings\Config;
+use Anyday\Payment\Service\Settings\Config;
 use Exception;
-use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
+use Anyday\Payment\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Payment\Gateway\Validator\AbstractValidator;
 use Magento\Payment\Gateway\Validator\ResultInterface;
 use Magento\Payment\Gateway\Validator\ResultInterfaceFactory;

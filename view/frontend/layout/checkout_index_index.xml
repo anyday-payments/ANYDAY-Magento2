@@ -11,9 +11,9 @@
     </head>
     <body>
         <referenceContainer name="content">
-            <block class="Anyday\PaymentAndTrack\Block\Checkout\Onestep\Pricetag"
+            <block class="Anyday\Payment\Block\Checkout\Onestep\Pricetag"
                    name="anyday_pricetag_json" after="checkout.cart.summary.title"
-                   template="Anyday_PaymentAndTrack::adpayment/cart/pricetag_json.phtml" before="-" />
+                   template="Anyday_Payment::adpayment/cart/pricetag_json.phtml" before="-" />
             <referenceBlock name="checkout.root">
                 <arguments>
                     <argument name="jsLayout" xsi:type="array">
@@ -30,7 +30,7 @@
                                                             <item name="renders" xsi:type="array">
                                                                 <item name="children" xsi:type="array">
                                                                     <item name="anyday" xsi:type="array">
-                                                                        <item name="component" xsi:type="string">Anyday_PaymentAndTrack/js/view/payment/method-renderer</item>
+                                                                        <item name="component" xsi:type="string">Anyday_Payment/js/view/payment/method-renderer</item>
                                                                         <item name="methods" xsi:type="array">
                                                                             <item name="anyday" xsi:type="array">
                                                                                 <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
@@ -52,7 +52,7 @@
                                                     <item name="totals" xsi:type="array">
                                                         <item name="children" xsi:type="array">
                                                             <item name="price-tag" xsi:type="array">
-                                                                <item name="component" xsi:type="string">Anyday_PaymentAndTrack/js/view/checkout/price_tag</item>
+                                                                <item name="component" xsi:type="string">Anyday_Payment/js/view/checkout/price_tag</item>
                                                             </item>
                                                         </item>
                                                     </item>

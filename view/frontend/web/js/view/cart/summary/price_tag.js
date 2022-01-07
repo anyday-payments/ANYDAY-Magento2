@@ -6,7 +6,7 @@ define([
 
     return Component.extend({
         defaults: {
-            template: 'Anyday_PaymentAndTrack/cart/summary/price_tag'
+            template: 'Anyday_Payment/cart/summary/price_tag'
         },
         /**
          * @return {*|String}

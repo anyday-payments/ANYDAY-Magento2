@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Gateway;
+namespace Anyday\Payment\Gateway;
 
-use Anyday\PaymentAndTrack\Api\Payment\AnydayUrlInterface;
-use Anyday\PaymentAndTrack\Gateway\Validator\Availability;
+use Anyday\Payment\Api\Payment\AnydayUrlInterface;
+use Anyday\Payment\Gateway\Validator\Availability;
 use Magento\Framework\Api\SearchCriteriaBuilder;
-use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
+use Anyday\Payment\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Quote\Model\QuoteIdMaskFactory;
 use Magento\Sales\Model\OrderRepository;
 

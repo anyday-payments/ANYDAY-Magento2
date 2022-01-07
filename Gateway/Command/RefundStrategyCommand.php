@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Gateway\Command;
+namespace Anyday\Payment\Gateway\Command;
 
-use Anyday\PaymentAndTrack\Api\Data\Payment\UrlDataInterface;
-use Anyday\PaymentAndTrack\Gateway\Exception\NoData;
-use Anyday\PaymentAndTrack\Gateway\Exception\PaymentException;
+use Anyday\Payment\Api\Data\Payment\UrlDataInterface;
+use Anyday\Payment\Gateway\Exception\NoData;
+use Anyday\Payment\Gateway\Exception\PaymentException;
 use Magento\Payment\Gateway\Command;
 use Magento\Sales\Api\Data\TransactionInterface;
 use Magento\Sales\Model\Order\Payment\Transaction;

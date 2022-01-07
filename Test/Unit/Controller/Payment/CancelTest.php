@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Test\Unit\Controller\Payment;
+namespace Anyday\Payment\Test\Unit\Controller\Payment;
 
-use Anyday\PaymentAndTrack\Controller\Payment\Cancel;
+use Anyday\Payment\Controller\Payment\Cancel;
 use Magento\Checkout\Model\Session;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\Result\Redirect;

@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Test\Unit\Controller\Payment;
+namespace Anyday\Payment\Test\Unit\Controller\Payment;
 
-use Anyday\PaymentAndTrack\Controller\Payment\Succes;
-use Anyday\PaymentAndTrack\Gateway\Validator\Availability;
-use Anyday\PaymentAndTrack\Service\Settings\Config;
+use Anyday\Payment\Controller\Payment\Succes;
+use Anyday\Payment\Gateway\Validator\Availability;
+use Anyday\Payment\Service\Settings\Config;
 use Magento\Checkout\Model\Session;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\Result\Redirect;

@@ -2,11 +2,11 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="admin_system_config_changed_section_payment">
         <observer name="adpayment_admin_system_config_changed_section_payment"
-                  instance="Anyday\PaymentAndTrack\Observer\Adminhtml\Paymentchange"/>
+                  instance="Anyday\Payment\Observer\Adminhtml\Paymentchange"/>
     </event>
 
     <event name="sales_order_save_after">
-        <observer name="Anyday_PaymentAndTrack::sales_order_save_after"
-                  instance="Anyday\PaymentAndTrack\Observer\Adminhtml\OrderAfterSave" />
+        <observer name="Anyday_Payment::sales_order_save_after"
+                  instance="Anyday\Payment\Observer\Adminhtml\OrderAfterSave" />
     </event>
 </config>

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Service\Settings;
+namespace Anyday\Payment\Service\Settings;
 
-use Anyday\PaymentAndTrack\Api\Settings\AnydayendpointInterface;
+use Anyday\Payment\Api\Settings\AnydayendpointInterface;
 use Magento\Framework\UrlInterface;
 
 class Anydayendpoints implements AnydayendpointInterface

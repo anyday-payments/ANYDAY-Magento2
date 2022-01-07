@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Gateway\Command;
+namespace Anyday\Payment\Gateway\Command;
 
-use Anyday\PaymentAndTrack\Gateway\Http\Client\Curl;
-use Anyday\PaymentAndTrack\Service\Settings\Config;
+use Anyday\Payment\Gateway\Http\Client\Curl;
+use Anyday\Payment\Service\Settings\Config;
 use Magento\Checkout\Model\Session;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Registry;
-use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
+use Anyday\Payment\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Payment\Gateway\CommandInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Api\TransactionRepositoryInterface;

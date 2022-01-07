@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Block\Adminhtml;
+namespace Anyday\Payment\Block\Adminhtml;
 
-use Anyday\PaymentAndTrack\Service\Settings\Config;
-use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
+use Anyday\Payment\Service\Settings\Config;
+use Anyday\Payment\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Framework\View\Element\Template;
 
 class Abstractpricetag extends Template

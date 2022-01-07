@@ -12,7 +12,7 @@
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="Anyday_PaymentAndTrack::config_anyday" title="Anyday Section" translate="title" sortOrder="12" />
+                            <resource id="Anyday_Payment::config_anyday" title="Anyday Section" translate="title" sortOrder="12" />
                         </resource>
                     </resource>
                 </resource>

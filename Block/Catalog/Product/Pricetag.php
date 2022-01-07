@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Block\Catalog\Product;
+namespace Anyday\Payment\Block\Catalog\Product;
 
-use Anyday\PaymentAndTrack\Api\Data\Andytag\PricetagInterface;
-use Anyday\PaymentAndTrack\Api\Data\Andytag\SettingsInterface;
-use Anyday\PaymentAndTrack\Service\Settings\Config;
+use Anyday\Payment\Api\Data\Anydaytag\PricetagInterface;
+use Anyday\Payment\Api\Data\Anydaytag\SettingsInterface;
+use Anyday\Payment\Service\Settings\Config;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Catalog\Block\Product\View;
@@ -14,7 +14,7 @@ use Magento\Catalog\Model\ProductTypes\ConfigInterface;
 use Magento\Customer\Model\Session;
 use Magento\Framework\Locale\FormatInterface;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
-use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
+use Anyday\Payment\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Framework\Stdlib\StringUtils;
 use Magento\Framework\Url\EncoderInterface;
 

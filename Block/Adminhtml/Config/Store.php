@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Block\Adminhtml\Config;
+namespace Anyday\Payment\Block\Adminhtml\Config;
 
 use Magento\Backend\Block\Template;
-use Anyday\PaymentAndTrack\Lib\Serialize\Serializer\JsonHexTag;
+use Anyday\Payment\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Store\Model\StoreManagerInterface;
 
 class Store extends Template

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Api\Settings;
+namespace Anyday\Payment\Api\Settings;
 
 interface AnydayendpointInterface
 {

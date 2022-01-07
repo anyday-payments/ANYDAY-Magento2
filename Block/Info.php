@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Anyday\PaymentAndTrack\Block;
+namespace Anyday\Payment\Block;
 
 use Magento\Framework\Phrase;
 use Magento\Payment\Block\ConfigurableInfo;
-use Anyday\PaymentAndTrack\Gateway\Response\FraudHandler;
+use Anyday\Payment\Gateway\Response\FraudHandler;
 
 class Info extends ConfigurableInfo
 {
