@@ -1,6 +1,6 @@
 {
     "name": "anyday/anyday",
-    "description": "A fair and transparent online payment solution for you and your customers.",
+    "description": "Anyday is a new way to pay. An interest-free financing solution with no fees or interest for your customers.",
     "type": "magento2-module",
     "license": [
         "OSL-3.0",
