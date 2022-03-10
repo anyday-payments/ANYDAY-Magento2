@@ -30,7 +30,7 @@ class RefundStrategyCommand extends AbstractStrategyCommand
             /** @var $oneList Transaction */
             if ($oneList->getTxnType() == TransactionInterface::TYPE_ORDER) {
                 $anydayData = $oneList->getAdditionalInformation(Transaction::RAW_DETAILS)['trans'];
-                $urlString = UrlDataInterface::URL_ANYDAY_PAYMENT .
+                $urlString = UrlDataInterface::URL_ANYDAY .
                     str_replace('{id}', $anydayData, UrlDataInterface::URL_REFUND);
 
                 $this->curlAnyday->setUrl($urlString);

@@ -90,25 +90,25 @@ class InitializeStrategyCommand implements CommandInterface
             if ($this->isNotVerifed($payment)) {
                 try {
                     $sendParam = [
-                        'Amount' => $order->getGrandTotal(),
-                        'Currency' => $order->getBaseCurrencyCode(),
-                        'OrderId' => (string)$order->getIncrementId(),
-                        'SuccessRedirectUrl' => $this->config->getSuccesRedirect($order->getQuoteId()),
-                        'CancelPaymentRedirectUrl' => $this->config->getCancelRedirect(
+                        'amount' => $order->getGrandTotal(),
+                        'currency' => $order->getBaseCurrencyCode(),
+                        'orderId' => (string)$order->getIncrementId(),
+                        'successRedirectUrl' => $this->config->getSuccesRedirect($order->getQuoteId()),
+                        'cancelRedirectUrl' => $this->config->getCancelRedirect(
                             $order->getQuoteId()
                         )
                     ];
                     $this->curlAnyday->setBody($this->json->serialize($sendParam));
-                    $this->curlAnyday->setUrl(UrlDataInterface::URL_AUTORIZE);
+                    $this->curlAnyday->setUrl(UrlDataInterface::URL_ANYDAY . UrlDataInterface::URL_AUTORIZE);
                     $this->curlAnyday->setAuthorization($this->config->getPaymentAutorizeKey());
                     $result = $this->curlAnyday->request();
 
-                    if ($result['errorCode'] == 0 && isset($result['transactionId'])) {
+                    if ($result['errorCode'] == 0 && isset($result['purchaseOrderId'])) {
                         $payment->setAdditionalInformation(
                             'quote_' . $order->getQuoteId(),
                             [
-                                self::NAME_URL => 'https://my.anyday.io' . $result['authorizeUrl'],
-                                self::NAME_TRANSACTION => $result['transactionId'],
+                                self::NAME_URL => UrlDataInterface::URL_ANYDAY . $result['checkoutUrl'],
+                                self::NAME_TRANSACTION => $result['purchaseOrderId'],
                                 self::NAME_QUOTE => (int)$order->getQuoteId(),
                                 self::NAME_AMOUNT => (double)$order->getGrandTotal()
                             ]

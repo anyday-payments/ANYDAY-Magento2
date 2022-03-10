@@ -1,26 +1,17 @@
 <?php 
 namespace Anyday\Payment\Model\Event;
 
-class CaptureEvent {
+class CaptureEvent extends BaseEvent{
   const CODE = 'capture';
 /**
  * Handling capture charge and making 
+ * @param mixed $data
+ * @param \Magento\Sales\Model\Order $order
  */
   public function handle($data, $order) {
-    $order = $order->loadByIncrementId($data->orderId);
-    if (! $order->getId()) {
-        // TODO: Handle in case of improper response structure.
-        return;
-    }
-
-    if (! $payment = $order->getPayment()) {
-        // TODO: Handle in case of improper response structure.
-        return;
-    }
-
-    $paymentMethod = $payment->getMethod();
-    if($this->handled($data) && ) {
-
+    $order = $this->getOrder($data->orderId, $order);
+    if($order && $this->handled($data)) {
+      
     }
   }
 }
