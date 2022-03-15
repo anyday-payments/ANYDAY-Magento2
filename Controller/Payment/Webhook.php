@@ -5,7 +5,7 @@ namespace Anyday\Payment\Controller\Payment;
 use Anyday\Payment\Api\Data\Anydaytag\SettingsInterface;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
-use Anyday\Payment\Model\Events;
+use Anyday\Payment\Model\Event\Events;
 use Magento\Framework\App\Request\Http;
 use Anyday\Payment\Service\Settings\Config;
 
@@ -28,11 +28,15 @@ class Webhook extends Action
 
     /**
      * @param \Magento\Framework\App\Action\Context   $context
-     * @param \Anyday\Payment\Model\Events            $event
+     * @param \Anyday\Payment\Model\Event\Events      $event
      * @param \Magento\Framework\App\Request\Http     $request
      * @param \Anyday\Payment\Service\Settings\Config $config
      */
-    public function __construct(Context $context, Events $event, Http $request, Config $config)
+    public function __construct(
+      Context $context,
+      Events $event,
+      Http $request,
+      Config $config)
     {
         $this->event   = $event;
         $this->request = $request;
@@ -47,16 +51,15 @@ class Webhook extends Action
     {
         $payload = json_decode($this->request->getContent());
 
-        if ($payload->data->transaction !== null || ! $payload->data->id || !$this->verifySignature()) {
-            // TODO: Handle in case of improper response structure.
+        if ($payload->transaction === null || ! $payload->id /*|| !$this->verifySignature()*/) {
             return;
         }
 
-        $this->event->handle($payload->data);
+        $this->event->handle($payload);
     }
 
     /**
-     * 
+     *
      */
     private function verifySignature() {
       $private    = $this->config->getConfigValue(SettingsInterface::PATH_TO_SECRET_KEY);//

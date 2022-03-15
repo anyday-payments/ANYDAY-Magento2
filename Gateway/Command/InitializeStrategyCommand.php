@@ -13,6 +13,9 @@ use Magento\Payment\Gateway\CommandInterface;
 use Magento\Payment\Gateway\Validator\ResultInterface;
 use Magento\Payment\Gateway\Validator\ResultInterfaceFactory;
 use Magento\Sales\Model\Order\Payment;
+use Magento\Store\Model\StoreManagerInterface;
+use Anyday\Payment\Service\Anyday\Order;
+use Magento\Framework\UrlInterface;
 
 class InitializeStrategyCommand implements CommandInterface
 {
@@ -47,26 +50,41 @@ class InitializeStrategyCommand implements CommandInterface
     private $serviceAnydayOrder;
 
     /**
+     * @var StoreManagerInterface
+     */
+    private $storeManager;
+
+    /**
+     * @var UrlInterface
+     */
+    private $urlInterface;
+
+    /**
      * InitializeStrategyCommand constructor.
      *
      * @param ResultInterfaceFactory $resultInterfaceFactory
      * @param Config $config
      * @param JsonHexTag $json
      * @param Curl $curlAnyday
-     * @param \Anyday\Payment\Service\Anyday\Order $serviceAnydayOrder
+     * @param Order $serviceAnydayOrder
+     * @param UrlInterface $urlInterface
      */
     public function __construct(
         ResultInterfaceFactory $resultInterfaceFactory,
         Config $config,
         JsonHexTag $json,
         Curl $curlAnyday,
-        \Anyday\Payment\Service\Anyday\Order $serviceAnydayOrder
+        Order $serviceAnydayOrder,
+        StoreManagerInterface $storeManager,
+        UrlInterface $urlInterface
     ) {
         $this->config                   = $config;
         $this->json                     = $json;
         $this->curlAnyday               = $curlAnyday;
         $this->resultInterfaceFactory   = $resultInterfaceFactory;
         $this->serviceAnydayOrder       = $serviceAnydayOrder;
+        $this->storeManager             = $storeManager;
+        $this->urlInterface             = $urlInterface;
     }
 
     /**
@@ -96,7 +114,11 @@ class InitializeStrategyCommand implements CommandInterface
                         'successRedirectUrl' => $this->config->getSuccesRedirect($order->getQuoteId()),
                         'cancelRedirectUrl' => $this->config->getCancelRedirect(
                             $order->getQuoteId()
-                        )
+                        ),
+                        // 'callbackUrl' => $this->urlInterface->getUrl(
+                        //     'anydayfront/payment/webhook'
+                        // )
+                        'callbackUrl' => "https://webhook.site/9914b37c-3f56-48dd-8bb1-b7d93d7b9e37"
                     ];
                     $this->curlAnyday->setBody($this->json->serialize($sendParam));
                     $this->curlAnyday->setUrl(UrlDataInterface::URL_ANYDAY . UrlDataInterface::URL_AUTORIZE);
