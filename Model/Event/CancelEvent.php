@@ -1,5 +1,6 @@
-<?php 
+<?php
 namespace Anyday\Payment\Model\Event;
+
 use Anyday\Payment\Service\Settings\Config;
 use Magento\Sales\Model\Order;
 use Magento\Sales\Api\Data\TransactionInterface;
@@ -12,41 +13,42 @@ use Magento\Framework\DB\Transaction as MagentoTransaction;
 use Magento\Sales\Model\Order\Email\Sender\InvoiceSender;
 use Magento\Sales\Api\Data\InvoiceInterface;
 
-class CancelEvent {
-  const CODE = 'cancel';
+class CancelEvent
+{
+    const CODE = 'cancel';
 
   /**
    * @var Config
    */
-  private $config;
+    private $config;
 
   /**
    * @var Transaction
    */
-  private $serviceTransaction;
+    private $serviceTransaction;
 
   /**
    * @var InvoiceRepositoryInterface
    */
-  private $invoiceRepository;
+    private $invoiceRepository;
 
   /**
    * @var OrderRepositoryInterface
    */
-  private $orderRepository;
+    private $orderRepository;
 
   /**
    * @var InvoiceService
    */
-  protected $invoiceService;
+    protected $invoiceService;
   /**
    * @var MagentoTransaction
    */
-  protected $transaction;
+    protected $transaction;
   /**
    * @var InvoiceSender
    */
-  protected $invoiceSender;
+    protected $invoiceSender;
 
   /**
    * @param Config $config
@@ -57,34 +59,35 @@ class CancelEvent {
    * @param InvoiceSender $invoiceSender
    * @param MagentoTransaction $transaction
    */
-  public function __construct(
-    Config $config,
-    Transaction $serviceTransaction,
-    InvoiceRepositoryInterface $invoiceRepository,
-    OrderRepositoryInterface $orderRepository,
-    InvoiceService $invoiceService,
-    InvoiceSender $invoiceSender,
-    MagentoTransaction $transaction
-  ) {
-    $this->config             = $config;
-    $this->serviceTransaction = $serviceTransaction;
-    $this->invoiceRepository  = $invoiceRepository;
-    $this->orderRepository    = $orderRepository;
-    $this->invoiceService     = $invoiceService;
-    $this->transaction        = $transaction;
-    $this->invoiceSender      = $invoiceSender;
-  }
+    public function __construct(
+        Config $config,
+        Transaction $serviceTransaction,
+        InvoiceRepositoryInterface $invoiceRepository,
+        OrderRepositoryInterface $orderRepository,
+        InvoiceService $invoiceService,
+        InvoiceSender $invoiceSender,
+        MagentoTransaction $transaction
+    ) {
+        $this->config             = $config;
+        $this->serviceTransaction = $serviceTransaction;
+        $this->invoiceRepository  = $invoiceRepository;
+        $this->orderRepository    = $orderRepository;
+        $this->invoiceService     = $invoiceService;
+        $this->transaction        = $transaction;
+        $this->invoiceSender      = $invoiceSender;
+    }
 
   /**
    * Handling cancel charge.
    * @param mixed $data
    * @param Order $order
    */
-  public function handle($data, $order) {
-    if ($order->getStatus() != Order::STATE_CANCELED) {
-      $order->setState(Order::STATE_CANCELED)->setStatus(Order::STATE_CANCELED);
-      $order->addCommentToStatusHistory('Anyday payment canceled successfully.', Order::STATE_CANCELED);
-      $this->orderRepository->save($order);
+    public function handle($data, $order)
+    {
+        if ($order->getStatus() != Order::STATE_CANCELED) {
+            $order->setState(Order::STATE_CANCELED)->setStatus(Order::STATE_CANCELED);
+            $order->addCommentToStatusHistory('Anyday payment canceled successfully.', Order::STATE_CANCELED);
+            $this->orderRepository->save($order);
+        }
     }
-  }
 }

@@ -33,11 +33,11 @@ class Webhook extends Action
      * @param \Anyday\Payment\Service\Settings\Config $config
      */
     public function __construct(
-      Context $context,
-      Events $event,
-      Http $request,
-      Config $config)
-    {
+        Context $context,
+        Events $event,
+        Http $request,
+        Config $config
+    ) {
         $this->event   = $event;
         $this->request = $request;
         $this->config  = $config;
@@ -61,16 +61,17 @@ class Webhook extends Action
     /**
      *
      */
-    private function verifySignature() {
-      $private    = $this->config->getConfigValue(SettingsInterface::PATH_TO_SECRET_KEY);//
-      $signature  = $this->request->getHeader('x_anyday_signature');
-      if(empty(trim($private))) {
+    private function verifySignature()
+    {
+        $private    = $this->config->getConfigValue(SettingsInterface::PATH_TO_SECRET_KEY);//
+        $signature  = $this->request->getHeader('x_anyday_signature');
+        if (empty(trim($private))) {
+            return false;
+        }
+        $signedBody = hash_hmac('sha256', $this->request->getContent(), $private);
+        if ($signature === $signedBody) {
+            return true;
+        }
         return false;
-      }
-      $signedBody = hash_hmac('sha256', $this->request->getContent(), $private);
-      if($signature === $signedBody) {
-        return true;
-      }
-      return false;
     }
 }

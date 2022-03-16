@@ -115,10 +115,9 @@ class InitializeStrategyCommand implements CommandInterface
                         'cancelRedirectUrl' => $this->config->getCancelRedirect(
                             $order->getQuoteId()
                         ),
-                        // 'callbackUrl' => $this->urlInterface->getUrl(
-                        //     'anydayfront/payment/webhook'
-                        // )
-                        'callbackUrl' => "https://webhook.site/9914b37c-3f56-48dd-8bb1-b7d93d7b9e37"
+                        'callbackUrl' => $this->urlInterface->getUrl(
+                            'anydayfront/payment/webhook'
+                        )
                     ];
                     $this->curlAnyday->setBody($this->json->serialize($sendParam));
                     $this->curlAnyday->setUrl(UrlDataInterface::URL_ANYDAY . UrlDataInterface::URL_AUTORIZE);

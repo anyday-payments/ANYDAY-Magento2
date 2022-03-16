@@ -1,5 +1,6 @@
-<?php 
+<?php
 namespace Anyday\Payment\Model\Event;
+
 use Anyday\Payment\Service\Settings\Config;
 use Magento\Sales\Model\Order;
 use Magento\Sales\Api\Data\TransactionInterface;
@@ -12,41 +13,42 @@ use Magento\Framework\DB\Transaction as MagentoTransaction;
 use Magento\Sales\Model\Order\Email\Sender\InvoiceSender;
 use Magento\Sales\Api\Data\InvoiceInterface;
 
-class CaptureEvent {
-  const CODE = 'capture';
+class CaptureEvent
+{
+    const CODE = 'capture';
 
   /**
    * @var Config
    */
-  private $config;
+    private $config;
 
   /**
    * @var Transaction
    */
-  private $serviceTransaction;
+    private $serviceTransaction;
 
   /**
    * @var InvoiceRepositoryInterface
    */
-  private $invoiceRepository;
+    private $invoiceRepository;
 
   /**
    * @var OrderRepositoryInterface
    */
-  private $orderRepository;
+    private $orderRepository;
 
   /**
    * @var InvoiceService
    */
-  protected $invoiceService;
+    protected $invoiceService;
   /**
    * @var MagentoTransaction
    */
-  protected $transaction;
+    protected $transaction;
   /**
    * @var InvoiceSender
    */
-  protected $invoiceSender;
+    protected $invoiceSender;
 
   /**
    * @param Config $config
@@ -57,39 +59,40 @@ class CaptureEvent {
    * @param InvoiceSender $invoiceSender
    * @param MagentoTransaction $transaction
    */
-  public function __construct(
-    Config $config,
-    Transaction $serviceTransaction,
-    InvoiceRepositoryInterface $invoiceRepository,
-    OrderRepositoryInterface $orderRepository,
-    InvoiceService $invoiceService,
-    InvoiceSender $invoiceSender,
-    MagentoTransaction $transaction
-  ) {
-    $this->config             = $config;
-    $this->serviceTransaction = $serviceTransaction;
-    $this->invoiceRepository  = $invoiceRepository;
-    $this->orderRepository    = $orderRepository;
-    $this->invoiceService     = $invoiceService;
-    $this->transaction        = $transaction;
-    $this->invoiceSender      = $invoiceSender;
-  }
+    public function __construct(
+        Config $config,
+        Transaction $serviceTransaction,
+        InvoiceRepositoryInterface $invoiceRepository,
+        OrderRepositoryInterface $orderRepository,
+        InvoiceService $invoiceService,
+        InvoiceSender $invoiceSender,
+        MagentoTransaction $transaction
+    ) {
+        $this->config             = $config;
+        $this->serviceTransaction = $serviceTransaction;
+        $this->invoiceRepository  = $invoiceRepository;
+        $this->orderRepository    = $orderRepository;
+        $this->invoiceService     = $invoiceService;
+        $this->transaction        = $transaction;
+        $this->invoiceSender      = $invoiceSender;
+    }
 
   /**
    * Handling capture charge and making
    * @param mixed $data
    * @param \Magento\Sales\Model\Order $order
    */
-  public function handle($data, $order) {
-    $statusCode = $this->config->getConfigValue(Config::PATH_TO_STATUS_AFTER_INVOICE);
-    if ($statusCode
-      && $order->getStatus() != $statusCode
-      && $data->orderTotal == $data->totalCaptured) {
-      $this->updateInvoice($order, $data);
-      $order->addCommentToStatusHistory('Created Invoice and Capture successfully.', $statusCode);
-      $this->orderRepository->save($order);
+    public function handle($data, $order)
+    {
+        $statusCode = $this->config->getConfigValue(Config::PATH_TO_STATUS_AFTER_INVOICE);
+        if ($statusCode
+        && $order->getStatus() != $statusCode
+        && $data->orderTotal == $data->totalCaptured) {
+            $this->updateInvoice($order, $data);
+            $order->addCommentToStatusHistory('Created Invoice and Capture successfully.', $statusCode);
+            $this->orderRepository->save($order);
+        }
     }
-  }
 
   /**
    * Update order Invoice
@@ -98,45 +101,48 @@ class CaptureEvent {
    * @param Object
    * @throws Exception
    */
-  private function updateInvoice(Order $order, $data)
-  {
-      /**
-       * @var Magento\Sales\Model\Order\Payment $payment
-       */
-      $payment = $order->getPayment();
-      $transaction = $this->serviceTransaction->addTransaction(
-          $order,
-          TransactionInterface::TYPE_CAPTURE,
-          $order->getId().'-capture',
-          [
+    private function updateInvoice(Order $order, $data)
+    {
+        /**
+         * @var Magento\Sales\Model\Order\Payment $payment
+         */
+        $payment = $order->getPayment();
+        $transaction = $this->serviceTransaction->addTransaction(
+            $order,
+            TransactionInterface::TYPE_CAPTURE,
+            $order->getId().'-capture',
+            [
               PaymentTransaction::RAW_DETAILS => [
                   'trans' => $data->transaction->id
               ]
-          ]
-      );
-      $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
-      if ($order->canInvoice()) {
-        $invoice = $this->invoiceService->prepareInvoice($order);
-        $invoice->register();
-        $invoice->pay();
-        $invoice->save();
+            ]
+        );
+        $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
+        $listInvoices = $order->getInvoiceCollection();
+        if (count($listInvoices) == 0) {
+            if ($order->canInvoice()) {
+                $invoice = $this->invoiceService->prepareInvoice($order);
+                $invoice->register();
+                $invoice->pay();
+                $invoice->save();
 
-        $transactionSave = $this->transaction
-          ->addObject($invoice)
-          ->addObject($invoice->getOrder());
-        $transactionSave->save();
-        $this->invoiceSender->send($invoice);
+                $transactionSave = $this->transaction
+                ->addObject($invoice)
+                ->addObject($invoice->getOrder());
+                $transactionSave->save();
+                $this->invoiceSender->send($invoice);
 
-        $order->addCommentToStatusHistory(
-            __('Notified customer about invoice creation #%1.', $invoice->getId())
-        )->setIsCustomerNotified(true)->save();
-      }
-      $listInvoices = $order->getInvoiceCollection();
-      /**
-       * @var InvoiceInterface $lastInvoice
-       */
-      $lastInvoice = $listInvoices->getLastItem();
-      $lastInvoice->setTransactionId($transaction->getTransactionId());
-      $this->invoiceRepository->save($lastInvoice);
-  }
+                $order->addCommentToStatusHistory(
+                    __('Notified customer about invoice creation #%1.', $invoice->getId())
+                )->setIsCustomerNotified(false)->save();
+            }
+        }
+        $listInvoices = $order->getInvoiceCollection();
+        /**
+         * @var InvoiceInterface $lastInvoice
+         */
+        $lastInvoice = $listInvoices->getLastItem();
+        $lastInvoice->setTransactionId($transaction->getTransactionId());
+        $this->invoiceRepository->save($lastInvoice);
+    }
 }

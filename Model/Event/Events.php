@@ -22,8 +22,8 @@ use Magento\Sales\Model\Order\Email\Sender\InvoiceSender;
 class Events
 {
     /**
-    * @var array  of event classes that we can handle.
-    */
+     * @var array  of event classes that we can handle.
+     */
     protected $events = [
         AuthorizeEvent::CODE => AuthorizeEvent::class,
         CaptureEvent::CODE => CaptureEvent::class,
@@ -32,18 +32,18 @@ class Events
     ];
 
     /**
-    * @var SearchCriteriaBuilder
-    */
+     * @var SearchCriteriaBuilder
+     */
     protected $searchCriteriaBuilder;
 
     /**
-    * @var FilterBuilder
-    */
+     * @var FilterBuilder
+     */
     protected $filterBuilder;
 
     /**
-    * @var TransactionRepository
-    */
+     * @var TransactionRepository
+     */
     protected $transactionRepository;
 
     /**
@@ -80,18 +80,18 @@ class Events
     protected $invoiceSender;
 
     /**
-    * @param Order $order
-    * @param SearchCriteriaBuilder $searchCriteriaBuilder
-    * @param FilterBuilder $filterBuilder
-    * @param TransactionRepository $transactionRepository
-    * @param Config $config
-    * @param AnydayTransaction $serviceTransaction
-    * @param InvoiceRepositoryInterface $invoiceRepository
-    * @param OrderRepositoryInterface $orderRepository
-    * @param InvoiceService $invoiceService
-    * @param InvoiceSender $invoiceSender
-    * @param MagentoTransaction $transaction
-    */
+     * @param Order $order
+     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param FilterBuilder $filterBuilder
+     * @param TransactionRepository $transactionRepository
+     * @param Config $config
+     * @param AnydayTransaction $serviceTransaction
+     * @param InvoiceRepositoryInterface $invoiceRepository
+     * @param OrderRepositoryInterface $orderRepository
+     * @param InvoiceService $invoiceService
+     * @param InvoiceSender $invoiceSender
+     * @param MagentoTransaction $transaction
+     */
     public function __construct(
         Order $order,
         SearchCriteriaBuilder $searchCriteriaBuilder,
@@ -119,29 +119,28 @@ class Events
     }
 
     /**
-    * @param  Object $payload
-    *
-    * @return mixed
-    */
+     * @param  Object $payload
+     *
+     * @return mixed
+     */
     public function handle($data)
     {
         if (! isset($this->events[$data->transaction->type])
-            && $data->orderTotal != $data->transaction->amount
             && $data->transaction->status != "success") {
             return;
         }
         $dataTxnId = $data->transaction;
         $order = $this->getOrder($data->orderId);
-        if($order && !$this->handled($dataTxnId->id, $order)) {
-            return (new $this->events[$data->transaction->type]
-            (
+        if ($order && !$this->handled($dataTxnId->id, $order)) {
+            return (new $this->events[$data->transaction->type](
                 $this->config,
                 $this->serviceTransaction,
                 $this->invoiceRepository,
                 $this->orderRepository,
                 $this->invoiceService,
                 $this->invoiceSender,
-                $this->transaction)
+                $this->transaction
+            )
             )->handle($data, $this->order);
         }
     }
@@ -149,8 +148,9 @@ class Events
     /**
      * @param string $data
      */
-    public function getOrder($orderId) {
-        if(isset($orderId)) {
+    public function getOrder($orderId)
+    {
+        if (isset($orderId)) {
             return $this->order->loadByIncrementId($orderId);
         }
     }
@@ -160,11 +160,12 @@ class Events
      * @param DataObject $data
      * @param \Magento\Sales\Model\Order $order
      */
-    public function handled($dataTxnId, $order) {
+    public function handled($dataTxnId, $order)
+    {
         $transactionList = $this->getAllTransactionList($order);
         $handled         = false;
-        foreach($transactionList as $id => $transaction) {
-            if($dataTxnId == $transaction->getAdditionalInformation(Transaction::RAW_DETAILS)['trans']) {
+        foreach ($transactionList as $id => $transaction) {
+            if ($dataTxnId == $transaction->getAdditionalInformation(Transaction::RAW_DETAILS)['trans']) {
                 $handled = true;
             }
         }
@@ -175,7 +176,8 @@ class Events
      * Mixed data
      *
      */
-    public function getAllTransactionList($order) {
+    public function getAllTransactionList($order)
+    {
         $filters[] = $this->filterBuilder->setField('payment_id')
         ->setValue($order->getPayment()->getId())
         ->create();
