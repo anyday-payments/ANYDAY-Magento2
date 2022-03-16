@@ -5,7 +5,7 @@ namespace Anyday\Payment\Api\Data\Payment;
 
 interface UrlDataInterface
 {
-    const URL_ANYDAY            = 'https://anyday-qa6.manaosoftware.com';
+    const URL_ANYDAY            = 'https://my.anyday.io';
     const URL_AUTORIZE          = '/api/v1/orders';
     const URL_CAPTURE           = '/api/v1/orders/{id}/capture';
     const URL_REFUND            = '/api/v1/orders/{id}/refund';
