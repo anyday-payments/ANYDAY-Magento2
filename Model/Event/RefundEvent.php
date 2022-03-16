@@ -40,6 +40,7 @@ class RefundEvent
    * @var InvoiceService
    */
     protected $invoiceService;
+
   /**
    * @var MagentoTransaction
    */
@@ -82,22 +83,22 @@ class RefundEvent
         InvoiceSender $invoiceSender,
         MagentoTransaction $transaction
     ) {
-        $this->config             = $config;
-        $this->serviceTransaction = $serviceTransaction;
-        $this->invoiceRepository  = $invoiceRepository;
-        $this->orderRepository    = $orderRepository;
-        $this->invoiceService     = $invoiceService;
-        $this->transaction        = $transaction;
-        $this->invoiceSender      = $invoiceSender;
-        $this->_init();
+      $this->config             = $config;
+      $this->serviceTransaction = $serviceTransaction;
+      $this->invoiceRepository  = $invoiceRepository;
+      $this->orderRepository    = $orderRepository;
+      $this->invoiceService     = $invoiceService;
+      $this->transaction        = $transaction;
+      $this->invoiceSender      = $invoiceSender;
+      $this->_init();
     }
 
     private function _init()
     {
-        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        $this->invoice = $objectManager->create(\Magento\Sales\Model\Order\Invoice::class);
-        $this->creditMemoFactory = $objectManager->create(\Magento\Sales\Model\Order\CreditmemoFactory::class);
-        $this->creditMemoService = $objectManager->create(\Magento\Sales\Model\Service\CreditmemoService::class);
+      $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+      $this->invoice = $objectManager->create(\Magento\Sales\Model\Order\Invoice::class);
+      $this->creditMemoFactory = $objectManager->create(\Magento\Sales\Model\Order\CreditmemoFactory::class);
+      $this->creditMemoService = $objectManager->create(\Magento\Sales\Model\Service\CreditmemoService::class);
     }
 
   /**
@@ -117,24 +118,24 @@ class RefundEvent
            */
             $payment = $order->getPayment();
             $transaction = $this->serviceTransaction->addTransaction(
-                $order,
-                TransactionInterface::TYPE_REFUND,
-                $order->getId().'-refund',
-                [
+              $order,
+              TransactionInterface::TYPE_REFUND,
+              $order->getId().'/refund',
+              [
                 PaymentTransaction::RAW_DETAILS => [
                   'trans' => $data->transaction->id
                 ]
-                ]
+              ]
             );
             $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
 
             $invoices = $order->getInvoiceCollection();
 
             if (count($invoices) == 0) {
-                  throw new \Magento\Framework\Exception\LocalizedException(__(
-                      'No Invoices found for Refund. Magento_ID: %2',
-                      $order->getIncrementId()
-                  ));
+              throw new \Magento\Framework\Exception\LocalizedException(__(
+                  'No Invoices found for Refund. Magento_ID: %2',
+                  $order->getIncrementId()
+              ));
             }
 
             foreach ($invoices as $invoice) {

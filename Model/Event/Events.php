@@ -120,7 +120,6 @@ class Events
 
     /**
      * @param  Object $payload
-     *
      * @return mixed
      */
     public function handle($data)
@@ -146,7 +145,8 @@ class Events
     }
 
     /**
-     * @param string $data
+     * Returns order object from increment id.
+     * @param string $orderId
      */
     public function getOrder($orderId)
     {
@@ -156,9 +156,10 @@ class Events
     }
 
     /**
-     * Mixed data
+     * Checks if transaction is handled and returns true if handled.
      * @param DataObject $data
      * @param \Magento\Sales\Model\Order $order
+     * @return boolean
      */
     public function handled($dataTxnId, $order)
     {
@@ -173,8 +174,9 @@ class Events
     }
 
     /**
-     * Mixed data
-     *
+     * Returns all transactions attached with order
+     * @param \Magento\Sales\Model\Order $order
+     * @return \Magento\Sales\Api\Data\TransactionSearchResultInterface
      */
     public function getAllTransactionList($order)
     {

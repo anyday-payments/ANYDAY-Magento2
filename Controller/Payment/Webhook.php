@@ -51,7 +51,7 @@ class Webhook extends Action
     {
         $payload = json_decode($this->request->getContent());
 
-        if ($payload->transaction === null || ! $payload->id /*|| !$this->verifySignature()*/) {
+        if ($payload->transaction === null || ! $payload->id || !$this->verifiedSignature()) {
             return;
         }
 
@@ -59,11 +59,12 @@ class Webhook extends Action
     }
 
     /**
-     *
+     * Checks if the signature is valid. Returns true if valid.
+     * @return boolean
      */
-    private function verifySignature()
+    private function verifiedSignature()
     {
-        $private    = $this->config->getConfigValue(SettingsInterface::PATH_TO_SECRET_KEY);//
+        $private    = $this->config->getConfigValue(SettingsInterface::PATH_TO_SECRET_KEY);
         $signature  = $this->request->getHeader('x_anyday_signature');
         if (empty(trim($private))) {
             return false;

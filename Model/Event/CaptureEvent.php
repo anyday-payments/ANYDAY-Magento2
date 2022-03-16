@@ -110,7 +110,7 @@ class CaptureEvent
         $transaction = $this->serviceTransaction->addTransaction(
             $order,
             TransactionInterface::TYPE_CAPTURE,
-            $order->getId().'-capture',
+            $order->getId().'/capture',
             [
               PaymentTransaction::RAW_DETAILS => [
                   'trans' => $data->transaction->id
