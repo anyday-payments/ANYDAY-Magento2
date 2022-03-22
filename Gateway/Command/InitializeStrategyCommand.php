@@ -16,6 +16,7 @@ use Magento\Sales\Model\Order\Payment;
 use Magento\Store\Model\StoreManagerInterface;
 use Anyday\Payment\Service\Anyday\Order;
 use Magento\Framework\UrlInterface;
+use Anyday\Payment\Controller\Payment\Webhook;
 
 class InitializeStrategyCommand implements CommandInterface
 {
@@ -116,7 +117,7 @@ class InitializeStrategyCommand implements CommandInterface
                             $order->getQuoteId()
                         ),
                         'callbackUrl' => $this->urlInterface->getUrl(
-                            'anydayfront/payment/webhook'
+                            Webhook::URI
                         )
                     ];
                     $this->curlAnyday->setBody($this->json->serialize($sendParam));

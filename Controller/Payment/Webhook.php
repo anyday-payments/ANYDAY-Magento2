@@ -12,6 +12,11 @@ use Anyday\Payment\Service\Settings\Config;
 class Webhook extends Action
 {
     /**
+     * @var string
+     */
+    const URI = 'anydayfront/payment/webhook';
+
+    /**
      * @var \Anyday\Payment\Model\Event
      */
     protected $event;
@@ -51,7 +56,11 @@ class Webhook extends Action
     {
         $payload = json_decode($this->request->getContent());
 
-        if ($payload->transaction === null || ! $payload->id || !$this->verifiedSignature()) {
+        if ($payload == null
+            || $payload->transaction === null
+            || ! $payload->id
+            || ! $this->verifiedSignature()
+            ) {
             return;
         }
 
