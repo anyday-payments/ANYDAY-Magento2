@@ -31,7 +31,7 @@
                 </group>
                 <group id="anydaypayment_method" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Anyday</label>
-                    <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>Enabled</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                         <config_path>payment/anyday/active</config_path>
@@ -40,7 +40,7 @@
                         <label>Title</label>
                         <config_path>payment/anyday/title</config_path>
                     </field>
-                    <field id="mode_type" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <field id="mode_type" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>Select Mode</label>
                         <source_model>Anyday\Payment\Model\Config\Source\Modetype</source_model>
                         <config_path>payment/anyday/mode_type</config_path>
@@ -53,30 +53,30 @@
                         <label>Live API Key</label>
                         <config_path>payment/adpaymentmethod/tokenlive</config_path>
                     </field>
-                    <field id="order_status" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <field id="order_status" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>New Order Status</label>
                         <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
                         <config_path>payment/anyday/order_status</config_path>
                     </field>
-                    <field id="order_status_payment" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <field id="order_status_payment" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>Order Status After Payment</label>
                         <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
                         <config_path>payment/anyday/order_status_payment</config_path>
                     </field>
-                    <field id="status_after_invoice" translate="label" type="select" showInDefault="1" sortOrder="20" canRestore="1">
+                    <field id="status_after_invoice" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>Order Status After Invoice</label>
                         <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
                         <config_path>payment/anyday/status_after_invoice</config_path>
                     </field>
-                    <field id="sort_order" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1">
+                    <field id="sort_order" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Sort Order</label>
                         <frontend_class>validate-number</frontend_class>
                     </field>
-                    <field id="allowspecific" translate="label" type="allowspecific" sortOrder="50" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <field id="allowspecific" translate="label" type="allowspecific" sortOrder="50" showInDefault="1" showInWebsite="1"  showInStore="1" canRestore="1">
                         <label>Payment from Applicable Countries</label>
                         <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
                     </field>
-                    <field id="specificcountry" translate="label" type="multiselect" sortOrder="51" showInDefault="1" showInWebsite="1">
+                    <field id="specificcountry" translate="label" type="multiselect" sortOrder="51" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Payment from Specific Countries</label>
                         <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
                         <can_be_empty>1</can_be_empty>
@@ -84,11 +84,11 @@
                     <field id="payable_to" translate="label" sortOrder="61" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Make Check Payable to</label>
                     </field>
-                    <field id="min_order_total" translate="label" type="text" sortOrder="98" showInDefault="1" showInWebsite="1">
+                    <field id="min_order_total" translate="label" type="text" sortOrder="98" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Minimum Order Total</label>
                         <validate>validate-number validate-zero-or-greater</validate>
                     </field>
-                    <field id="max_order_total" translate="label" type="text" sortOrder="99" showInDefault="1" showInWebsite="1">
+                    <field id="max_order_total" translate="label" type="text" sortOrder="99" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Maximum Order Total</label>
                         <validate>validate-number validate-zero-or-greater</validate>
                     </field>

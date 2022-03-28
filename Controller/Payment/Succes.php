@@ -16,6 +16,7 @@ use Magento\Sales\Api\Data\TransactionInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\Order;
 use Magento\Sales\Model\Order\Payment\Transaction;
+use Magento\Sales\Model\Order\Email\Sender\OrderSender;
 
 class Succes extends Action
 {
@@ -45,6 +46,11 @@ class Succes extends Action
     private $serviceTransaction;
 
     /**
+     * @var OrderSender
+     */
+    private $orderSender;
+
+    /**
      * Succes constructor.
      *
      * @param Context $context
@@ -53,6 +59,7 @@ class Succes extends Action
      * @param \Anyday\Payment\Service\Anyday\Order $serviceAnydayOrder
      * @param Config $configService
      * @param \Anyday\Payment\Service\Anyday\Transaction $serviceTransaction
+     * @param OrderSender $orderSender
      */
     public function __construct(
         Context $context,
@@ -60,7 +67,8 @@ class Succes extends Action
         OrderRepositoryInterface $orderRepository,
         \Anyday\Payment\Service\Anyday\Order $serviceAnydayOrder,
         Config $configService,
-        \Anyday\Payment\Service\Anyday\Transaction $serviceTransaction
+        \Anyday\Payment\Service\Anyday\Transaction $serviceTransaction,
+        OrderSender $orderSender
     ) {
         parent::__construct($context);
         $this->checkoutSession          = $checkoutSession;
@@ -68,6 +76,7 @@ class Succes extends Action
         $this->serviceAnydayOrder       = $serviceAnydayOrder;
         $this->configService            = $configService;
         $this->serviceTransaction       = $serviceTransaction;
+        $this->orderSender              = $orderSender;
     }
 
     /**
@@ -99,6 +108,7 @@ class Succes extends Action
                     $order,
                     $this->configService->getConfigValue(Config::PATH_TO_STATUS_AFTER_PAYMENT)
                 );
+                $this->orderSender->send($order, true);
             } else {
                 $this->messageManager->addErrorMessage(
                     __('Not Find Transaction Anyday.')
