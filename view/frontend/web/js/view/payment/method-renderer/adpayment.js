@@ -33,16 +33,6 @@ define(
             },
 
             /**
-             * @return {*}
-             */
-             isDisplayed: function () {
-                if (window.anydaytag.is_enable) {
-                    return true;
-                }
-                return false;
-            },
-
-            /**
              * @return {*|String}
              */
             tagToken: function () {
