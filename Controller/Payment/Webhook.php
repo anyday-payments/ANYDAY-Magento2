@@ -57,7 +57,6 @@ class Webhook extends Action
         $payload = json_decode($this->request->getContent());
 
         if ($payload == null
-            || $payload->transaction === null
             || ! $payload->id
             || ! $this->verifiedSignature()
             ) {

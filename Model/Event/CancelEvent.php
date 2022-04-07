@@ -87,7 +87,31 @@ class CancelEvent
         if ($order->getStatus() != Order::STATE_CANCELED) {
             $order->setState(Order::STATE_CANCELED)->setStatus(Order::STATE_CANCELED);
             $order->addCommentToStatusHistory('Anyday payment canceled successfully.', Order::STATE_CANCELED);
+            $this->saveTransaction($data, $order);
             $this->orderRepository->save($order);
         }
+    }
+
+    /**
+     * Saving the transaction
+     * @param mixed $data
+     * @param Order $order
+     */
+    private function saveTransaction($data, $order) {
+      /**
+       * @var Magento\Sales\Model\Order\Payment $payment
+       */
+      $payment = $order->getPayment();
+      $transaction = $this->serviceTransaction->addTransaction(
+          $order,
+          TransactionInterface::TYPE_CAPTURE,
+          $order->getId().'/cancel',
+          [
+            PaymentTransaction::RAW_DETAILS => [
+                'trans' => $data->transaction->id
+            ]
+          ]
+      );
+      $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
     }
 }
