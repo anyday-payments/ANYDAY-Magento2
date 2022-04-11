@@ -104,8 +104,8 @@ class CancelEvent
       $payment = $order->getPayment();
       $transaction = $this->serviceTransaction->addTransaction(
           $order,
-          TransactionInterface::TYPE_CAPTURE,
-          $order->getId().'/cancel',
+          TransactionInterface::TYPE_VOID,
+          $order->getId().'-void',
           [
             PaymentTransaction::RAW_DETAILS => [
                 'trans' => $data->transaction->id
