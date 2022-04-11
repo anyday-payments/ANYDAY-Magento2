@@ -2,9 +2,10 @@ define(
     [
         'Magento_Checkout/js/view/payment/default',
         'Anyday_Payment/js/model/redirect-afterorder',
-        'Magento_Checkout/js/model/quote'
+        'Magento_Checkout/js/model/quote',
+        'Magento_Checkout/js/model/totals'
     ],
-    function (Component, redirectUrlAny, quote) {
+    function (Component, redirectUrlAny, quote, totals) {
         'use strict';
 
         let getUrlAnyday = function () {
@@ -33,16 +34,6 @@ define(
             },
 
             /**
-             * @return {*}
-             */
-             isDisplayed: function () {
-                if (window.anydaytag.is_enable) {
-                    return true;
-                }
-                return false;
-            },
-
-            /**
              * @return {*|String}
              */
             tagToken: function () {
@@ -60,7 +51,7 @@ define(
              * @return {*}
              */
             isDisplayed: function () {
-                if (window.anydaytag.is_enable) {
+                if (window.anydaytag.is_enable && parseFloat(totals.getSegment('grand_total').value) >= 300) {
                     return true;
                 }
                 return false;
