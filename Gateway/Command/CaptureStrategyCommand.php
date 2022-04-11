@@ -30,7 +30,7 @@ class CaptureStrategyCommand extends AbstractStrategyCommand
             /** @var $oneList Transaction */
             if ($oneList->getTxnType() == TransactionInterface::TYPE_ORDER) {
                 $anydayData = $oneList->getAdditionalInformation(Transaction::RAW_DETAILS)['trans'];
-                $urlString = UrlDataInterface::URL_ANYDAY_PAYMENT .
+                $urlString = UrlDataInterface::URL_ANYDAY .
                     str_replace('{id}', $anydayData, UrlDataInterface::URL_CAPTURE);
                 $this->curlAnyday->setUrl($urlString);
                 $this->curlAnyday->setBody(
@@ -43,7 +43,7 @@ class CaptureStrategyCommand extends AbstractStrategyCommand
                 $this->curlAnyday->setAuthorization($this->config->getPaymentAutorizeKey());
                 $result = $this->curlAnyday->request();
                 if ($result['errorCode'] == 0) {
-                    $this->registry->register('order_capture_'.$order->getId(), true);
+                    $this->registry->register('order_capture_'.$order->getId(), $result['transactionId']);
                 } else {
                     throw new PaymentException(__($result['errorMessage']));
                 }

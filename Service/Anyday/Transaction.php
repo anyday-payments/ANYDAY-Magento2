@@ -61,6 +61,12 @@ class Transaction
                 if (count($additionalInformation)) {
                     $transaction->setAdditionalInformation(
                         [Order\Payment\Transaction::RAW_DETAILS => [
+                            'trans' => $additionalInformation[\Magento\Sales\Model\Order\Payment\Transaction::RAW_DETAILS]['trans']
+                        ]]
+                    );
+                } else {
+                    $transaction->setAdditionalInformation(
+                        [Order\Payment\Transaction::RAW_DETAILS => [
                             'trans' => $anydayData[Availability::NAME_TRANSACTION]
                         ]]
                     );

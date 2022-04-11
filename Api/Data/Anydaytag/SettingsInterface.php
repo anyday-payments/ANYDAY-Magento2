@@ -23,6 +23,7 @@ interface SettingsInterface
     const PATH_TO_SELECT_TAG_ELEMENT_CHECKOUT     = 'anyday/tagmodule/checkout_tag_element';
     const PATH_TO_TOKEN_SANDBOX                   = 'payment/adpaymentmethod/tokensandbox';
     const PATH_TO_TOKEN_LIVE                      = 'payment/adpaymentmethod/tokenlive';
+    const PATH_TO_SECRET_KEY                      = 'payment/adpaymentmethod/secret';
     const PATH_TO_STATUS_AFTER_INVOICE            = 'payment/anyday/status_after_invoice';
     const PATH_TO_PAYMENT_MODE_TYPE               = 'payment/anyday/mode_type';
     const PATH_TO_STATUS_AFTER_PAYMENT            = 'payment/anyday/order_status_payment';

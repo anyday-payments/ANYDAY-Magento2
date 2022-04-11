@@ -34,7 +34,7 @@ class CancelStrategyCommand extends AbstractStrategyCommand
             /** @var $oneList Transaction */
             if ($oneList->getTxnType() == TransactionInterface::TYPE_AUTH) {
                 $anydayData = $oneList->getAdditionalInformation(Transaction::RAW_DETAILS)['trans'];
-                $urlString = UrlDataInterface::URL_ANYDAY_PAYMENT .
+                $urlString = UrlDataInterface::URL_ANYDAY .
                     str_replace('{id}', $anydayData, UrlDataInterface::URL_CANCEL);
 
                 $this->curlAnyday->setUrl($urlString);

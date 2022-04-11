@@ -11,10 +11,10 @@ use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Registry;
 use Magento\Sales\Api\Data\TransactionInterface;
+use Magento\Sales\Model\Order\Payment\Transaction as PaymentTransaction;
 use Magento\Sales\Api\InvoiceRepositoryInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\Order;
-use Magento\Sales\Model\Order\Invoice;
 
 class OrderAfterSave implements ObserverInterface
 {
@@ -82,10 +82,10 @@ class OrderAfterSave implements ObserverInterface
             && $this->verifyChangeStatus($order)) {
             if ($this->registry->registry('order_capture_'.$order->getId())) {
                 if ($statusCode = $this->config->getConfigValue(Config::PATH_TO_STATUS_AFTER_INVOICE)) {
-                    $order->addCommentToStatusHistory('Create Invoice and Capture', $statusCode);
-                    $this->orderRepository->save($order);
+                    $order->addCommentToStatusHistory('Creating Invoice and Capture', $statusCode);
                     $this->updateInvoice($order);
                     $this->registry->unregister('order_capture_'.$order->getId());
+                    $this->orderRepository->save($order);
                 }
             }
         }
@@ -103,7 +103,12 @@ class OrderAfterSave implements ObserverInterface
         $transaction = $this->serviceTransaction->addTransaction(
             $order,
             TransactionInterface::TYPE_CAPTURE,
-            $order->getId().'/capture'
+            $order->getId().'-capture',
+            [
+                PaymentTransaction::RAW_DETAILS => [
+                    'trans' => $this->registry->registry('order_capture_'.$order->getId())
+                ]
+            ]
         );
         $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
         $listInvoices = $order->getInvoiceCollection();
