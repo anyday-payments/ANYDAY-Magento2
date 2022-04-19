@@ -90,13 +90,24 @@ class AuthorizeEvent
            */
             $payment = $order->getPayment();
             $transaction = $this->serviceTransaction->addTransaction(
+              $order,
+              TransactionInterface::TYPE_ORDER,
+              $order->getId() . '/order',
+              [
+                PaymentTransaction::RAW_DETAILS => [
+                  'trans' => $data->transaction->id
+                ]
+              ]
+            );
+            $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
+            $transaction = $this->serviceTransaction->addTransaction(
                 $order,
                 TransactionInterface::TYPE_AUTH,
                 $order->getId(),
                 [
-                PaymentTransaction::RAW_DETAILS => [
-                  'trans' => $data->transaction->id
-                ]
+                  PaymentTransaction::RAW_DETAILS => [
+                    'trans' => $data->transaction->id
+                  ]
                 ]
             );
             $afterPaymentStatus = $this->config->getConfigValue(Config::PATH_TO_STATUS_AFTER_PAYMENT);
