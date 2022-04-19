@@ -12,6 +12,7 @@ use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\Order;
+use Magento\Quote\Model\QuoteRepository;
 
 class Cancel extends Action
 {
@@ -26,20 +27,28 @@ class Cancel extends Action
     private $orderRepository;
 
     /**
+     * @var QuoteRepository
+     */
+    private $quoteRepository;
+
+    /**
      * Cancel constructor.
      *
      * @param Context $context
      * @param Session $checkoutSession
      * @param OrderRepositoryInterface $orderRepository
+     * @param QuoteRepository $quoteRepository
      */
     public function __construct(
         Context $context,
         Session $checkoutSession,
-        OrderRepositoryInterface $orderRepository
+        OrderRepositoryInterface $orderRepository,
+        QuoteRepository $quoteRepository
     ) {
         parent::__construct($context);
         $this->checkoutSession  = $checkoutSession;
         $this->orderRepository  = $orderRepository;
+        $this->quoteRepository  = $quoteRepository;
     }
 
     /**
@@ -53,8 +62,11 @@ class Cancel extends Action
         /** @var Order $order */
         $order = $orderId ? $this->orderRepository->get($orderId) : false;
         if ($order && $order->getId()) {
+            $quote = $this->quoteRepository->get($order->getQuoteId());
+            $quote->setIsActive(true)->setReservedOrderId(null);
+            $this->quoteRepository->save($quote);
             $this->orderRepository->save($order->cancel());
-            $this->checkoutSession->restoreQuote();
+            $this->checkoutSession->replaceQuote($quote);
             $this->messageManager->addSuccessMessage(
                 __('Anyday Order have been canceled.')
             );

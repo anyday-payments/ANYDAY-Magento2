@@ -68,7 +68,7 @@ class ManagerUrl implements AnydayUrlInterface
         $orderList = $this->orderRepository->getList($this->searchCriteriaBuilder->create())->getItems();
 
         if (count($orderList)) {
-            $order  = array_shift($orderList);
+            $order  = end($orderList);
             $anydayData = $order->getPayment()->getAdditionalInformation('quote_' . $cartId);
 
             if ($anydayData && isset($anydayData[Availability::NAME_URL])) {
