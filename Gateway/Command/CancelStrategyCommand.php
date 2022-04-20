@@ -32,7 +32,7 @@ class CancelStrategyCommand extends AbstractStrategyCommand
         );
         foreach ($list as $oneList) {
             /** @var $oneList Transaction */
-            if ($oneList->getTxnType() == TransactionInterface::TYPE_AUTH) {
+            if ($oneList->getTxnType() == TransactionInterface::TYPE_ORDER) {
                 $anydayData = $oneList->getAdditionalInformation(Transaction::RAW_DETAILS)['trans'];
                 $urlString = UrlDataInterface::URL_ANYDAY .
                     str_replace('{id}', $anydayData, UrlDataInterface::URL_CANCEL);
