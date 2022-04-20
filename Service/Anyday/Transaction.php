@@ -75,7 +75,6 @@ class Transaction
                 if ($typeTxn == TransactionInterface::TYPE_AUTH) {
                     $transaction->setIsClosed(false);
                 }
-                $transaction->setParentTxnId($order->getId());
                 $this->repositoryTransaction->save($transaction);
             }
         }

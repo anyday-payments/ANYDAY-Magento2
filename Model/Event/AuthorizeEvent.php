@@ -95,7 +95,7 @@ class AuthorizeEvent
               $order->getId() . '/order',
               [
                 PaymentTransaction::RAW_DETAILS => [
-                  'trans' => $data->transaction->id
+                  'trans' => $data->id
                 ]
               ]
             );
