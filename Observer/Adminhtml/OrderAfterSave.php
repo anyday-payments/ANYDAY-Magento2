@@ -83,7 +83,7 @@ class OrderAfterSave implements ObserverInterface
             if ($this->registry->registry('order_capture_'.$order->getId())) {
                 $order = $this->orderRepository->get($order->getId());
                 if ($statusCode = $this->config->getConfigValue(Config::PATH_TO_STATUS_AFTER_INVOICE)) {
-                    $order->setState($statusCode)->setStatus($statusCode);
+                    $order->setStatus($statusCode);
                     $this->updateInvoice($order);
                     $this->registry->unregister('order_capture_'.$order->getId());
                     $this->orderRepository->save($order);
