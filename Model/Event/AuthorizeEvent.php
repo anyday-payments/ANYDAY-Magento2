@@ -110,6 +110,9 @@ class AuthorizeEvent
                   ]
                 ]
             );
+            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            $orderSender = $objectManager->create(\Magento\Sales\Model\Order\Email\Sender\OrderSender::class);
+            $orderSender->send($order, true);
             $afterPaymentStatus = $this->config->getConfigValue(Config::PATH_TO_STATUS_AFTER_PAYMENT);
             $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
             $order->addCommentToStatusHistory('Anyday Payment authorized successfully.', $afterPaymentStatus);
