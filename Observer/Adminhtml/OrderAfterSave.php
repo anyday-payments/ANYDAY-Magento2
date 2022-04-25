@@ -81,9 +81,10 @@ class OrderAfterSave implements ObserverInterface
         if ($order->getPayment()->getMethodInstance()->getCode() == ConfigProvider::CODE
             && $this->verifyChangeStatus($order)) {
             if ($this->registry->registry('order_capture_'.$order->getId())) {
-                $order = $this->orderRepository->get($order->getId());
                 if ($statusCode = $this->config->getConfigValue(Config::PATH_TO_STATUS_AFTER_INVOICE)) {
-                    $order->setStatus($statusCode);
+                    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                    $order = $objectManager->create('Magento\Sales\Model\Order')->load($order->getId());
+                    $order->addCommentToStatusHistory('Creating Invoice and Capture', $statusCode);
                     $this->updateInvoice($order);
                     $this->registry->unregister('order_capture_'.$order->getId());
                     $this->orderRepository->save($order);
