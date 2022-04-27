@@ -9,6 +9,7 @@ use Anyday\Payment\Gateway\Exception\PaymentException;
 use Magento\Payment\Gateway\Command;
 use Magento\Sales\Api\Data\TransactionInterface;
 use Magento\Sales\Model\Order\Payment\Transaction;
+use Magento\Sales\Model\Order\Payment\Transaction as PaymentTransaction;
 
 class CancelStrategyCommand extends AbstractStrategyCommand
 {
@@ -48,6 +49,21 @@ class CancelStrategyCommand extends AbstractStrategyCommand
                 $this->curlAnyday->setAuthorization($this->config->getPaymentAutorizeKey());
                 $result = $this->curlAnyday->request();
                 if ($result['errorCode'] == 0) {
+                    /**
+                     * @var Magento\Sales\Model\Order\Payment $payment
+                     */
+                    $payment = $order->getPayment();
+                    $transaction = $this->transaction->addTransaction(
+                        $order,
+                        TransactionInterface::TYPE_VOID,
+                        $order->getId().'-void',
+                        [
+                            PaymentTransaction::RAW_DETAILS => [
+                                'trans' => $result['transactionId']
+                            ]
+                        ]
+                    );
+                    $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
                     break;
                 }
             }
