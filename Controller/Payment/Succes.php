@@ -17,6 +17,7 @@ use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\Order;
 use Magento\Sales\Model\Order\Payment\Transaction;
 use Magento\Sales\Model\Order\Email\Sender\OrderSender;
+use Magento\Store\Model\ScopeInterface;
 
 class Succes extends Action
 {
@@ -106,7 +107,7 @@ class Succes extends Action
                 $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
                 $this->serviceAnydayOrder->setOrderStatus(
                     $order,
-                    $this->configService->getConfigValue(Config::PATH_TO_STATUS_AFTER_PAYMENT)
+                    $this->configService->getConfigValue(Config::PATH_TO_STATUS_AFTER_PAYMENT, ScopeInterface::SCOPE_STORE, $order->getStoreId())
                 );
                 $this->orderSender->send($order, true);
             } else {

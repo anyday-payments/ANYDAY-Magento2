@@ -17,6 +17,7 @@ use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\Order;
 use Magento\Sales\Model\Order\Config as OrderConfig;
 use Magento\Sales\Model\Order\Status\HistoryFactory;
+use Magento\Store\Model\ScopeInterface;
 
 class OrderAfterSave implements ObserverInterface
 {
@@ -99,7 +100,7 @@ class OrderAfterSave implements ObserverInterface
         if ($order->getPayment()->getMethodInstance()->getCode() == ConfigProvider::CODE
             && $this->verifyChangeStatus($order)) {
             if ($this->registry->registry('order_capture_'.$order->getId())) {
-                if ($statusCode = $this->config->getConfigValue(Config::PATH_TO_STATUS_AFTER_INVOICE)) {
+                if ($statusCode = $this->config->getConfigValue(Config::PATH_TO_STATUS_AFTER_INVOICE, ScopeInterface::SCOPE_STORE, $order->getStoreId())) {
                     $order = $this->addCommentToStatusHistory('Creating Invoice and Capture', $statusCode, $order);
                     $this->updateInvoice($order);
                     $this->registry->unregister('order_capture_'.$order->getId());

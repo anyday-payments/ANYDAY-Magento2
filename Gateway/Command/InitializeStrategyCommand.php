@@ -17,6 +17,7 @@ use Magento\Store\Model\StoreManagerInterface;
 use Anyday\Payment\Service\Anyday\Order;
 use Magento\Framework\UrlInterface;
 use Anyday\Payment\Controller\Payment\Webhook;
+use Magento\Store\Model\ScopeInterface;
 
 class InitializeStrategyCommand implements CommandInterface
 {
@@ -122,7 +123,7 @@ class InitializeStrategyCommand implements CommandInterface
                     ];
                     $this->curlAnyday->setBody($this->json->serialize($sendParam));
                     $this->curlAnyday->setUrl(UrlDataInterface::URL_ANYDAY . UrlDataInterface::URL_AUTORIZE);
-                    $this->curlAnyday->setAuthorization($this->config->getPaymentAutorizeKey());
+                    $this->curlAnyday->setAuthorization($this->config->getPaymentAutorizeKey(ScopeInterface::SCOPE_STORE, $order->getStoreId()));
                     $result = $this->curlAnyday->request();
 
                     if ($result['errorCode'] == 0 && isset($result['purchaseOrderId'])) {
@@ -148,7 +149,7 @@ class InitializeStrategyCommand implements CommandInterface
 
                 $this->serviceAnydayOrder->setOrderStatus(
                     $order,
-                    $this->config->getConfigValue(Config::PATH_TO_NEW_ORDER_STATUS),
+                    $this->config->getConfigValue(Config::PATH_TO_NEW_ORDER_STATUS, ScopeInterface::SCOPE_STORE, $order->getStoreId()),
                     false
                 );
             }

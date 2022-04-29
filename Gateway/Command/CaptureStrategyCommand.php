@@ -9,6 +9,7 @@ use Anyday\Payment\Gateway\Exception\PaymentException;
 use Magento\Payment\Gateway\Command;
 use Magento\Sales\Api\Data\TransactionInterface;
 use Magento\Sales\Model\Order\Payment\Transaction;
+use Magento\Store\Model\ScopeInterface;
 
 class CaptureStrategyCommand extends AbstractStrategyCommand
 {
@@ -40,7 +41,7 @@ class CaptureStrategyCommand extends AbstractStrategyCommand
                         ]
                     )
                 );
-                $this->curlAnyday->setAuthorization($this->config->getPaymentAutorizeKey());
+                $this->curlAnyday->setAuthorization($this->config->getPaymentAutorizeKey(ScopeInterface::SCOPE_STORE, $order->getStoreId()));
                 $result = $this->curlAnyday->request();
                 if ($result['errorCode'] == 0) {
                     $this->registry->register('order_capture_'.$order->getId(), $result['transactionId']);

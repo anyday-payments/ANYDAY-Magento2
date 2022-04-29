@@ -10,6 +10,7 @@ use Magento\Payment\Gateway\Command;
 use Magento\Sales\Api\Data\TransactionInterface;
 use Magento\Sales\Model\Order\Payment\Transaction;
 use Magento\Sales\Model\Order\Payment\Transaction as PaymentTransaction;
+use Magento\Store\Model\ScopeInterface;
 
 class RefundStrategyCommand extends AbstractStrategyCommand
 {
@@ -42,7 +43,7 @@ class RefundStrategyCommand extends AbstractStrategyCommand
                         ]
                     )
                 );
-                $this->curlAnyday->setAuthorization($this->config->getPaymentAutorizeKey());
+                $this->curlAnyday->setAuthorization($this->config->getPaymentAutorizeKey(ScopeInterface::SCOPE_STORE, $order->getStoreId()));
                 $result = $this->curlAnyday->request();
                 if ($result['errorCode'] == 0) {
                     /**

@@ -12,6 +12,7 @@ use Magento\Sales\Model\Service\InvoiceService;
 use Magento\Framework\DB\Transaction as MagentoTransaction;
 use Magento\Sales\Model\Order\Email\Sender\InvoiceSender;
 use Magento\Sales\Api\Data\InvoiceInterface;
+use Magento\Store\Model\ScopeInterface;
 
 class CaptureEvent
 {
@@ -84,7 +85,7 @@ class CaptureEvent
    */
     public function handle($data, $order)
     {
-        $statusCode = $this->config->getConfigValue(Config::PATH_TO_STATUS_AFTER_INVOICE);
+        $statusCode = $this->config->getConfigValue(Config::PATH_TO_STATUS_AFTER_INVOICE, ScopeInterface::SCOPE_STORE, $order->getStoreId());
         if ($statusCode
         && $order->getStatus() != $statusCode
         && $data->orderTotal == $data->totalCaptured) {

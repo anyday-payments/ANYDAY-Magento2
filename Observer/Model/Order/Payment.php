@@ -7,6 +7,7 @@ use Anyday\Payment\Service\Anyday\Order;
 use Anyday\Payment\Service\Settings\Config;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
+use Magento\Store\Model\ScopeInterface;
 
 class Payment implements ObserverInterface
 {
@@ -49,7 +50,7 @@ class Payment implements ObserverInterface
         if ($order) {
             $this->serviceAnydayOrder->setOrderStatus(
                 $order,
-                $this->configService->getConfigValue(Config::PATH_TO_NEW_ORDER_STATUS)
+                $this->configService->getConfigValue(Config::PATH_TO_NEW_ORDER_STATUS, ScopeInterface::SCOPE_STORE, $order->getStoreId())
             );
         }
     }
