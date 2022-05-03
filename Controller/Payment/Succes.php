@@ -107,7 +107,11 @@ class Succes extends Action
                 $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
                 $this->serviceAnydayOrder->setOrderStatus(
                     $order,
-                    $this->configService->getConfigValue(Config::PATH_TO_STATUS_AFTER_PAYMENT, ScopeInterface::SCOPE_STORE, $order->getStoreId())
+                    $this->configService->getConfigValue(
+                        Config::PATH_TO_STATUS_AFTER_PAYMENT,
+                        ScopeInterface::SCOPE_STORE,
+                        $order->getStoreId()
+                    )
                 );
                 $this->orderSender->send($order, true);
             } else {

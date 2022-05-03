@@ -47,7 +47,12 @@ class CancelStrategyCommand extends AbstractStrategyCommand
                         ]
                     )
                 );
-                $this->curlAnyday->setAuthorization($this->config->getPaymentAutorizeKey(ScopeInterface::SCOPE_STORE, $order->getStoreId()));
+                $this->curlAnyday->setAuthorization(
+                    $this->config->getPaymentAutorizeKey(
+                        ScopeInterface::SCOPE_STORE,
+                        $order->getStoreId()
+                    )
+                );
                 $result = $this->curlAnyday->request();
                 if ($result['errorCode'] == 0) {
                     /**

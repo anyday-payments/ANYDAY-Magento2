@@ -41,7 +41,12 @@ class CaptureStrategyCommand extends AbstractStrategyCommand
                         ]
                     )
                 );
-                $this->curlAnyday->setAuthorization($this->config->getPaymentAutorizeKey(ScopeInterface::SCOPE_STORE, $order->getStoreId()));
+                $this->curlAnyday->setAuthorization(
+                    $this->config->getPaymentAutorizeKey(
+                        ScopeInterface::SCOPE_STORE,
+                        $order->getStoreId()
+                    )
+                );
                 $result = $this->curlAnyday->request();
                 if ($result['errorCode'] == 0) {
                     $this->registry->register('order_capture_'.$order->getId(), $result['transactionId']);

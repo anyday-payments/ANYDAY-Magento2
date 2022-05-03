@@ -43,7 +43,12 @@ class RefundStrategyCommand extends AbstractStrategyCommand
                         ]
                     )
                 );
-                $this->curlAnyday->setAuthorization($this->config->getPaymentAutorizeKey(ScopeInterface::SCOPE_STORE, $order->getStoreId()));
+                $this->curlAnyday->setAuthorization(
+                    $this->config->getPaymentAutorizeKey(
+                        ScopeInterface::SCOPE_STORE,
+                        $order->getStoreId()
+                    )
+                );
                 $result = $this->curlAnyday->request();
                 if ($result['errorCode'] == 0) {
                     /**
@@ -51,9 +56,9 @@ class RefundStrategyCommand extends AbstractStrategyCommand
                      */
                     $payment = $order->getPayment();
                     $transaction = $this->transaction->addTransaction(
-                    $order,
-                    TransactionInterface::TYPE_REFUND,
-                    $order->getId().'/refund',
+                        $order,
+                        TransactionInterface::TYPE_REFUND,
+                        $order->getId().'/refund',
                         [
                             PaymentTransaction::RAW_DETAILS => [
                             'trans' => $result['transactionId']

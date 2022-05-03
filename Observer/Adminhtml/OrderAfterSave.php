@@ -100,8 +100,13 @@ class OrderAfterSave implements ObserverInterface
         if ($order->getPayment()->getMethodInstance()->getCode() == ConfigProvider::CODE
             && $this->verifyChangeStatus($order)) {
             if ($this->registry->registry('order_capture_'.$order->getId())) {
-                if ($statusCode = $this->config->getConfigValue(Config::PATH_TO_STATUS_AFTER_INVOICE, ScopeInterface::SCOPE_STORE, $order->getStoreId())) {
-                    $order = $this->addCommentToStatusHistory('Creating Invoice and Capture', $statusCode, $order);
+                if ($statusCode = $this->config->getConfigValue(
+                    Config::PATH_TO_STATUS_AFTER_INVOICE,
+                    ScopeInterface::SCOPE_STORE,
+                    $order->getStoreId()
+                )
+                ) {
+                    $order = $this->addCommentToStatusHistory('Creating Invoice and Capture', $order, $statusCode);
                     $this->updateInvoice($order);
                     $this->registry->unregister('order_capture_'.$order->getId());
                     $this->orderRepository->save($order);
@@ -116,11 +121,11 @@ class OrderAfterSave implements ObserverInterface
      * Different or default status may be specified.
      *
      * @param string $comment
-     * @param bool|string $status
      * @param Order $order
+     * @param bool|string $status
      * @return Order
      */
-    public function addCommentToStatusHistory($comment, $status = false, $order)
+    public function addCommentToStatusHistory($comment, $order, $status = false)
     {
         if (false === $status) {
             $status = $order->getStatus();

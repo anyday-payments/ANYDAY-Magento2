@@ -8,6 +8,7 @@ use Magento\Sales\Api\Data\TransactionInterface;
 use Magento\Sales\Api\TransactionRepositoryInterface;
 use Magento\Sales\Model\Order;
 use Magento\Sales\Model\Order\Payment\Transaction\BuilderInterface;
+use Magento\Sales\Model\Order\Payment\Transaction as PaymentTransaction;
 
 class Transaction
 {
@@ -61,7 +62,7 @@ class Transaction
                 if (count($additionalInformation)) {
                     $transaction->setAdditionalInformation(
                         [Order\Payment\Transaction::RAW_DETAILS => [
-                            'trans' => $additionalInformation[\Magento\Sales\Model\Order\Payment\Transaction::RAW_DETAILS]['trans']
+                            'trans' => $additionalInformation[PaymentTransaction::RAW_DETAILS]['trans']
                         ]]
                     );
                 } else {

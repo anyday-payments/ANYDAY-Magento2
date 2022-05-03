@@ -85,7 +85,11 @@ class CaptureEvent
    */
     public function handle($data, $order)
     {
-        $statusCode = $this->config->getConfigValue(Config::PATH_TO_STATUS_AFTER_INVOICE, ScopeInterface::SCOPE_STORE, $order->getStoreId());
+        $statusCode = $this->config->getConfigValue(
+            Config::PATH_TO_STATUS_AFTER_INVOICE,
+            ScopeInterface::SCOPE_STORE,
+            $order->getStoreId()
+        );
         if ($statusCode
         && $order->getStatus() != $statusCode
         && $data->orderTotal == $data->totalCaptured) {

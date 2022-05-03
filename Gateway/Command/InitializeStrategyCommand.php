@@ -123,7 +123,12 @@ class InitializeStrategyCommand implements CommandInterface
                     ];
                     $this->curlAnyday->setBody($this->json->serialize($sendParam));
                     $this->curlAnyday->setUrl(UrlDataInterface::URL_ANYDAY . UrlDataInterface::URL_AUTORIZE);
-                    $this->curlAnyday->setAuthorization($this->config->getPaymentAutorizeKey(ScopeInterface::SCOPE_STORE, $order->getStoreId()));
+                    $this->curlAnyday->setAuthorization(
+                        $this->config->getPaymentAutorizeKey(
+                            ScopeInterface::SCOPE_STORE,
+                            $order->getStoreId()
+                        )
+                    );
                     $result = $this->curlAnyday->request();
 
                     if ($result['errorCode'] == 0 && isset($result['purchaseOrderId'])) {
@@ -149,7 +154,11 @@ class InitializeStrategyCommand implements CommandInterface
 
                 $this->serviceAnydayOrder->setOrderStatus(
                     $order,
-                    $this->config->getConfigValue(Config::PATH_TO_NEW_ORDER_STATUS, ScopeInterface::SCOPE_STORE, $order->getStoreId()),
+                    $this->config->getConfigValue(
+                        Config::PATH_TO_NEW_ORDER_STATUS,
+                        ScopeInterface::SCOPE_STORE,
+                        $order->getStoreId()
+                    ),
                     false
                 );
             }

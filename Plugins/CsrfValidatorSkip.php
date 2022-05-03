@@ -1,11 +1,13 @@
 <?php
 namespace Anyday\Payment\Plugins;
+
 use Anyday\Payment\Controller\Payment\Webhook;
 
 class CsrfValidatorSkip
 {
     protected $urlInterface;
-    public function __construct(\Magento\Framework\UrlInterface $urlInterface) {
+    public function __construct(\Magento\Framework\UrlInterface $urlInterface)
+    {
         $this->urlInterface = $urlInterface;
     }
     /**
@@ -20,7 +22,8 @@ class CsrfValidatorSkip
         $request,
         $action
     ) {
-        if ($request->getModuleName() == 'anydayfront' && strpos($this->urlInterface->getCurrentUrl(), Webhook::URI)) {
+        if ($request->getModuleName() == 'anydayfront'
+            && strpos($this->urlInterface->getCurrentUrl(), Webhook::URI) !== -1) {
             return;
         }
         $proceed($request, $action);

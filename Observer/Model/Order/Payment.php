@@ -50,7 +50,11 @@ class Payment implements ObserverInterface
         if ($order) {
             $this->serviceAnydayOrder->setOrderStatus(
                 $order,
-                $this->configService->getConfigValue(Config::PATH_TO_NEW_ORDER_STATUS, ScopeInterface::SCOPE_STORE, $order->getStoreId())
+                $this->configService->getConfigValue(
+                    Config::PATH_TO_NEW_ORDER_STATUS,
+                    ScopeInterface::SCOPE_STORE,
+                    $order->getStoreId()
+                )
             );
         }
     }

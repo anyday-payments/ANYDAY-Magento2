@@ -97,21 +97,22 @@ class CancelEvent
      * @param mixed $data
      * @param Order $order
      */
-    private function saveTransaction($data, $order) {
+    private function saveTransaction($data, $order)
+    {
       /**
        * @var Magento\Sales\Model\Order\Payment $payment
        */
-      $payment = $order->getPayment();
-      $transaction = $this->serviceTransaction->addTransaction(
-          $order,
-          TransactionInterface::TYPE_VOID,
-          $order->getId().'-void',
-          [
+        $payment = $order->getPayment();
+        $transaction = $this->serviceTransaction->addTransaction(
+            $order,
+            TransactionInterface::TYPE_VOID,
+            $order->getId().'-void',
+            [
             PaymentTransaction::RAW_DETAILS => [
                 'trans' => $data->transaction->id
             ]
-          ]
-      );
-      $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
+            ]
+        );
+        $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
     }
 }

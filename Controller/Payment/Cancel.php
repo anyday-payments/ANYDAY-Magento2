@@ -106,13 +106,14 @@ class Cancel extends Action
      * @param \Magento\Sales\Api\Data\OrderInterface $order
      * @return void
      */
-    private function updateCancelledTransaction($order) {
+    private function updateCancelledTransaction($order)
+    {
         $this->searchCriteriaBuilder->addFilter('order_id', $order->getId());
         $list = $this->repository->getList(
             $this->searchCriteriaBuilder->create()
         );
         foreach ($list as $txn) {
-            if($txn->getTxnType() == TransactionInterface::TYPE_VOID) {
+            if ($txn->getTxnType() == TransactionInterface::TYPE_VOID) {
                 $txn->setParentTxnId(null);
                 $this->repository->save($txn);
             }
