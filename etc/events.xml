@@ -5,4 +5,7 @@
         <observer name="adpayment_checkout_submit_all_after"
                   instance="Anyday\Payment\Observer\Model\QuoteManagement"/>
     </event>
+    <event name="sales_order_place_after">
+        <observer name="anyday_after_order" instance="Anyday\Payment\Observer\OrderPlaceAfterObserver" />
+    </event>
 </config>

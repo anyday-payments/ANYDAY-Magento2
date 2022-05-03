@@ -8,6 +8,7 @@ use Magento\Sales\Api\Data\TransactionInterface;
 use Magento\Sales\Api\TransactionRepositoryInterface;
 use Magento\Sales\Model\Order;
 use Magento\Sales\Model\Order\Payment\Transaction\BuilderInterface;
+use Magento\Sales\Model\Order\Payment\Transaction as PaymentTransaction;
 
 class Transaction
 {
@@ -61,6 +62,12 @@ class Transaction
                 if (count($additionalInformation)) {
                     $transaction->setAdditionalInformation(
                         [Order\Payment\Transaction::RAW_DETAILS => [
+                            'trans' => $additionalInformation[PaymentTransaction::RAW_DETAILS]['trans']
+                        ]]
+                    );
+                } else {
+                    $transaction->setAdditionalInformation(
+                        [Order\Payment\Transaction::RAW_DETAILS => [
                             'trans' => $anydayData[Availability::NAME_TRANSACTION]
                         ]]
                     );
@@ -69,6 +76,7 @@ class Transaction
                 if ($typeTxn == TransactionInterface::TYPE_AUTH) {
                     $transaction->setIsClosed(false);
                 }
+                $transaction->setParentTxnId(null);
                 $this->repositoryTransaction->save($transaction);
             }
         }

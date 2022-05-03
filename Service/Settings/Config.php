@@ -144,7 +144,7 @@ class Config implements SettingsInterface
      */
     public function getPaymentAutorizeKey($scope = ScopeInterface::SCOPE_STORE, $storeId = null)
     {
-        if ($this->getConfigValue(self::PATH_TO_PAYMENT_MODE_TYPE) == '1') {
+        if ($this->getConfigValue(self::PATH_TO_PAYMENT_MODE_TYPE, $scope, $storeId) == '1') {
             return $this->getConfigValue(self::PATH_TO_TOKEN_LIVE, $scope, $storeId);
         }
 

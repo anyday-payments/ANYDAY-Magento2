@@ -12,6 +12,7 @@ use Anyday\Payment\Lib\Serialize\Serializer\JsonHexTag;
 use Magento\Payment\Gateway\CommandInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Api\TransactionRepositoryInterface;
+use Anyday\Payment\Service\Anyday\Transaction;
 
 abstract class AbstractStrategyCommand implements CommandInterface
 {
@@ -56,6 +57,11 @@ abstract class AbstractStrategyCommand implements CommandInterface
     protected $curlAnyday;
 
     /**
+     * @var Transaction
+     */
+    protected $transaction;
+
+    /**
      * AbstractStrategyCommand constructor.
      *
      * @param OrderRepositoryInterface $orderRepository
@@ -73,7 +79,8 @@ abstract class AbstractStrategyCommand implements CommandInterface
         TransactionRepositoryInterface $repository,
         SearchCriteriaBuilder $searchCriteriaBuilder,
         Registry $registry,
-        Curl $curlAnyday
+        Curl $curlAnyday,
+        Transaction $transaction
     ) {
         $this->orderRepository          = $orderRepository;
         $this->json                     = $json;
@@ -82,5 +89,6 @@ abstract class AbstractStrategyCommand implements CommandInterface
         $this->searchCriteriaBuilder    = $searchCriteriaBuilder;
         $this->registry                 = $registry;
         $this->curlAnyday               = $curlAnyday;
+        $this->transaction              = $transaction;
     }
 }

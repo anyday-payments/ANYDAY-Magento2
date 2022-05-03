@@ -102,4 +102,8 @@
 
     <preference for="Anyday\Payment\Api\Payment\AnydayUrlInterface"
                 type="Anyday\Payment\Gateway\ManagerUrl" />
+
+    <type name="Magento\Framework\App\Request\CsrfValidator">
+        <plugin name="csrf_validator_skip" type="Anyday\Payment\Plugins\CsrfValidatorSkip" />
+    </type>
 </config>

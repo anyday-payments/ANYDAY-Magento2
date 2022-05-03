@@ -9,6 +9,8 @@ use Anyday\Payment\Gateway\Exception\PaymentException;
 use Magento\Payment\Gateway\Command;
 use Magento\Sales\Api\Data\TransactionInterface;
 use Magento\Sales\Model\Order\Payment\Transaction;
+use Magento\Sales\Model\Order\Payment\Transaction as PaymentTransaction;
+use Magento\Store\Model\ScopeInterface;
 
 class RefundStrategyCommand extends AbstractStrategyCommand
 {
@@ -30,7 +32,7 @@ class RefundStrategyCommand extends AbstractStrategyCommand
             /** @var $oneList Transaction */
             if ($oneList->getTxnType() == TransactionInterface::TYPE_ORDER) {
                 $anydayData = $oneList->getAdditionalInformation(Transaction::RAW_DETAILS)['trans'];
-                $urlString = UrlDataInterface::URL_ANYDAY_PAYMENT .
+                $urlString = UrlDataInterface::URL_ANYDAY .
                     str_replace('{id}', $anydayData, UrlDataInterface::URL_REFUND);
 
                 $this->curlAnyday->setUrl($urlString);
@@ -41,9 +43,29 @@ class RefundStrategyCommand extends AbstractStrategyCommand
                         ]
                     )
                 );
-                $this->curlAnyday->setAuthorization($this->config->getPaymentAutorizeKey());
+                $this->curlAnyday->setAuthorization(
+                    $this->config->getPaymentAutorizeKey(
+                        ScopeInterface::SCOPE_STORE,
+                        $order->getStoreId()
+                    )
+                );
                 $result = $this->curlAnyday->request();
                 if ($result['errorCode'] == 0) {
+                    /**
+                     * @var Magento\Sales\Model\Order\Payment
+                     */
+                    $payment = $order->getPayment();
+                    $transaction = $this->transaction->addTransaction(
+                        $order,
+                        TransactionInterface::TYPE_REFUND,
+                        $order->getId().'/refund',
+                        [
+                            PaymentTransaction::RAW_DETAILS => [
+                            'trans' => $result['transactionId']
+                            ]
+                        ]
+                    );
+                    $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
                     break;
                 } else {
                     throw new PaymentException(__($result['errorMessage']));
