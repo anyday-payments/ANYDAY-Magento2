@@ -27,3 +27,4 @@ Please check the Anyday pricing as fees will apply when using Anyday to process 
 After signing up for an Anyday account and installing this extension, you will be required to configure the extension to properly handle payments in your system according to your specified requirements along with displaying the Anyday price widget. If you need any help with configuring this extension, feel free to reach out to our onboarding team at onboarding@anyday.io.
 ## Changelog
 Version 1.0 - Initial plugin creation.
+Version 1.0.1 - Implmenting callback feature, added multistore support.
