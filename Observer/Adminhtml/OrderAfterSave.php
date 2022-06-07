@@ -106,9 +106,10 @@ class OrderAfterSave implements ObserverInterface
                     $order->getStoreId()
                 )
                 ) {
-                    $order = $this->addCommentToStatusHistory('Creating Invoice and Capture', $order, $statusCode);
-                    $this->updateInvoice($order);
+                    //@TODO remove this function
+                    //$this->updateInvoice($order);
                     $this->registry->unregister('order_capture_'.$order->getId());
+                    $order = $this->addCommentToStatusHistory('Creating Invoice and Capture.', $order, $statusCode);
                     $this->orderRepository->save($order);
                 }
             }

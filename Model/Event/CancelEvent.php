@@ -86,7 +86,7 @@ class CancelEvent
     {
         if ($order->getStatus() != Order::STATE_CANCELED) {
             $order->setState(Order::STATE_CANCELED)->setStatus(Order::STATE_CANCELED);
-            $order->addCommentToStatusHistory('Anyday payment canceled successfully.', Order::STATE_CANCELED);
+            $order->setStatus(Order::STATE_CANCELED);
             $this->saveTransaction($data, $order);
             $this->orderRepository->save($order);
         }
