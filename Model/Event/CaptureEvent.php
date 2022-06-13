@@ -94,7 +94,7 @@ class CaptureEvent
         && $order->getStatus() != $statusCode
         && $data->orderTotal == $data->totalCaptured) {
             $this->updateInvoice($order, $data);
-            $order->addCommentToStatusHistory('Created Invoice and Capture successfully.', $statusCode);
+            $order->addCommentToStatusHistory('Creating Invoice and Capture.', $statusCode);
             $this->orderRepository->save($order);
         }
     }
@@ -137,9 +137,7 @@ class CaptureEvent
                 $transactionSave->save();
                 $this->invoiceSender->send($invoice);
 
-                $order->addCommentToStatusHistory(
-                    __('Notified customer about invoice creation #%1.', $invoice->getId())
-                )->setIsCustomerNotified(false)->save();
+                $order->setIsCustomerNotified(false)->save();
             }
         }
         $listInvoices = $order->getInvoiceCollection();

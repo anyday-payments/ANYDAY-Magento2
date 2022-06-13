@@ -105,6 +105,17 @@ class Succes extends Action
                     ]
                 );
                 $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
+                $transaction = $this->serviceTransaction->addTransaction(
+                    $order,
+                    TransactionInterface::TYPE_AUTH,
+                    $order->getId(),
+                    [
+                      Transaction::RAW_DETAILS => [
+                        'trans' => $anydayData[Availability::NAME_TRANSACTION]
+                      ]
+                    ]
+                );
+                $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
                 $this->serviceAnydayOrder->setOrderStatus(
                     $order,
                     $this->configService->getConfigValue(
