@@ -31,7 +31,7 @@
                 </group>
                 <group id="anydaypayment_method" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Anyday</label>
-                    <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
                         <label>Enabled</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                         <config_path>payment/anyday/active</config_path>
@@ -103,7 +103,7 @@
                     <label>Anyday Pricetag</label>
                     <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>General Configuration</label>
-                        <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                             <label>Module Enable</label>
                             <config_path>anyday/tagmodule/enable</config_path>
                             <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
