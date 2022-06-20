@@ -6,13 +6,10 @@
  */
 -->
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <head>
-        <script src="https://my.anyday.io/webshopPriceTag/anyday-price-tag-da-es2015.js" src_type="url"/>
-    </head>
     <body>
         <referenceContainer name="product.info.price">
             <block class="Anyday\Payment\Block\Catalog\Product\Pricetag" name="ad_pricetag"
-                   template="Anyday_Payment::adpayment/product/price_tag.phtml" after="-">
+                template="Anyday_Payment::adpayment/product/price_tag.phtml" after="-">
             </block>
         </referenceContainer>
     </body>

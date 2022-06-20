@@ -7,9 +7,6 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <update handle="checkout_cart_item_renderers"/>
-    <head>
-        <script src="https://my.anyday.io/webshopPriceTag/anyday-price-tag-da-es2015.js" src_type="url"/>
-    </head>
     <body>
         <referenceContainer name="cart.summary">
             <block class="Anyday\Payment\Block\Checkout\Cart\Pricetag"
