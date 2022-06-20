@@ -28,4 +28,5 @@ interface SettingsInterface
     const PATH_TO_PAYMENT_MODE_TYPE               = 'payment/anyday/mode_type';
     const PATH_TO_STATUS_AFTER_PAYMENT            = 'payment/anyday/order_status_payment';
     const PATH_TO_NEW_ORDER_STATUS                = 'payment/anyday/order_status';
+    const PATH_TO_JS_LOCALE                       = 'payment/anyday/js_locale';
 }

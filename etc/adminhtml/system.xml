@@ -113,6 +113,11 @@
                             <config_path>anyday/tagmodule/tag_token</config_path>
                             <comment>Price Tag token</comment>
                         </field>
+                        <field id="js_locale" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>JS locale</label>
+                            <source_model>Anyday\Payment\Model\Config\Source\Localetype</source_model>
+                            <config_path>payment/anyday/js_locale</config_path>
+                        </field>
                     </group>
                     <group id="product_page" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Product Page</label>

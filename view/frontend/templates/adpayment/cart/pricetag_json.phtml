@@ -6,3 +6,10 @@
 <script>
     window.anydaytag = <?= /* @noEscape */ $block->getSerializedCartTagConfig(); ?>;
 </script>
+<script type="text/x-magento-init">
+    {
+        "head": {
+            "<?= $block->getPricetagLanguage() ?>" : {}
+        }
+    }
+</script>

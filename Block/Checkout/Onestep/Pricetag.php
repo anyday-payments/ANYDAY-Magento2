@@ -29,6 +29,13 @@ class Pricetag extends Abstractpricetag implements PricetagInterface, PaymentLog
     }
 
     /**
+     * @return string
+     */
+    public function getPricetagLanguage() {
+        return "https://my.anyday.io/webshopPriceTag/anyday-price-tag-".$this->config->getPricetagLanguage()."-es2015.js";
+    }
+
+    /**
      * @inheritdoc
      */
     public function isEnabled()
