@@ -10,8 +10,6 @@ use Exception;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Registry;
-use Magento\Sales\Api\Data\TransactionInterface;
-use Magento\Sales\Model\Order\Payment\Transaction as PaymentTransaction;
 use Magento\Sales\Api\InvoiceRepositoryInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\Order;
@@ -107,93 +105,12 @@ class OrderAfterSave implements ObserverInterface
                 )
                 ) {
                     //@TODO remove this function
-                    //$this->updateInvoice($order);
                     $this->registry->unregister('order_capture_'.$order->getId());
-                    $order = $this->addCommentToStatusHistory('Creating Invoice and Capture.', $order, $statusCode);
+                    $order->setStatus($statusCode);
                     $this->orderRepository->save($order);
                 }
             }
         }
-    }
-
-    /**
-     * Add a comment to order status history.
-     *
-     * Different or default status may be specified.
-     *
-     * @param string $comment
-     * @param Order $order
-     * @param bool|string $status
-     * @return Order
-     */
-    public function addCommentToStatusHistory($comment, $order, $status = false)
-    {
-        if (false === $status) {
-            $status = $order->getStatus();
-        } elseif (true === $status) {
-            $status = $this->orderConfig->getStateDefaultStatus($order->getState());
-        } else {
-            $order->setStatus($status);
-        }
-        $history = $this->orderHistoryFactory->create()->setStatus(
-            $status
-        )->setComment(
-            $comment
-        )->setEntityName(
-            'order'
-        )->setIsVisibleOnFront(
-            false
-        );
-        return $this->addStatusHistory($history, $order);
-    }
-
-    /**
-     * Adds the object to the status history collection, which is automatically saved when the order is saved.
-     * See the entity_id attribute backend model.
-     * Or the history record can be saved standalone after this.
-     *
-     * @param \Magento\Sales\Model\Order\Status\History $history
-     * @param Order $order
-     * @return Order
-     */
-    public function addStatusHistory(\Magento\Sales\Model\Order\Status\History $history, $order)
-    {
-        $history->setOrder($order);
-        $order->setStatus($history->getStatus());
-        if (!$history->getId()) {
-            $order->setStatusHistories(array_merge($order->getStatusHistories(), [$history]));
-            $order->setDataChanges(true);
-        }
-        return $order;
-    }
-
-    /**
-     * Update order Invoice
-     *
-     * @param Order $order
-     * @throws Exception
-     */
-    private function updateInvoice(Order $order)
-    {
-        $payment = $order->getPayment();
-        $transaction = $this->serviceTransaction->addTransaction(
-            $order,
-            TransactionInterface::TYPE_CAPTURE,
-            $order->getId().'-capture',
-            [
-                PaymentTransaction::RAW_DETAILS => [
-                    'trans' => $this->registry->registry('order_capture_'.$order->getId())
-                ]
-            ]
-        );
-        $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
-        $listInvoices = $order->getInvoiceCollection();
-        /**
-         * @var $lastInvoice Invoice
-         */
-        $lastInvoice = $listInvoices->getLastItem();
-        $lastInvoice->setTransactionId($transaction->getTransactionId());
-        $this->invoiceRepository->save($lastInvoice);
     }
 
     /**

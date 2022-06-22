@@ -42,10 +42,12 @@ class CaptureEvent
    * @var InvoiceService
    */
     protected $invoiceService;
+
   /**
    * @var MagentoTransaction
    */
     protected $transaction;
+    
   /**
    * @var InvoiceSender
    */
@@ -94,7 +96,8 @@ class CaptureEvent
         && $order->getStatus() != $statusCode
         && $data->orderTotal == $data->totalCaptured) {
             $this->updateInvoice($order, $data);
-            $order->addCommentToStatusHistory('Creating Invoice and Capture.', $statusCode);
+            //$order->addCommentToStatusHistory('Creating Invoice and Capture.', $statusCode);
+            $order->setStatus($statusCode);
             $this->orderRepository->save($order);
         }
     }
