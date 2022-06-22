@@ -9,7 +9,6 @@ use Anyday\Payment\Gateway\Exception\PaymentException;
 use Magento\Payment\Gateway\Command;
 use Magento\Sales\Api\Data\TransactionInterface;
 use Magento\Sales\Model\Order\Payment\Transaction;
-use Magento\Sales\Model\Order\Payment\Transaction as PaymentTransaction;
 use Magento\Store\Model\ScopeInterface;
 
 class RefundStrategyCommand extends AbstractStrategyCommand
@@ -60,7 +59,7 @@ class RefundStrategyCommand extends AbstractStrategyCommand
                         TransactionInterface::TYPE_REFUND,
                         $order->getId().'/refund',
                         [
-                            PaymentTransaction::RAW_DETAILS => [
+                            Transaction::RAW_DETAILS => [
                             'trans' => $result['transactionId']
                             ]
                         ]

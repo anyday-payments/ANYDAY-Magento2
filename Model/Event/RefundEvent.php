@@ -122,6 +122,22 @@ class RefundEvent
                 ));
             }
 
+            /**
+             * @var Magento\Sales\Model\Order\Payment
+             */
+            $payment = $order->getPayment();
+            $transaction = $this->serviceTransaction->addTransaction(
+                $order,
+                TransactionInterface::TYPE_REFUND,
+                $order->getId().'/refund',
+                [
+                    PaymentTransaction::RAW_DETAILS => [
+                    'trans' => $data->id
+                    ]
+                ]
+            );
+            $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
+
             foreach ($invoices as $invoice) {
                 $invoice = $this->invoice->loadByIncrementId($invoice->getIncrementId());
                 $creditMemo = $this->creditMemoFactory->createByOrder($order);
@@ -129,7 +145,6 @@ class RefundEvent
                 $creditMemo->setCustomerNote(__('Your Order %1 has been refunded.', $order->getIncrementId()));
                 $creditMemo->setCustomerNoteNotify(false);
                 $creditMemo->addComment(__('Order has been Refunded'));
-                $order->setStatus(Order::STATE_CANCELED);
                 $this->creditMemoService->refund($creditMemo);
             }
             $this->orderRepository->save($order);
