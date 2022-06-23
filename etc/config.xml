@@ -30,6 +30,7 @@
                 <status_after_invoice>complete</status_after_invoice>
                 <environment>sandbox</environment>
                 <allowspecific>0</allowspecific>
+                <js_locale>da</js_locale>
             </anyday>
         </payment>
     </default>

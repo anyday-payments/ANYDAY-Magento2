@@ -114,7 +114,7 @@
                             <comment>Price Tag token</comment>
                         </field>
                         <field id="js_locale" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                            <label>JS locale</label>
+                            <label>Locale</label>
                             <source_model>Anyday\Payment\Model\Config\Source\Localetype</source_model>
                             <config_path>payment/anyday/js_locale</config_path>
                         </field>
