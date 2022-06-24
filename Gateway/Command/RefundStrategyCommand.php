@@ -66,6 +66,8 @@ class RefundStrategyCommand extends AbstractStrategyCommand
                     );
                     $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
                     break;
+                } elseif ($result['errorCode'] === 7) {
+                    return;
                 } else {
                     throw new PaymentException(__($result['errorMessage']));
                 }
