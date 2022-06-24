@@ -47,6 +47,10 @@ define(
                 return window.anydaytag.currency_code;
             },
 
+            isPaymentMethodDisplayed: function () {
+                return parseFloat(totals.getSegment('grand_total').value) >= 300 && parseFloat(totals.getSegment('grand_total').value) <= 30000;
+            },
+
             /**
              * @return {*}
              */
