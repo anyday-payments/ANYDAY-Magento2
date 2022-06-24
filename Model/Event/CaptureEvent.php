@@ -96,7 +96,6 @@ class CaptureEvent
         && $order->getStatus() != $statusCode
         && $data->orderTotal == $data->totalCaptured) {
             $this->updateInvoice($order, $data);
-            //$order->addCommentToStatusHistory('Creating Invoice and Capture.', $statusCode);
             $order->setStatus($statusCode);
             $this->orderRepository->save($order);
         }
@@ -118,14 +117,15 @@ class CaptureEvent
         $transaction = $this->serviceTransaction->addTransaction(
             $order,
             TransactionInterface::TYPE_CAPTURE,
-            $order->getId().'/capture',
+            $order->getId().'-capture',
             [
               PaymentTransaction::RAW_DETAILS => [
                   'trans' => $data->transaction->id
               ]
             ]
         );
-        $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
+        $message = 'Captured amount of %1 online';
+        $payment->addTransactionCommentsToOrder($transaction, __($message, $order->getBaseCurrency()->formatTxt($data->totalCaptured)));
         $listInvoices = $order->getInvoiceCollection();
         if (count($listInvoices) == 0) {
             if ($order->canInvoice()) {
