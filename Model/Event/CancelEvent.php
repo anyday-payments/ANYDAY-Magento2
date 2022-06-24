@@ -85,9 +85,9 @@ class CancelEvent
     public function handle($data, $order)
     {
         if ($order->getStatus() != Order::STATE_CANCELED) {
-            $order->setState(Order::STATE_CANCELED)->setStatus(Order::STATE_CANCELED);
-            $order->setStatus(Order::STATE_CANCELED);
             $this->saveTransaction($data, $order);
+            $this->orderRepository->save($order);
+            $order->setState(Order::STATE_CANCELED)->setStatus(Order::STATE_CANCELED);
             $this->orderRepository->save($order);
         }
     }

@@ -137,7 +137,7 @@ class RefundEvent
                 ]
             );
             $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
-
+            $order->setState(Order::STATE_CLOSED)->setStatus(Order::STATE_CLOSED);
             foreach ($invoices as $invoice) {
                 $invoice = $this->invoice->loadByIncrementId($invoice->getIncrementId());
                 $creditMemo = $this->creditMemoFactory->createByOrder($order);
