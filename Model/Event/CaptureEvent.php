@@ -125,7 +125,10 @@ class CaptureEvent
             ]
         );
         $message = 'Captured amount of %1 online';
-        $payment->addTransactionCommentsToOrder($transaction, __($message, $order->getBaseCurrency()->formatTxt($data->totalCaptured)));
+        $payment->addTransactionCommentsToOrder(
+            $transaction,
+            __($message, $order->getBaseCurrency()->formatTxt($data->totalCaptured))
+        );
         $listInvoices = $order->getInvoiceCollection();
         if (count($listInvoices) == 0) {
             if ($order->canInvoice()) {

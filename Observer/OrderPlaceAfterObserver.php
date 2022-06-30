@@ -15,7 +15,7 @@ class OrderPlaceAfterObserver implements ObserverInterface
     {
         $order = $observer->getEvent()->getOrder();
         $payment = $order->getPayment();
-        if($payment->getMethod() === ConfigProvider::CODE) {
+        if ($payment->getMethod() === ConfigProvider::CODE) {
             $order->setCanSendNewEmailFlag(false);
         }
     }

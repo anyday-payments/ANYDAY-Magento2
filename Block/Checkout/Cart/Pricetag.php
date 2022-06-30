@@ -28,8 +28,10 @@ class Pricetag extends Abstractpricetag implements PricetagInterface
     /**
      * @return string
      */
-    public function getPricetagLanguage() {
-        return "https://my.anyday.io/webshopPriceTag/anyday-price-tag-".$this->config->getPricetagLanguage()."-es2015.js";
+    public function getPricetagLanguage()
+    {
+        return "https://my.anyday.io/webshopPriceTag/anyday-price-tag-".
+            $this->config->getPricetagLanguage()."-es2015.js";
     }
 
     /**
