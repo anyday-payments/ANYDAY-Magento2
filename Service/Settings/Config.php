@@ -151,7 +151,8 @@ class Config implements SettingsInterface
         return $this->getConfigValue(self::PATH_TO_TOKEN_SANDBOX, $scope, $storeId);
     }
 
-    public function getPricetagLanguage($scope = ScopeInterface::SCOPE_STORE, $storeId = null) {
+    public function getPricetagLanguage($scope = ScopeInterface::SCOPE_STORE, $storeId = null)
+    {
         return $this->scopeInterface->getValue(
             self::PATH_TO_JS_LOCALE,
             $scope,

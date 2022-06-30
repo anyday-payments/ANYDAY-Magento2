@@ -57,21 +57,21 @@ class AuthorizeEvent
    * @param MagentoTransaction $transaction
    */
     public function __construct(
-      Config $config,
-      Transaction $serviceTransaction,
-      InvoiceRepositoryInterface $invoiceRepository,
-      OrderRepositoryInterface $orderRepository,
-      InvoiceService $invoiceService,
-      InvoiceSender $invoiceSender,
-      MagentoTransaction $transaction
+        Config $config,
+        Transaction $serviceTransaction,
+        InvoiceRepositoryInterface $invoiceRepository,
+        OrderRepositoryInterface $orderRepository,
+        InvoiceService $invoiceService,
+        InvoiceSender $invoiceSender,
+        MagentoTransaction $transaction
     ) {
-      $this->config             = $config;
-      $this->serviceTransaction = $serviceTransaction;
-      $this->invoiceRepository  = $invoiceRepository;
-      $this->orderRepository    = $orderRepository;
-      $this->invoiceService     = $invoiceService;
-      $this->transaction        = $transaction;
-      $this->invoiceSender      = $invoiceSender;
+        $this->config             = $config;
+        $this->serviceTransaction = $serviceTransaction;
+        $this->invoiceRepository  = $invoiceRepository;
+        $this->orderRepository    = $orderRepository;
+        $this->invoiceService     = $invoiceService;
+        $this->transaction        = $transaction;
+        $this->invoiceSender      = $invoiceSender;
     }
 
   /**
@@ -81,48 +81,48 @@ class AuthorizeEvent
    */
     public function handle($data, $order)
     {
-      $statusCode = $this->config->getConfigValue(
-          Config::PATH_TO_NEW_ORDER_STATUS,
-          ScopeInterface::SCOPE_STORE,
-          $order->getStoreId()
-      );
-      if ($statusCode && $order->getStatus() == $statusCode) {
-          /**
-           * @var Magento\Sales\Model\Order\Payment
-           */
-          $payment = $order->getPayment();
-          $transaction = $this->serviceTransaction->addTransaction(
-              $order,
-              TransactionInterface::TYPE_ORDER,
-              $order->getId() . '/order',
-              [
+        $statusCode = $this->config->getConfigValue(
+            Config::PATH_TO_NEW_ORDER_STATUS,
+            ScopeInterface::SCOPE_STORE,
+            $order->getStoreId()
+        );
+        if ($statusCode && $order->getStatus() == $statusCode) {
+            /**
+             * @var Magento\Sales\Model\Order\Payment
+             */
+            $payment = $order->getPayment();
+            $transaction = $this->serviceTransaction->addTransaction(
+                $order,
+                TransactionInterface::TYPE_ORDER,
+                $order->getId() . '/order',
+                [
                 PaymentTransaction::RAW_DETAILS => [
                   'trans' => $data->id
                 ]
-              ]
-          );
-          $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
-          $transaction = $this->serviceTransaction->addTransaction(
-              $order,
-              TransactionInterface::TYPE_AUTH,
-              $order->getId(),
-              [
+                ]
+            );
+            $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
+            $transaction = $this->serviceTransaction->addTransaction(
+                $order,
+                TransactionInterface::TYPE_AUTH,
+                $order->getId(),
+                [
                 PaymentTransaction::RAW_DETAILS => [
                   'trans' => $data->transaction->id
                 ]
-              ]
-          );
-          $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-          $orderSender = $objectManager->create(\Magento\Sales\Model\Order\Email\Sender\OrderSender::class);
-          $orderSender->send($order, true);
-          $afterPaymentStatus = $this->config->getConfigValue(
-              Config::PATH_TO_STATUS_AFTER_PAYMENT,
-              ScopeInterface::SCOPE_STORE,
-              $order->getStoreId()
-          );
-          $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
-          $order->setStatus($afterPaymentStatus);
-          $this->orderRepository->save($order);
-      }
+                ]
+            );
+            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            $orderSender = $objectManager->create(\Magento\Sales\Model\Order\Email\Sender\OrderSender::class);
+            $orderSender->send($order, true);
+            $afterPaymentStatus = $this->config->getConfigValue(
+                Config::PATH_TO_STATUS_AFTER_PAYMENT,
+                ScopeInterface::SCOPE_STORE,
+                $order->getStoreId()
+            );
+            $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
+            $order->setStatus($afterPaymentStatus);
+            $this->orderRepository->save($order);
+        }
     }
 }
