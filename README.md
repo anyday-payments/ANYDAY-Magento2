@@ -25,6 +25,20 @@ Please check the Anyday pricing as fees will apply when using Anyday to process 
 
 ## How To Get Started
 After signing up for an Anyday account and installing this extension, you will be required to configure the extension to properly handle payments in your system according to your specified requirements along with displaying the Anyday price widget. If you need any help with configuring this extension, feel free to reach out to our onboarding team at onboarding@anyday.io.
+å
 ## Changelog
-Version 1.0 - Initial plugin creation.
-Version 1.0.1 - Implmenting callback feature, added multistore support.
+
+### Version 1.0
+- Initial plugin creation.
+
+### Version 1.0.1
+- Implmenting callback feature, added multistore support.
+
+### Version 1.0.2
+- Fixing refund callback which has no effect in order details.
+- Fixing issue in the pricetag config which hiding anyday payment.
+- Hide anyday payment option when order total > 30000.
+- Fixing callback and admin web order comments consistency.
+- Added configuration to change Pricetag language.
+- Order confirmation emails are not getting sent.
+- Anyday payment method's sort order was unable to configure.
