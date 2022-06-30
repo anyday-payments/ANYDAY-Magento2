@@ -31,7 +31,7 @@
                 </group>
                 <group id="anydaypayment_method" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Anyday</label>
-                    <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
                         <label>Enabled</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                         <config_path>payment/anyday/active</config_path>
@@ -75,6 +75,7 @@
                     <field id="sort_order" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Sort Order</label>
                         <frontend_class>validate-number</frontend_class>
+                        <config_path>payment/anyday/sort_order</config_path>
                     </field>
                     <field id="allowspecific" translate="label" type="allowspecific" sortOrder="50" showInDefault="1" showInWebsite="1"  showInStore="1" canRestore="1">
                         <label>Payment from Applicable Countries</label>
@@ -102,7 +103,7 @@
                     <label>Anyday Pricetag</label>
                     <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>General Configuration</label>
-                        <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                             <label>Module Enable</label>
                             <config_path>anyday/tagmodule/enable</config_path>
                             <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -111,6 +112,11 @@
                             <label>Price Tag token</label>
                             <config_path>anyday/tagmodule/tag_token</config_path>
                             <comment>Price Tag token</comment>
+                        </field>
+                        <field id="js_locale" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Locale</label>
+                            <source_model>Anyday\Payment\Model\Config\Source\Localetype</source_model>
+                            <config_path>payment/anyday/js_locale</config_path>
                         </field>
                     </group>
                     <group id="product_page" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">

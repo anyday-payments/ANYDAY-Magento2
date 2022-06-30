@@ -113,22 +113,6 @@ class RefundEvent
         && $order->getStatus() == $statusCode
         && $data->totalCaptured > 0
         && $data->totalCaptured == $data->totalRefunded) {
-          /**
-           * @var Magento\Sales\Model\Order\Payment
-           */
-            $payment = $order->getPayment();
-            $transaction = $this->serviceTransaction->addTransaction(
-                $order,
-                TransactionInterface::TYPE_REFUND,
-                $order->getId().'/refund',
-                [
-                PaymentTransaction::RAW_DETAILS => [
-                  'trans' => $data->transaction->id
-                ]
-                ]
-            );
-            $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
-
             $invoices = $order->getInvoiceCollection();
 
             if (count($invoices) == 0) {
@@ -138,6 +122,22 @@ class RefundEvent
                 ));
             }
 
+            /**
+             * @var Magento\Sales\Model\Order\Payment
+             */
+            $payment = $order->getPayment();
+            $transaction = $this->serviceTransaction->addTransaction(
+                $order,
+                TransactionInterface::TYPE_REFUND,
+                $order->getId().'/refund',
+                [
+                    PaymentTransaction::RAW_DETAILS => [
+                    'trans' => $data->id
+                    ]
+                ]
+            );
+            $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
+            $order->setState(Order::STATE_CLOSED)->setStatus(Order::STATE_CLOSED);
             foreach ($invoices as $invoice) {
                 $invoice = $this->invoice->loadByIncrementId($invoice->getIncrementId());
                 $creditMemo = $this->creditMemoFactory->createByOrder($order);
@@ -145,8 +145,7 @@ class RefundEvent
                 $creditMemo->setCustomerNote(__('Your Order %1 has been refunded.', $order->getIncrementId()));
                 $creditMemo->setCustomerNoteNotify(false);
                 $creditMemo->addComment(__('Order has been Refunded'));
-                $order->addCommentToStatusHistory(__('Order has been Refunded Successfully'), Order::STATE_CANCELED);
-                $this->creditMemoService->refund($creditMemo, true);
+                $this->creditMemoService->refund($creditMemo);
             }
             $this->orderRepository->save($order);
         }

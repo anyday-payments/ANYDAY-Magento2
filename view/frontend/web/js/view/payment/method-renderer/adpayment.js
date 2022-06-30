@@ -47,11 +47,15 @@ define(
                 return window.anydaytag.currency_code;
             },
 
+            isPaymentMethodDisplayed: function () {
+                return parseFloat(totals.getSegment('grand_total').value) >= 300 && parseFloat(totals.getSegment('grand_total').value) <= 30000;
+            },
+
             /**
              * @return {*}
              */
             isDisplayed: function () {
-                if (window.anydaytag.is_enable && parseFloat(totals.getSegment('grand_total').value) >= 300) {
+                if (window.anydaytag.is_enable && parseFloat(totals.getSegment('grand_total').value) >= 300 && parseFloat(totals.getSegment('grand_total').value) <= 30000) {
                     return true;
                 }
                 return false;

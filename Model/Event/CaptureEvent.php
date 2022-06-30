@@ -42,10 +42,12 @@ class CaptureEvent
    * @var InvoiceService
    */
     protected $invoiceService;
+
   /**
    * @var MagentoTransaction
    */
     protected $transaction;
+    
   /**
    * @var InvoiceSender
    */
@@ -94,7 +96,7 @@ class CaptureEvent
         && $order->getStatus() != $statusCode
         && $data->orderTotal == $data->totalCaptured) {
             $this->updateInvoice($order, $data);
-            $order->addCommentToStatusHistory('Created Invoice and Capture successfully.', $statusCode);
+            $order->setStatus($statusCode);
             $this->orderRepository->save($order);
         }
     }
@@ -115,14 +117,15 @@ class CaptureEvent
         $transaction = $this->serviceTransaction->addTransaction(
             $order,
             TransactionInterface::TYPE_CAPTURE,
-            $order->getId().'/capture',
+            $order->getId().'-capture',
             [
               PaymentTransaction::RAW_DETAILS => [
                   'trans' => $data->transaction->id
               ]
             ]
         );
-        $payment->addTransactionCommentsToOrder($transaction, $transaction->getTransactionId());
+        $message = 'Captured amount of %1 online';
+        $payment->addTransactionCommentsToOrder($transaction, __($message, $order->getBaseCurrency()->formatTxt($data->totalCaptured)));
         $listInvoices = $order->getInvoiceCollection();
         if (count($listInvoices) == 0) {
             if ($order->canInvoice()) {
@@ -137,9 +140,7 @@ class CaptureEvent
                 $transactionSave->save();
                 $this->invoiceSender->send($invoice);
 
-                $order->addCommentToStatusHistory(
-                    __('Notified customer about invoice creation #%1.', $invoice->getId())
-                )->setIsCustomerNotified(false)->save();
+                $order->setIsCustomerNotified(false)->save();
             }
         }
         $listInvoices = $order->getInvoiceCollection();

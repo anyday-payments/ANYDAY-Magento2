@@ -80,6 +80,11 @@ class Events
     protected $invoiceSender;
 
     /**
+     * @var Transaction
+     */
+    protected $paymentTransaction;
+
+    /**
      * @param Order $order
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param FilterBuilder $filterBuilder
@@ -91,6 +96,7 @@ class Events
      * @param InvoiceService $invoiceService
      * @param InvoiceSender $invoiceSender
      * @param MagentoTransaction $transaction
+     * @param Transaction $paymentTransaction
      */
     public function __construct(
         Order $order,
@@ -103,7 +109,8 @@ class Events
         OrderRepositoryInterface $orderRepository,
         InvoiceService $invoiceService,
         InvoiceSender $invoiceSender,
-        MagentoTransaction $transaction
+        MagentoTransaction $transaction,
+        Transaction $paymentTransaction
     ) {
         $this->order    = $order;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
@@ -116,6 +123,7 @@ class Events
         $this->invoiceService = $invoiceService;
         $this->transaction = $transaction;
         $this->invoiceSender = $invoiceSender;
+        $this->paymentTransaction = $paymentTransaction;
     }
 
     /**
@@ -138,7 +146,8 @@ class Events
                 $this->orderRepository,
                 $this->invoiceService,
                 $this->invoiceSender,
-                $this->transaction
+                $this->transaction,
+                $this->paymentTransaction
             )
             )->handle($data, $this->order);
         }

@@ -7,13 +7,10 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <head>
-        <script src="https://my.anyday.io/webshopPriceTag/anyday-price-tag-da-es2015.js" src_type="url"/>
-    </head>
     <body>
         <referenceBlock name="products_list">
             <block class="Magento\Framework\View\Element\Template" name="adpayment_tag"
-                   template="Anyday_Payment::adpayment/price_tag.phtml" />
+                template="Anyday_Payment::adpayment/price_tag.phtml" />
         </referenceBlock>
     </body>
 </page>
