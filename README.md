@@ -42,3 +42,7 @@ After signing up for an Anyday account and installing this extension, you will b
 - Added configuration to change Pricetag language.
 - Order confirmation emails are not getting sent.
 - Anyday payment method's sort order was unable to configure.
+
+### Version 1.0.3
+
+- Fixed authentication with anyday account credentials.

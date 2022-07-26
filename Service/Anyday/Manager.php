@@ -5,6 +5,7 @@ namespace Anyday\Payment\Service\Anyday;
 
 use Anyday\Payment\Api\Anyday\ManagerInterface;
 use Anyday\Payment\Api\Data\Anydaytag\SettingsInterface;
+use Anyday\Payment\Api\Data\Payment\UrlDataInterface;
 use Anyday\Payment\Block\Adminhtml\Config\Store;
 use Anyday\Payment\Gateway\Http\Client\Curl;
 use Magento\Framework\App\Config\Storage\WriterInterface;
@@ -52,19 +53,11 @@ class Manager implements ManagerInterface
     public function getCredentialsFromAnyday(string $data)
     {
         $data = $this->json->unserialize($data);
-        $params['username'] = $data['email'];
-        $params['password'] = $data['password'];
-        $sendParam = [
-            "grant_type" => "password",
-            //"username" => "luketestmerchant@anyday.io",
-            //"password" => "l@X3#uPN!*RO",
-            "userType" => "merchant"
-        ];
+        $params['Username'] = $data['email'];
+        $params['Password'] = $data['password'];
 
-        $sendParam = array_merge($sendParam, $params);
-
-        $url = 'https://my.anyday.io/api/v1/authentication/login';
-        $data_string = json_encode($sendParam);
+        $url = UrlDataInterface::URL_ANYDAY.'/api/v1/authentication/login';
+        $data_string = json_encode($params);
         $this->curlAnyday->setBody($data_string);
         $this->curlAnyday->setUrl($url);
 
@@ -75,7 +68,7 @@ class Manager implements ManagerInterface
         } else {
             $returnArr['code'] = 'ok';
             $returnArr['token'] = $result['access_token'];
-            $url = 'https://my.anyday.io/api/v1/webshop/mine';
+            $url = UrlDataInterface::URL_ANYDAY.'/api/v1/webshop/mine';
 
             $this->curlAnyday->setUrl($url);
             $this->curlAnyday->setAuthorization((string)$result['access_token']);
@@ -86,6 +79,7 @@ class Manager implements ManagerInterface
                 $returnArr['live'] = $result['data'][0]['apiKey'];
                 $returnArr['sandbox'] = $result['data'][0]['testAPIKey'];
                 $returnArr['priceTagToken'] = $result['data'][0]['priceTagToken'];
+                $returnArr['privateKey'] = $result['data'][0]['privateKey'];
                 $scope = 'default';
                 $scopeId = $data['id'];
                 if ($data['type'] == Store::NAME_WEBSITE) {
@@ -110,6 +104,12 @@ class Manager implements ManagerInterface
                 $this->writer->save(
                     SettingsInterface::PATH_TO_TAG_TOKEN,
                     $result['data'][0]['priceTagToken'],
+                    $scope,
+                    $scopeId
+                );
+                $this->writer->save(
+                    SettingsInterface::PATH_TO_SECRET_KEY,
+                    $result['data'][0]['privateKey'],
                     $scope,
                     $scopeId
                 );
