@@ -134,6 +134,19 @@ class Events
     {
         if (! isset($this->events[$data->transaction->type])
             && $data->transaction->status != "success") {
+            if($data->cancelled === "true") {
+                return (new $this->events["cancel"](
+                    $this->config,
+                    $this->serviceTransaction,
+                    $this->invoiceRepository,
+                    $this->orderRepository,
+                    $this->invoiceService,
+                    $this->invoiceSender,
+                    $this->transaction,
+                    $this->paymentTransaction
+                )
+                )->handle($data, $this->order);
+            }
             return;
         }
         $dataTxnId = $data->transaction;

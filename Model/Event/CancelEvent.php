@@ -109,7 +109,7 @@ class CancelEvent
             $order->getId().'-void',
             [
             PaymentTransaction::RAW_DETAILS => [
-                'trans' => $data->transaction->id
+                'trans' => ($data->transaction)? $data->transaction->id : ''
             ]
             ]
         );
