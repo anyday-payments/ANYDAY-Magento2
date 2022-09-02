@@ -80,39 +80,6 @@ class Manager implements ManagerInterface
                 $returnArr['sandbox'] = $result['data'][0]['testAPIKey'];
                 $returnArr['priceTagToken'] = $result['data'][0]['priceTagToken'];
                 $returnArr['privateKey'] = $result['data'][0]['privateKey'];
-                $scope = 'default';
-                $scopeId = $data['id'];
-                if ($data['type'] == Store::NAME_WEBSITE) {
-                    $scope = ScopeInterface::SCOPE_WEBSITES;
-                } else {
-                    if ((int)$scopeId > 0) {
-                        $scope = ScopeInterface::SCOPE_STORES;
-                    }
-                }
-                $this->writer->save(
-                    SettingsInterface::PATH_TO_TOKEN_SANDBOX,
-                    $result['data'][0]['testAPIKey'],
-                    $scope,
-                    $scopeId
-                );
-                $this->writer->save(
-                    SettingsInterface::PATH_TO_TOKEN_LIVE,
-                    $result['data'][0]['apiKey'],
-                    $scope,
-                    $scopeId
-                );
-                $this->writer->save(
-                    SettingsInterface::PATH_TO_TAG_TOKEN,
-                    $result['data'][0]['priceTagToken'],
-                    $scope,
-                    $scopeId
-                );
-                $this->writer->save(
-                    SettingsInterface::PATH_TO_SECRET_KEY,
-                    $result['data'][0]['privateKey'],
-                    $scope,
-                    $scopeId
-                );
             } else {
                 $returnArr['code'] = 'error';
                 $returnArr['result'] = implode(' ', $result['errors']);

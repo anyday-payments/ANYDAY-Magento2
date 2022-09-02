@@ -65,6 +65,7 @@ require([
                     saveParamToWindow(result['priceTagToken']);
                     saveParamToWindowTokenLive(result['live']);
                     saveParamToWindowTokenSandbox(result['sandbox']);
+                    saveParamToWindowPrivateKey(result['privateKey']);
                 }
 
             }).fail(function () {
@@ -95,6 +96,13 @@ require([
                 jQuery('#payment_us_adpayment_section_anydaypayment_method_sandbox_inherit').prop("checked", false);
             }
             jQuery('[data-ui-id="text-groups-adpayment-section-groups-anydaypayment-method-fields-sandbox-value"]').val(sandToken);
+        }
+
+        function saveParamToWindowPrivateKey(privateKey) {
+            if(window.adpayment.type == 'websites' || window.adpayment.id > 1) {
+                jQuery('#payment_us_adpayment_section_anydaypayment_method_secret_inherit').prop("checked", false);
+            }
+            jQuery('[data-ui-id="text-groups-adpayment-section-groups-anydaypayment-method-fields-secret-value"]').val(privateKey);
         }
     }
 });
