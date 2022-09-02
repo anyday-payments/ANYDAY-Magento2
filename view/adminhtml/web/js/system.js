@@ -61,7 +61,7 @@ require([
                         content: $t(result['result'])
                     });
                 } else {
-                    $('<div class="message message-success braintree-credentials-success-message">' + $t("Your credentials are valid.") + '</div>').insertAfter(self);
+                    $('<div class="message message-success braintree-credentials-success-message">' + $t("Your credentials are valid, Please save the configuration.") + '</div>').insertAfter(self);
                     saveParamToWindow(result['priceTagToken']);
                     saveParamToWindowTokenLive(result['live']);
                     saveParamToWindowTokenSandbox(result['sandbox']);
