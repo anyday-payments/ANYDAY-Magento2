@@ -46,3 +46,7 @@ After signing up for an Anyday account and installing this extension, you will b
 ### Version 1.0.3
 
 - Fixed authentication with anyday account credentials.
+
+### Version 1.0.4
+
+- Fixed callback issue which appears when user authenticate using merchant account.
