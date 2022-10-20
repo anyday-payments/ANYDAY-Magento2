@@ -18,6 +18,7 @@ use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\Service\InvoiceService;
 use Magento\Framework\DB\Transaction as MagentoTransaction;
 use Magento\Sales\Model\Order\Email\Sender\InvoiceSender;
+use Magento\Sales\Api\OrderManagementInterface;
 
 class Events
 {
@@ -85,6 +86,11 @@ class Events
     protected $paymentTransaction;
 
     /**
+     * @var OrderManagementInterface
+     */
+    protected $orderManagement;
+
+    /**
      * @param Order $order
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param FilterBuilder $filterBuilder
@@ -110,7 +116,8 @@ class Events
         InvoiceService $invoiceService,
         InvoiceSender $invoiceSender,
         MagentoTransaction $transaction,
-        Transaction $paymentTransaction
+        Transaction $paymentTransaction,
+        OrderManagementInterface $orderManagement
     ) {
         $this->order    = $order;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
@@ -124,6 +131,7 @@ class Events
         $this->transaction = $transaction;
         $this->invoiceSender = $invoiceSender;
         $this->paymentTransaction = $paymentTransaction;
+        $this->orderManagement = $orderManagement;
     }
 
     /**
@@ -132,10 +140,10 @@ class Events
      */
     public function handle($data)
     {
-        if (! isset($this->events[$data->transaction->type])
-            && $data->transaction->status != "success") {
-            if($data->cancelled === "true") {
-                return (new $this->events["cancel"](
+        if (is_null($data->transaction) || (! isset($this->events[$data->transaction->type])
+            && $data->transaction->status != "success")) {
+            if($data->cancelled === true) {
+                $cancel = (new $this->events["cancel"](
                     $this->config,
                     $this->serviceTransaction,
                     $this->invoiceRepository,
@@ -146,6 +154,8 @@ class Events
                     $this->paymentTransaction
                 )
                 )->handle($data, $this->order);
+                if($cancel)
+                    $this->orderManagement->cancel($this->getOrder($data->orderId)->getId());
             }
             return;
         }
