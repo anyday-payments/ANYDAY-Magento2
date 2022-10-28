@@ -50,3 +50,7 @@ After signing up for an Anyday account and installing this extension, you will b
 ### Version 1.0.4
 
 - Fixed callback issue which appears when user authenticate using merchant account.
+
+### Version 1.0.5
+
+- Expired payment orders gets cancelled automatically by callback. 
